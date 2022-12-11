@@ -1,5 +1,9 @@
+# FAUV - React
+
 ## Setup
 
+- Install Node.js LTS: https://nodejs.org.
+- Install PNPM: https://pnpm.io/installation.
 - Install the dependencies: `pnpm install`.
 
 ## Scripts
