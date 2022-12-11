@@ -1,20 +1,20 @@
 import type { ReactElement } from 'react'
 
 interface IFauvTitleProperties {
-	subTitle: string | undefined
+	subtitle: string | null | undefined
 }
 
 export default function FauvTitle({
-	subTitle
+	subtitle
 }: IFauvTitleProperties): ReactElement {
 	return (
 		<>
-			<h1 className='mb-1 font-lexend text-xl-fauv font-medium leading-20 tracking-login text-blue-fauv'>
+			<h1 className='mb-1 ml-3 font-lexend text-xl-fauv font-medium leading-20 tracking-login text-blue-fauv'>
 				FAUV
 			</h1>
-			{!!subTitle && (
+			{subtitle && (
 				<h3 className='font-lexend text-base font-medium leading-5 text-blue-fauv'>
-					{subTitle}
+					{subtitle}
 				</h3>
 			)}
 		</>

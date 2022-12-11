@@ -1,6 +1,6 @@
 ## Setup
 
-- Install the dependencies:: `pnpm install`.
+- Install the dependencies: `pnpm install`.
 
 ## Scripts
 

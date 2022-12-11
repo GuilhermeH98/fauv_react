@@ -111,6 +111,7 @@
 		],
 
 		"react/no-did-update-set-state": "off",
+		"react/jsx-no-leaked-render": "off",
 		"react/no-find-dom-node": "off",
 		"react/no-is-mounted": "off",
 		"react/no-redundant-should-component-update": "off",
