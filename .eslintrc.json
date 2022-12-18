@@ -67,21 +67,14 @@
 			}
 		],
 		"no-void": "off",
-
+		"no-magic-numbers": "off",
 		"@typescript-eslint/padding-line-between-statements": "off",
 		"@typescript-eslint/prefer-enum-initializers": "off",
 		"@typescript-eslint/prefer-readonly-parameter-types": "off",
 		"@typescript-eslint/prefer-regexp-exec": "off",
-		"@typescript-eslint/no-magic-numbers": [
-			"error",
-			{
-				"ignoreEnums": true,
-				"ignore": [0],
-				"enforceConst": true,
-				"detectObjects": true
-			}
-		],
+		"@typescript-eslint/no-magic-numbers": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-type-alias": "off",
 		"@typescript-eslint/init-declarations": "off",
 		"@typescript-eslint/no-confusing-void-expression": [
 			"error",
@@ -112,6 +105,7 @@
 
 		"react/no-did-update-set-state": "off",
 		"react/jsx-no-leaked-render": "off",
+		"react/no-array-index-key": "off",
 		"react/no-find-dom-node": "off",
 		"react/no-is-mounted": "off",
 		"react/no-redundant-should-component-update": "off",

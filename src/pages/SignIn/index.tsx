@@ -1,5 +1,6 @@
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
+import RoundedButton from 'components/RoundedButton'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
@@ -13,17 +14,12 @@ export default function SignIn(): ReactElement {
 				<Checkbox id='remember' label='Lembrar-me' />
 				<Link
 					to='/signup'
-					className=' font-montserrat text-base font-semibold  leading-4 text-blue-fauv'
+					className=' font-montserrat text-base font-semibold leading-4 text-blue-fauv'
 				>
 					Novo usuário?
 				</Link>
 			</div>
-			<button
-				type='submit'
-				className='mb-4 h-11 w-72 rounded-btn bg-blue-fauv font-lexend text-white shadow-btn'
-			>
-				Login
-			</button>
+			<RoundedButton>Login</RoundedButton>
 		</AuthenticationLayout>
 	)
 }

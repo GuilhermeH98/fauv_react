@@ -1,10 +1,7 @@
 import type { ReactElement } from 'react'
 import FauvTitle from './components/FauvTitle'
 import Footer from './components/Footer'
-
-export interface IAuthenticationProperties {
-	subtitle?: string
-}
+import type { IAuthenticationProperties } from './types'
 
 export function AuthenticationLayout({
 	subtitle,

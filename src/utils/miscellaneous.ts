@@ -1,6 +1,5 @@
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useReducer, useState } from 'react'
 
-// eslint-disable-next-line import/prefer-default-export
 export function useMediaQuery(query: string): boolean {
 	const [matches, setMatches] = useState(() => matchMedia(query).matches)
 
@@ -19,4 +18,10 @@ export function useMediaQuery(query: string): boolean {
 	}, [query])
 
 	return matches
+}
+
+export function useToggle(
+	initial = false
+): [boolean, React.DispatchWithoutAction] {
+	return useReducer(old => !old, initial)
 }
