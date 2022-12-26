@@ -1,4 +1,4 @@
-import RoundedButton from 'components/RoundedButton'
+import SecondaryButton from 'components/SecondaryButton'
 import type { ReactElement } from 'react'
 
 export default function RequestSuccess(): ReactElement {
@@ -10,7 +10,7 @@ export default function RequestSuccess(): ReactElement {
 			<p className='font-lexend text-base font-medium leading-5 text-blue-fauv'>
 				Em breve você receberá a confirmação de seu cadastro.
 			</p>
-			<RoundedButton>Retornar Para Login</RoundedButton>
+			<SecondaryButton>Retornar Para Login</SecondaryButton>
 		</>
 	)
 }

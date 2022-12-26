@@ -1,6 +1,6 @@
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
-import RoundedButton from 'components/RoundedButton'
+import SecondaryButton from 'components/SecondaryButton'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
@@ -19,7 +19,7 @@ export default function SignIn(): ReactElement {
 					Novo usuário?
 				</Link>
 			</div>
-			<RoundedButton>Login</RoundedButton>
+			<SecondaryButton>Login</SecondaryButton>
 		</AuthenticationLayout>
 	)
 }

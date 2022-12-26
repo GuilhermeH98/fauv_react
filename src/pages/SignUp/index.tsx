@@ -1,5 +1,5 @@
 import Input from 'components/Input'
-import RoundedButton from 'components/RoundedButton'
+import SecondaryButton from 'components/SecondaryButton'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 
@@ -27,7 +27,7 @@ export default function SignUp(): ReactElement {
 				<option value='inspector'>Inspetor</option>
 				<option value='consultant'>Consultante</option>
 			</select>
-			<RoundedButton>Solicitar Cadastro</RoundedButton>
+			<SecondaryButton>Solicitar Cadastro</SecondaryButton>
 			{/* {isSuccess && <RequestSuccess />} */}
 		</AuthenticationLayout>
 	)

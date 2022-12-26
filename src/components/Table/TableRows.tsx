@@ -11,9 +11,14 @@ function TableRows<TData, TKey extends keyof TData>({
 	columns
 }: TableRowsProperties<TData, TKey>): JSX.Element {
 	const rows = data.map((row, index) => (
-		<tr key={`row-${index}`}>
-			{columns.map((column, index2) => (
-				<td key={`cell-${index2}`}>
+		<tr key={`row-${index}`} className='h-12'>
+			{columns.map((column, columnIndex) => (
+				<td
+					key={`cell-${columnIndex}`}
+					className={`py-4 px-6 font-inter text-sm font-normal leading-snug text-black-fauv-2 ${
+						index % 2 === 0 ? 'bg-softblue-fauv' : ''
+					}`}
+				>
 					<>{row[column.key]}</>
 				</td>
 			))}
