@@ -2,8 +2,8 @@ import type { ReactElement } from 'react'
 import type { IButtonProperties } from './types'
 
 export default function Button({
-	disabled = false,
-	isSubmit = false,
+	disabled,
+	isSubmit,
 	children,
 	className,
 	onClick

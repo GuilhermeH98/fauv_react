@@ -1,5 +1,5 @@
-import Input from 'components/Input'
-import SecondaryButton from 'components/SecondaryButton'
+import SecondaryButton from 'components/Buttons/SecondaryButton'
+import SecondaryInput from 'components/Inputs/SecondaryInput'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 
@@ -7,9 +7,14 @@ export default function SignUp(): ReactElement {
 	// TODO: Rendering RequestSuccess component on success
 	return (
 		<AuthenticationLayout subtitle='Informe seus dados'>
-			<Input type='text' id='userId' placeholder='ID' required />
-			<Input type='password' id='password' placeholder='Senha' required />
-			<Input
+			<SecondaryInput type='text' id='userId' placeholder='ID' required />
+			<SecondaryInput
+				type='password'
+				id='password'
+				placeholder='Senha'
+				required
+			/>
+			<SecondaryInput
 				type='password'
 				id='confirmPassword'
 				placeholder='Repetir senha'

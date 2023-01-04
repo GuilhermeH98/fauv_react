@@ -1,3 +1,4 @@
+import { AuthWrapper } from 'components/AuthWrapper'
 import LoadingOrError from 'components/LoadingOrError'
 import { NavigationLayout } from 'layouts/Navigation'
 import SignIn from 'pages/SignIn'
@@ -12,17 +13,33 @@ export default function App(): ReactElement {
 		<BrowserRouter>
 			<Suspense fallback={<LoadingOrError />}>
 				<Routes>
-					<Route index element={<SignIn />} />
-					<Route path='/signup' element={<SignUp />} />
+					<Route
+						index
+						element={
+							<AuthWrapper>
+								<SignIn />
+							</AuthWrapper>
+						}
+					/>
+					<Route
+						path='/signup'
+						element={
+							<AuthWrapper>
+								<SignUp />
+							</AuthWrapper>
+						}
+					/>
 
 					<Route
 						path='/*'
 						element={
-							<NavigationLayout>
-								<Routes>
-									<Route path='/users' element={<Users />} />
-								</Routes>
-							</NavigationLayout>
+							<AuthWrapper authenticated>
+								<NavigationLayout>
+									<Routes>
+										<Route path='/users' element={<Users />} />
+									</Routes>
+								</NavigationLayout>
+							</AuthWrapper>
 						}
 					/>
 				</Routes>

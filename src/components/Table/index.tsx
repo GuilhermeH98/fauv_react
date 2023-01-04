@@ -21,9 +21,9 @@ export default function Table<TData, TKey extends keyof TData>({
 }: ITableProperties<TData, TKey>): ReactElement {
 	return (
 		<>
-			<div className='flex h-16 rounded-t-lg  border-b border-bluishgrey-fauv bg-white'>
+			<div className='flex h-16 rounded-t-lg  border-b border-bluishgray-fauv bg-white'>
 				<div className='mr-6 py-5 pl-6 font-bold text-black-fauv'>{title}</div>
-				<hr className='h-full border-r border-bluishgrey-fauv' />
+				<hr className='h-full border-r border-bluishgray-fauv' />
 				<div className='ml-6 py-5 font-inter text-sm font-light leading-6 text-black-fauv'>
 					{`${data.length < 10 ? `0${data.length}` : data.length}  ${title}`}
 				</div>
@@ -34,7 +34,7 @@ export default function Table<TData, TKey extends keyof TData>({
 					<TableRows data={data} columns={columns} />
 				</table>
 			</div>
-			<div className='h-16 rounded-b-lg border-t  border-bluishgrey-fauv  bg-white ' />
+			<div className='h-16 rounded-b-lg border-t  border-bluishgray-fauv  bg-white ' />
 		</>
 	)
 }

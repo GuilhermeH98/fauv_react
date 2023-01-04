@@ -1,4 +1,4 @@
-import SecondaryButton from 'components/SecondaryButton'
+import SecondaryButton from 'components/Buttons/SecondaryButton'
 import type { ReactElement } from 'react'
 
 export default function RequestSuccess(): ReactElement {

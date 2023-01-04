@@ -1,8 +1,16 @@
 import type { ReactElement } from 'react'
 
-export function PowerIcon(): ReactElement {
+interface IPowerIconProperties {
+	onClick: () => void
+}
+
+export function PowerIcon({ onClick }: IPowerIconProperties): ReactElement {
 	return (
-		<div className='mx-auto mt-auto mb-8 cursor-pointer'>
+		<div
+			className='mx-auto mt-auto mb-8 cursor-pointer'
+			onClick={onClick}
+			aria-hidden='true'
+		>
 			<svg
 				width='24'
 				height='24'
