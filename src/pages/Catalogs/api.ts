@@ -1,0 +1,20 @@
+import { makeMutation, makeQuery } from 'utils/api'
+import { z } from 'zod'
+
+export const CATALOGS_URL = 'catalogs'
+
+export const Catalog = z.object({
+	id: z.number(),
+	name: z.string(),
+	isActive: z.boolean()
+})
+export type ICatalog = z.infer<typeof Catalog>
+
+export const CatalogPayload = Catalog.partial({ id: true })
+
+export const useCatalogsQuery = makeQuery(CATALOGS_URL, z.array(Catalog))
+
+export const useAccessRequestsMutation = makeMutation(
+	CATALOGS_URL,
+	CatalogPayload
+)

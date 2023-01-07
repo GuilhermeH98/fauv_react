@@ -1,12 +1,12 @@
-import type { IColumnDefinitionType } from '.'
+import type { IColumnDefinitionType } from '..'
 
-interface TableHeaderProperties<TData, TKey extends keyof TData> {
+interface ITableHeaderProperties<TData, TKey extends keyof TData> {
 	columns: IColumnDefinitionType<TData, TKey>[]
 }
 
 function TableHeader<TData, TKey extends keyof TData>({
 	columns
-}: TableHeaderProperties<TData, TKey>): JSX.Element {
+}: ITableHeaderProperties<TData, TKey>): JSX.Element {
 	const headers = columns.map((column, index) => (
 		<th
 			key={`headCell-${index}`}

@@ -9,7 +9,7 @@ export function NavigationLayout({
 		<div className='flex h-auto min-h-screen bg-gray-fauv'>
 			<PageHeader />
 			<SideNav />
-			<div className='w-full pl-24 pt-20 pr-4 pb-4'>{children}</div>
+			<div className='w-full pl-24 pt-16 pr-4 pb-4 sm:pt-20'>{children}</div>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 import type { ISwitchProperties } from './types'
 
-export default function Input({
+export default function Switch({
 	label,
 	disabled
 }: ISwitchProperties): ReactElement {

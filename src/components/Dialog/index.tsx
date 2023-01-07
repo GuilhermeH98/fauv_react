@@ -21,7 +21,7 @@ export function Dialog({
 			<div className='flex h-screen items-center justify-center'>
 				<div
 					className={`flex ${
-						widthClass || 'w-[40.75rem]'
+						widthClass ?? 'w-[40.75rem]'
 					} max-h-[90%] flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-white p-6`}
 					onClick={onContentClick}
 					aria-hidden='true'

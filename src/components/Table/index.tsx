@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
-import TableHeader from './TableHeader'
-import TableRows from './TableRows'
+import TableHeader from './components/TableHeader'
+import TableRows from './components/TableRows'
+import TableTitle from './components/TableTitle'
 
 export interface IColumnDefinitionType<TData, TKey extends keyof TData> {
 	key: TKey
@@ -21,15 +22,9 @@ export default function Table<TData, TKey extends keyof TData>({
 }: ITableProperties<TData, TKey>): ReactElement {
 	return (
 		<>
-			<div className='flex h-16 rounded-t-lg  border-b border-bluishgray-fauv bg-white'>
-				<div className='mr-6 py-5 pl-6 font-bold text-black-fauv'>{title}</div>
-				<hr className='h-full border-r border-bluishgray-fauv' />
-				<div className='ml-6 py-5 font-inter text-sm font-light leading-6 text-black-fauv'>
-					{`${data.length < 10 ? `0${data.length}` : data.length}  ${title}`}
-				</div>
-			</div>
-			<div className=' overflow-auto'>
-				<table className='w-full bg-white text-left text-sm text-gray-500 dark:text-gray-400'>
+			<TableTitle dataLength={data.length} title={title} />
+			<div className=' max-h-96  overflow-auto bg-white  xl:max-h-[38rem]'>
+				<table className='  w-full  text-left text-sm text-gray-500'>
 					<TableHeader columns={columns} />
 					<TableRows data={data} columns={columns} />
 				</table>

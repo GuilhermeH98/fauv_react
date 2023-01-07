@@ -88,6 +88,7 @@
 		"@typescript-eslint/member-ordering": "off",
 		"@typescript-eslint/prefer-includes": "off",
 		"@typescript-eslint/no-restricted-imports": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
 		"import/no-deprecated": "error",
 		"import/order": "off",
 		"import/no-extraneous-dependencies": [
@@ -135,15 +136,6 @@
 			}
 		],
 		"react/no-unstable-nested-components": "error",
-		"react/jsx-handler-names": [
-			"error",
-			{
-				"eventHandlerPrefix": "on",
-				"eventHandlerPropPrefix": "on",
-				"checkLocalVariables": true,
-				"checkInlineFunction": true
-			}
-		],
 		"react/jsx-key": "error",
 		"react/jsx-no-bind": [
 			"error",

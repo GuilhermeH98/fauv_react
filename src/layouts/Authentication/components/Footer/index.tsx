@@ -2,9 +2,9 @@ import type { ReactElement } from 'react'
 
 export default function Footer(): ReactElement {
 	return (
-		<footer className='border-gray-200shadow fixed bottom-0 left-0  flex w-full border-t'>
+		<footer className='mt-auto flex w-full'>
 			<svg
-				className='sm:h-14 md:h-auto lg:h-28'
+				className='h-14 md:h-auto xl:h-28'
 				width='100%'
 				preserveAspectRatio='none'
 				viewBox='0 0 1440 111'

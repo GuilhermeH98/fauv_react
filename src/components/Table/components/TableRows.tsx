@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import type { IColumnDefinitionType } from '.'
+import type { IColumnDefinitionType } from '..'
 
-interface TableRowsProperties<TData, TKey extends keyof TData> {
+interface ITableRowsProperties<TData, TKey extends keyof TData> {
 	data: TData[]
 	columns: IColumnDefinitionType<TData, TKey>[]
 }
@@ -9,7 +9,7 @@ interface TableRowsProperties<TData, TKey extends keyof TData> {
 function TableRows<TData, TKey extends keyof TData>({
 	data,
 	columns
-}: TableRowsProperties<TData, TKey>): JSX.Element {
+}: ITableRowsProperties<TData, TKey>): JSX.Element {
 	const rows = data.map((row, index) => (
 		<tr key={`row-${index}`} className='h-12'>
 			{columns.map((column, columnIndex) => (

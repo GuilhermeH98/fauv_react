@@ -1,6 +1,7 @@
 import { AuthWrapper } from 'components/AuthWrapper'
 import LoadingOrError from 'components/LoadingOrError'
 import { NavigationLayout } from 'layouts/Navigation'
+import { Catalogs } from 'pages/Catalogs'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
 import { Users } from 'pages/Users'
@@ -37,6 +38,7 @@ export default function App(): ReactElement {
 								<NavigationLayout>
 									<Routes>
 										<Route path='/users' element={<Users />} />
+										<Route path='/catalogs' element={<Catalogs />} />
 									</Routes>
 								</NavigationLayout>
 							</AuthWrapper>

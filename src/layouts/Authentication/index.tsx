@@ -9,17 +9,15 @@ export function AuthenticationLayout({
 	onSubmit
 }: React.PropsWithChildren<IAuthenticationProperties>): ReactElement {
 	return (
-		<>
-			<div className='flex min-h-screen bg-gray-fauv'>
-				<form
-					className='z-10 m-auto flex flex-col items-center gap-6 lg:gap-8'
-					onSubmit={onSubmit}
-				>
-					<FauvTitle subtitle={subtitle} />
-					{children}
-				</form>
-			</div>
+		<div className='flex min-h-screen flex-col bg-gray-fauv'>
+			<form
+				className='z-10   mx-auto mt-auto flex flex-col items-center gap-6  xl:gap-8'
+				onSubmit={onSubmit}
+			>
+				<FauvTitle subtitle={subtitle} />
+				{children}
+			</form>
 			<Footer />
-		</>
+		</div>
 	)
 }

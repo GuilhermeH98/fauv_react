@@ -9,7 +9,7 @@ export default function FauvTitle({
 }: IFauvTitleProperties): ReactElement {
 	return (
 		<>
-			<h1 className='mb-1 ml-3 font-lexend text-xl-fauv font-medium leading-20 tracking-login text-blue-fauv'>
+			<h1 className='ml-3 font-lexend text-xl-fauv font-medium leading-20 tracking-login text-blue-fauv xl:mb-1'>
 				FAUV
 			</h1>
 			{subtitle && (
