@@ -1,19 +1,33 @@
 import type { ReactElement } from 'react'
+import type { FieldValues } from 'react-hook-form'
 import type { IInputProperties } from '../types'
 
-export default function Input({
+export default function Input<TFieldValues extends FieldValues>({
 	type,
 	id,
 	placeholder,
-	required
-}: IInputProperties): ReactElement {
+	required,
+	label,
+	register
+}: IInputProperties<TFieldValues>): ReactElement {
 	return (
-		<input
-			type={type ?? 'text'}
-			id={id}
-			placeholder={placeholder}
-			required={required ?? false}
-			className='h-10 w-auto rounded border focus:border-blue-500 focus:ring-blue-500'
-		/>
+		<div className='grid gap-4'>
+			{label && (
+				<label
+					className='font-inter text-base font-semibold leading-[160%]  text-black-fauv-3'
+					htmlFor={id}
+				>
+					{label}
+				</label>
+			)}
+			<input
+				type={type ?? 'text'}
+				id={id}
+				placeholder={placeholder}
+				required={required ?? false}
+				{...register(id)}
+				className='h-10 w-auto rounded border border-bluishgray-fauv focus:border-blue-fauv '
+			/>
+		</div>
 	)
 }

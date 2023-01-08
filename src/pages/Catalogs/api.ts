@@ -1,7 +1,7 @@
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const CATALOGS_URL = 'catalogs'
+export const CATALOGS_URL = 'catalog'
 
 export const Catalog = z.object({
 	id: z.number(),
@@ -14,7 +14,4 @@ export const CatalogPayload = Catalog.partial({ id: true })
 
 export const useCatalogsQuery = makeQuery(CATALOGS_URL, z.array(Catalog))
 
-export const useAccessRequestsMutation = makeMutation(
-	CATALOGS_URL,
-	CatalogPayload
-)
+export const useCatalogMutation = makeMutation(CATALOGS_URL, CatalogPayload)

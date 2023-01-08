@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import type { IColumnDefinitionType } from '..'
-
-interface ITableRowsProperties<TData, TKey extends keyof TData> {
-	data: TData[]
-	columns: IColumnDefinitionType<TData, TKey>[]
-}
+import type { ITableRowsProperties } from '../types'
 
 function TableRows<TData, TKey extends keyof TData>({
 	data,
-	columns
+	columns,
+	onRowClick
 }: ITableRowsProperties<TData, TKey>): JSX.Element {
 	const rows = data.map((row, index) => (
-		<tr key={`row-${index}`} className='h-12'>
+		<tr
+			key={`row-${index}`}
+			className={`h-12 ${onRowClick ? 'cursor-pointer' : ''}`}
+			onClick={onRowClick ? () => onRowClick(row) : undefined}
+		>
 			{columns.map((column, columnIndex) => (
 				<td
 					key={`cell-${columnIndex}`}
@@ -19,7 +19,11 @@ function TableRows<TData, TKey extends keyof TData>({
 						index % 2 === 0 ? 'bg-softblue-fauv' : ''
 					}`}
 				>
-					<>{row[column.key]}</>
+					<>
+						{column.valueFormatter
+							? column.valueFormatter(row[column.key])
+							: row[column.key]}
+					</>
 				</td>
 			))}
 		</tr>

@@ -1,8 +1,9 @@
 import type { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 
 export function ActivityIcon(): ReactElement {
 	return (
-		<div className='mx-auto cursor-pointer'>
+		<Link to='/catalogs' className='mx-auto cursor-pointer'>
 			<svg
 				width='24'
 				height='24'
@@ -18,6 +19,6 @@ export function ActivityIcon(): ReactElement {
 					strokeLinejoin='round'
 				/>
 			</svg>
-		</div>
+		</Link>
 	)
 }

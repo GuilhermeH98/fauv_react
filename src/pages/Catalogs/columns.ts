@@ -1,4 +1,4 @@
-import type { IColumnDefinitionType } from 'components/Table'
+import type { IColumnDefinitionType } from 'components/Table/types'
 import type { ICatalog } from './api'
 
 export const columns: IColumnDefinitionType<ICatalog, keyof ICatalog>[] = [
@@ -8,6 +8,7 @@ export const columns: IColumnDefinitionType<ICatalog, keyof ICatalog>[] = [
 	},
 	{
 		key: 'isActive',
-		header: 'Ativo'
+		header: 'Ativo',
+		valueFormatter: value => (value ? 'Sim' : 'Não')
 	}
 ]

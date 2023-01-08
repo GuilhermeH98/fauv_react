@@ -1,22 +1,27 @@
 import type { ReactElement } from 'react'
+import type { FieldValues } from 'react-hook-form'
 import type { ISwitchProperties } from './types'
 
-export default function Switch({
+export default function Switch<TFieldValues extends FieldValues>({
 	label,
-	disabled
-}: ISwitchProperties): ReactElement {
+	id,
+	register,
+	required
+}: ISwitchProperties<TFieldValues>): ReactElement {
 	return (
-		<label className='relative inline-flex cursor-pointer items-center'>
+		<label
+			htmlFor={id}
+			className='relative mb-4 flex cursor-pointer items-center'
+		>
 			<input
 				type='checkbox'
-				value=''
-				className='peer sr-only'
-				disabled={disabled}
+				id={id}
+				className='sr-only'
+				{...register(id)}
+				required={required}
 			/>
-			<div className="peer h-10 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800" />
-			<span className='ml-3 text-sm font-medium text-gray-900 dark:text-gray-300'>
-				{label}
-			</span>
+			<div className='toggle-bg peer h-5 w-11 rounded-full border-2 border-gray-200 bg-gray-200' />
+			<span className='ml-3 text-sm font-medium text-gray-900'>{label}</span>
 		</label>
 	)
 }

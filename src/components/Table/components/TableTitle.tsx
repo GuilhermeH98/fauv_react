@@ -1,7 +1,4 @@
-interface ITableTitleProperties {
-	dataLength: number
-	title: string
-}
+import type { ITableTitleProperties } from '../types'
 
 function TableTitle({ dataLength, title }: ITableTitleProperties): JSX.Element {
 	return (

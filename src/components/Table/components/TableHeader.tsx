@@ -1,8 +1,4 @@
-import type { IColumnDefinitionType } from '..'
-
-interface ITableHeaderProperties<TData, TKey extends keyof TData> {
-	columns: IColumnDefinitionType<TData, TKey>[]
-}
+import type { ITableHeaderProperties } from '../types'
 
 function TableHeader<TData, TKey extends keyof TData>({
 	columns

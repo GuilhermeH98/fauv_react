@@ -1,8 +1,11 @@
 [
 	{
 		"id": 5,
-		"name": "VW Gol",
+		"name": "FAUV Modern",
 		"isActive": false
 	},
-	{ "id": 6, "name": "VW Novo Modelo", "isActive": true }
+	{ "id": 6, "name": "FAUV Novo Modelo", "isActive": true },
+	{ "id": 7, "name": "FAUV Clássico", "isActive": true },
+	{ "id": 8, "name": "Carros 2023 ", "isActive": true },
+	{ "id": 9, "name": "Modelos legados", "isActive": true }
 ]

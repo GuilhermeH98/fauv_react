@@ -16,6 +16,7 @@ const config = {
 				'bluishgray-fauv': '#CDDDE8',
 				'black-fauv': '#404040',
 				'black-fauv-2': '#2D2D2D',
+				'black-fauv-3': '#4F4F4F',
 				'white-transparent': 'rgb(250, 250, 250, 0.18)',
 				'gray-transparent': 'rgba(100, 100, 100, .7)'
 			},

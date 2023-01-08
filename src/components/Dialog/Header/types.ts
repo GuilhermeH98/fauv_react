@@ -1,5 +1,5 @@
 export interface IDialogHeaderProperties {
 	title: string
-	onClose?: () => void
-	onButtonClick?: () => void
+	isFormDialog?: boolean
+	disabledSubmit?: boolean
 }

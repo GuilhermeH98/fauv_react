@@ -1,0 +1,10 @@
+{
+	"name": "Nunes",
+	"token": "1ASLqwsdkASKEWsdkqwe",
+	"isActive": true,
+	"roles": [
+		{
+			"name": "Admin"
+		}
+	]
+}

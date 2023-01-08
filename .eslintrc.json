@@ -37,6 +37,7 @@
 		"no-implicit-coercion": "error",
 		"prefer-regex-literals": "error",
 		"capitalized-comments": "error",
+		"react/jsx-props-no-spreading": "off",
 		"jsx-a11y/label-has-associated-control": [
 			"error",
 			{
@@ -78,6 +79,8 @@
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/no-type-alias": "off",
 		"@typescript-eslint/init-declarations": "off",
+		"@typescript-eslint/prefer-nullish-coalescing": "off",
+		"@typescript-eslint/no-misused-promises": "off",
 		"@typescript-eslint/no-confusing-void-expression": [
 			"error",
 			{ "ignoreArrowShorthand": true }

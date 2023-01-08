@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import Button from 'components/Buttons/Button'
 import PageTop from 'components/PageTop'
-import type { IColumnDefinitionType } from 'components/Table'
 import Table from 'components/Table'
+import type { IColumnDefinitionType } from 'components/Table/types'
 import type { ReactElement } from 'react'
 import { get } from 'utils/api'
 

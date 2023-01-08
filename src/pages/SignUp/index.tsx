@@ -2,23 +2,33 @@ import SecondaryButton from 'components/Buttons/SecondaryButton'
 import SecondaryInput from 'components/Inputs/SecondaryInput'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function SignUp(): ReactElement {
+	const { register } = useForm()
 	// TODO: Rendering RequestSuccess component on success
 	return (
 		<AuthenticationLayout subtitle='Informe seus dados'>
-			<SecondaryInput type='text' id='userId' placeholder='ID' required />
+			<SecondaryInput
+				type='text'
+				id='userId'
+				placeholder='ID'
+				required
+				register={register}
+			/>
 			<SecondaryInput
 				type='password'
 				id='password'
 				placeholder='Senha'
 				required
+				register={register}
 			/>
 			<SecondaryInput
 				type='password'
 				id='confirmPassword'
 				placeholder='Repetir senha'
 				required
+				register={register}
 			/>
 			<select
 				id='role'

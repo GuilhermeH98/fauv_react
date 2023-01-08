@@ -1,17 +1,20 @@
+import { makeMutation } from 'utils/api'
 import { z } from 'zod'
 
-export const LOGIN_URL = '/accessControl/login'
+export const LOGIN_URL = 'accessControl/login'
 
-export const LoginPayload = z.object({
+export const Credentials = z.object({
+	name: z.string(),
+	token: z.string(),
+	isActive: z.boolean(),
+	roles: z.array(z.object({ name: z.string() }))
+})
+export type ICredentials = z.infer<typeof Credentials>
+
+export const SignInPayload = z.object({
 	username: z.string(),
 	password: z.string()
 })
-export type ILoginPayload = z.infer<typeof LoginPayload>
+export type ISignInPayload = z.infer<typeof SignInPayload>
 
-// export function useLoginMutation(): ReturnType<typeof useMutation> {
-// 	return useMutation((body: ILoginPayload) =>
-// 		request(LOGIN_URL, {
-// 			method: 'post'
-// 		})
-// 	)
-// }
+export const useSignInMutation = makeMutation(LOGIN_URL, SignInPayload)
