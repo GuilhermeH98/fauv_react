@@ -4,6 +4,7 @@ import { NavigationLayout } from 'layouts/Navigation'
 import { Catalogs } from 'pages/Catalogs'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
+import { Units } from 'pages/Units'
 import { Users } from 'pages/Users'
 import type { ReactElement } from 'react'
 import { Suspense } from 'react'
@@ -39,6 +40,7 @@ export default function App(): ReactElement {
 									<Routes>
 										<Route path='/users' element={<Users />} />
 										<Route path='/catalogs' element={<Catalogs />} />
+										<Route path='/units' element={<Units />} />
 									</Routes>
 								</NavigationLayout>
 							</AuthWrapper>

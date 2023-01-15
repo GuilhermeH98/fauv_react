@@ -1,0 +1,10 @@
+[
+	{
+		"id": 5,
+		"name": "Planta São Bernado do Campo ",
+		"isActive": true
+	},
+	{ "id": 9, "name": "Planta Argentina", "isActive": false },
+	{ "id": 6, "name": "Principal Alemanha ", "isActive": true },
+	{ "id": 6, "name": "Portugal", "isActive": true }
+]

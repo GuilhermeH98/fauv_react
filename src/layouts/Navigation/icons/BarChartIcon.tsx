@@ -1,6 +1,9 @@
 import type { ReactElement } from 'react'
+import type { INavigationIconProperties } from './types'
 
-export function BarChartIcon(): ReactElement {
+export function BarChartIcon({
+	currentPath
+}: INavigationIconProperties): ReactElement {
 	return (
 		<div className='mx-auto cursor-pointer'>
 			<svg
@@ -12,21 +15,21 @@ export function BarChartIcon(): ReactElement {
 			>
 				<path
 					d='M18 20V10'
-					stroke='#A0ACB4'
+					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
 				<path
 					d='M12 20V4'
-					stroke='#A0ACB4'
+					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
 				<path
 					d='M6 20V14'
-					stroke='#A0ACB4'
+					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'

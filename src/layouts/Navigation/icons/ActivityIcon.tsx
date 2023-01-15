@@ -1,9 +1,12 @@
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import type { INavigationIconProperties } from './types'
 
-export function ActivityIcon(): ReactElement {
+export function ActivityIcon({
+	currentPath
+}: INavigationIconProperties): ReactElement {
 	return (
-		<Link to='/catalogs' className='mx-auto cursor-pointer'>
+		<Link to='/wip' className='mx-auto cursor-pointer'>
 			<svg
 				width='24'
 				height='24'
@@ -13,7 +16,7 @@ export function ActivityIcon(): ReactElement {
 			>
 				<path
 					d='M22 12H18L15 21L9 3L6 12H2'
-					stroke='#A0ACB4'
+					stroke={`${currentPath === '/wip' ? '#2274AC' : '#A0ACB4'} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
