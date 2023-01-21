@@ -6,7 +6,7 @@ export const LOGIN_URL = 'accessControl/login'
 export const Credentials = z.object({
 	name: z.string(),
 	token: z.string(),
-	isActive: z.boolean(),
+	active: z.boolean(),
 	roles: z.array(z.object({ name: z.string() }))
 })
 export type ICredentials = z.infer<typeof Credentials>

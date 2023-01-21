@@ -7,7 +7,7 @@ export const columns: IColumnDefinitionType<IUnit, keyof IUnit>[] = [
 		header: 'Nome'
 	},
 	{
-		key: 'isActive',
+		key: 'active',
 		header: 'Ativo',
 		valueFormatter: value => (value ? 'Sim' : 'Não')
 	}

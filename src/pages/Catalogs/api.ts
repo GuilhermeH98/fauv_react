@@ -6,7 +6,7 @@ export const CATALOGS_URL = 'catalog'
 export const Catalog = z.object({
 	id: z.number(),
 	name: z.string(),
-	isActive: z.boolean()
+	active: z.boolean()
 })
 export type ICatalog = z.infer<typeof Catalog>
 

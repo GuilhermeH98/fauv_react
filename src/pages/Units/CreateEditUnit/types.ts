@@ -7,5 +7,5 @@ export interface ICreateEditUnitProperties {
 
 export interface IFieldValues {
 	name: string
-	isActive: boolean
+	active: boolean
 }

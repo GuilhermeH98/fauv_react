@@ -13,6 +13,7 @@ const config = {
 				'softblue-fauv': '#EBF9FD',
 				'gray-fauv': '#E5EBF0',
 				'gray-fauv-2': '#828282',
+				'gray-fauv-3': '#A0ACB4',
 				'bluishgray-fauv': '#CDDDE8',
 				'black-fauv': '#404040',
 				'black-fauv-2': '#2D2D2D',
@@ -27,7 +28,8 @@ const config = {
 			},
 			fontSize: {
 				'xl-fauv': '4rem',
-				base: '1rem'
+				base: '1rem',
+				icon: '1.5rem'
 			},
 			lineHeight: {
 				20: '5rem'

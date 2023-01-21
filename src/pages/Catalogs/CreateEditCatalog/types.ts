@@ -7,5 +7,5 @@ export interface ICreateEditCatalogProperties {
 
 export interface IFieldValues {
 	name: string
-	isActive: boolean
+	active: boolean
 }

@@ -2,10 +2,10 @@
 	{
 		"id": 5,
 		"name": "FAUV Modern",
-		"isActive": false
+		"active": false
 	},
-	{ "id": 6, "name": "FAUV Novo Modelo", "isActive": true },
-	{ "id": 7, "name": "FAUV Clássico", "isActive": true },
-	{ "id": 8, "name": "Carros 2023 ", "isActive": true },
-	{ "id": 9, "name": "Modelos legados", "isActive": true }
+	{ "id": 6, "name": "FAUV Novo Modelo", "active": true },
+	{ "id": 7, "name": "FAUV Clássico", "active": true },
+	{ "id": 8, "name": "Carros 2023 ", "active": true },
+	{ "id": 9, "name": "Modelos legados", "active": true }
 ]

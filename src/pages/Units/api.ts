@@ -6,7 +6,7 @@ export const UNITS_URL = 'unit'
 export const Unit = z.object({
 	id: z.number(),
 	name: z.string(),
-	isActive: z.boolean()
+	active: z.boolean()
 })
 export type IUnit = z.infer<typeof Unit>
 

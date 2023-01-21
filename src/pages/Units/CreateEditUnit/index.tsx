@@ -22,7 +22,7 @@ export function CreateEditUnit({
 	function onCreateEditUnit(values: IFieldValues) {
 		const payload = selectedUnit
 			? { id: selectedUnit.id, ...values }
-			: { ...values, isActive: true }
+			: { ...values, active: true }
 		mutate(
 			{ ...payload },
 			{
@@ -50,11 +50,7 @@ export function CreateEditUnit({
 							{selectedUnit.name}
 						</span>
 						<div className='my-auto ml-auto'>
-							<Switch
-								id='isActive'
-								label='Catálogo Ativo'
-								register={register}
-							/>
+							<Switch id='active' label='Catálogo Ativo' register={register} />
 						</div>
 					</div>
 				)}

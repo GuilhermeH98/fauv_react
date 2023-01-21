@@ -1,7 +1,7 @@
 {
 	"name": "Nunes",
 	"token": "1ASLqwsdkASKEWsdkqwe",
-	"isActive": true,
+	"active": true,
 	"roles": [
 		{
 			"name": "Admin"

@@ -6,7 +6,7 @@ export function ClipboardIcon({
 	currentPath
 }: INavigationIconProperties): ReactElement {
 	return (
-		<Link to='/catalogs' className='mx-auto cursor-pointer'>
+		<Link to='/catalogs' className='my-auto mr-auto cursor-pointer'>
 			<svg
 				width='24'
 				height='24'

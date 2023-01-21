@@ -7,11 +7,11 @@ export const handlers = [
 	mock('post', UNITS_URL, {
 		id: 1,
 		name: 'Nova unidade America do Sul',
-		isActive: true
+		active: true
 	}),
 	mock('put', UNITS_URL, {
 		id: 1,
 		name: 'Nova unidade America do Sul',
-		isActive: true
+		active: true
 	})
 ]
