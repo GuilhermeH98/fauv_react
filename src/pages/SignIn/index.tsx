@@ -20,6 +20,7 @@ export default function SignIn(): ReactElement {
 			{
 				onSuccess(response: ICredentials) {
 					localStorage.setItem('token', response.token)
+					localStorage.setItem('roles', JSON.stringify(response.roles))
 					navigate('/home')
 				}
 			}

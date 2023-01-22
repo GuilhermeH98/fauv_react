@@ -1,5 +1,29 @@
 import { useLayoutEffect, useReducer, useState } from 'react'
 
+export type OptionValue = number | string
+
+export interface ISelectOption {
+	label: React.ReactNode
+	value: OptionValue
+}
+
+export function mapSelectOptions<TItem>(
+	items?: TItem[] | undefined,
+	labelField?: keyof TItem,
+	idField?: keyof TItem
+) {
+	return (
+		items?.map<ISelectOption>(item => {
+			const record = item as unknown as Record<string, number | string>
+
+			return {
+				label: record[labelField ?? 'name'],
+				value: record[idField ?? 'id']
+			}
+		}) || []
+	)
+}
+
 export function useMediaQuery(query: string): boolean {
 	const [matches, setMatches] = useState(() => matchMedia(query).matches)
 

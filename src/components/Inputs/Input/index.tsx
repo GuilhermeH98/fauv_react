@@ -26,7 +26,7 @@ export default function Input<TFieldValues extends FieldValues>({
 				placeholder={placeholder}
 				required={required ?? false}
 				{...register(id)}
-				className='h-10 w-auto rounded border border-bluishgray-fauv focus:border-blue-fauv '
+				className='h-10 rounded border border-bluishgray-fauv focus:border-blue-fauv '
 			/>
 		</div>
 	)

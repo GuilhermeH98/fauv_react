@@ -20,9 +20,9 @@ function TableRows<TData, TKey extends keyof TData>({
 					}`}
 				>
 					<>
-						{column.valueFormatter
-							? column.valueFormatter(row[column.key])
-							: row[column.key]}
+						{column.valueGetter?.(row) ||
+							column.valueFormatter?.(row[column.key]) ||
+							row[column.key]}
 					</>
 				</td>
 			))}

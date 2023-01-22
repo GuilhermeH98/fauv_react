@@ -1,0 +1,20 @@
+[
+	{
+		"id": 5,
+		"name": "Equipamento de medição",
+		"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+		"active": false
+	},
+	{
+		"id": 6,
+		"name": "Analyzer XIV",
+		"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+		"active": true
+	},
+	{
+		"id": 7,
+		"name": "Sensor de temperatura",
+		"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+		"active": true
+	}
+]

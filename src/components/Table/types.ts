@@ -3,6 +3,7 @@ export interface IColumnDefinitionType<TData, TKey extends keyof TData> {
 	header: string
 	width?: number
 	valueFormatter?: (value: TData[TKey]) => string
+	valueGetter?: (row: TData) => string
 }
 
 export interface ITableProperties<TData, TKey extends keyof TData> {
