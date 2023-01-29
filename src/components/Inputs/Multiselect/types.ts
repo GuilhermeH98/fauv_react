@@ -1,4 +1,9 @@
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type {
+	Control,
+	FieldValues,
+	Path,
+	RegisterOptions
+} from 'react-hook-form'
 import type { ISelectOption } from 'utils/miscellaneous'
 
 export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
@@ -9,4 +14,9 @@ export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
 	className?: string
 	placeholder?: string
 	staticMenu?: boolean
+	required?: boolean
+	rules?: Exclude<
+		RegisterOptions,
+		'setValueAs' | 'valueAsDate' | 'valueAsNumber'
+	>
 }

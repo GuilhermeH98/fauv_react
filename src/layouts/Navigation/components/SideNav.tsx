@@ -10,6 +10,7 @@ export default function SideNav(): ReactElement {
 
 	function onLogout(): void {
 		localStorage.removeItem('token')
+		localStorage.removeItem('roles')
 		navigate('/')
 	}
 

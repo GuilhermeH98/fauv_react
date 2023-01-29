@@ -6,9 +6,10 @@ export default function Input<TFieldValues extends FieldValues>({
 	type,
 	id,
 	placeholder,
-	required,
+	required = false,
 	label,
-	register
+	register,
+	rules
 }: IInputProperties<TFieldValues>): ReactElement {
 	return (
 		<div className='grid gap-4'>
@@ -24,8 +25,10 @@ export default function Input<TFieldValues extends FieldValues>({
 				type={type ?? 'text'}
 				id={id}
 				placeholder={placeholder}
-				required={required ?? false}
-				{...register(id)}
+				{...register(id, {
+					required,
+					...rules
+				})}
 				className='h-10 rounded border border-bluishgray-fauv focus:border-blue-fauv '
 			/>
 		</div>

@@ -2,6 +2,7 @@ import type { FieldValues } from 'react-hook-form'
 import { Controller } from 'react-hook-form'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
+import type { ISelectOption } from 'utils/miscellaneous'
 import type { ISelectProperties } from './types'
 
 const animatedComponents = makeAnimated()
@@ -13,7 +14,9 @@ export function Multiselect<TFieldValues extends FieldValues, TContext>({
 	placeholder = '',
 	className = '',
 	label,
-	staticMenu = false
+	staticMenu = false,
+	required = false,
+	rules
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
 		<div className='grid gap-4'>
@@ -28,13 +31,20 @@ export function Multiselect<TFieldValues extends FieldValues, TContext>({
 			<Controller
 				control={control}
 				name={name}
+				defaultValue={undefined}
+				rules={{ required, ...rules }}
 				render={({ field: { value, onChange } }) => (
 					<Select
-						defaultValue={value as unknown}
 						components={animatedComponents}
 						isMulti
 						options={options}
-						onChange={onChange}
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+						value={options.filter(option => value?.includes(option.value))}
+						onChange={selectedOptions =>
+							onChange(
+								(selectedOptions as ISelectOption[]).map(option => option.value)
+							)
+						}
 						isClearable
 						isSearchable
 						isDisabled={false}

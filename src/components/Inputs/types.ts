@@ -1,4 +1,9 @@
-import type { FieldValues, Path, UseFormRegister } from 'react-hook-form'
+import type {
+	FieldValues,
+	Path,
+	RegisterOptions,
+	UseFormRegister
+} from 'react-hook-form'
 
 export interface IInputProperties<TFieldValues extends FieldValues>
 	extends React.HTMLAttributes<HTMLInputElement> {
@@ -7,4 +12,8 @@ export interface IInputProperties<TFieldValues extends FieldValues>
 	required?: boolean
 	label?: string
 	register: UseFormRegister<TFieldValues>
+	rules?: Exclude<
+		RegisterOptions,
+		'setValueAs' | 'valueAsDate' | 'valueAsNumber'
+	>
 }

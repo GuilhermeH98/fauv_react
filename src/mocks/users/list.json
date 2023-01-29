@@ -1,0 +1,27 @@
+[
+	{
+		"id": 1,
+		"name": "John Doe",
+		"vwId": "1234567890",
+		"roles": [
+			{
+				"name": "administrator"
+			},
+			{
+				"name": "inspector"
+			}
+		],
+		"active": true
+	},
+	{
+		"id": 2,
+		"name": "Simon Oliveira",
+		"vwId": "1234565678",
+		"roles": [
+			{
+				"name": "consultant"
+			}
+		],
+		"active": false
+	}
+]

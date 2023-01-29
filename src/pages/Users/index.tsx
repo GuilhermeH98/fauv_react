@@ -1,42 +1,50 @@
-import { useQuery } from '@tanstack/react-query'
 import Button from 'components/Buttons/Button'
+import { Dialog } from 'components/Dialog'
 import PageTop from 'components/PageTop'
 import Table from 'components/Table'
-import type { IColumnDefinitionType } from 'components/Table/types'
 import type { ReactElement } from 'react'
-import { get } from 'utils/api'
+import { useState } from 'react'
+import { useToggle } from 'utils/miscellaneous'
+import type { IUser } from './api'
+import { useUsersQuery } from './api'
+import { columns } from './columns'
+import { CreateEditUser } from './CreateEditUser'
 
-interface IUser {
-	name: string
-	role: string
-	identifier: string
-}
-
-const columns: IColumnDefinitionType<IUser, keyof IUser>[] = [
-	{
-		key: 'name',
-		header: 'Nome'
-	},
-	{
-		key: 'role',
-		header: 'Papel'
-	},
-	{
-		key: 'identifier',
-		header: 'Identificador'
-	}
-]
 export function Users(): ReactElement {
-	const query = useQuery<IUser[]>(['users'], async () => get('/users'))
+	const [isDialogOpen, toggleIsDialogOpen] = useToggle()
+	const [selectedUserItem, setSelectedUserItem] = useState<IUser | null>(null)
+
+	const query = useUsersQuery()
+
+	function onUserClick(user: IUser) {
+		setSelectedUserItem(user)
+		toggleIsDialogOpen()
+	}
+
+	function onCloseDialog() {
+		setSelectedUserItem(null)
+		toggleIsDialogOpen()
+	}
 
 	return (
 		<>
 			<PageTop>
-				<Button> Criar novo</Button>
+				<Button onClick={toggleIsDialogOpen}> Criar novo</Button>
 			</PageTop>
 			{query.data && (
-				<Table title='Usuários' data={query.data} columns={columns} />
+				<Table
+					title='Usuários'
+					data={query.data}
+					columns={columns}
+					onRowClick={onUserClick}
+				/>
 			)}
+			<Dialog isOpen={isDialogOpen} onClose={onCloseDialog}>
+				<CreateEditUser
+					onClose={onCloseDialog}
+					selectedUser={selectedUserItem}
+				/>
+			</Dialog>
 		</>
 	)
 }

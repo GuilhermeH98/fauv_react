@@ -14,7 +14,9 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 	placeholder = '',
 	className = '',
 	label,
-	staticMenu = false
+	staticMenu = false,
+	required = false,
+	rules
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
 		<div className='grid gap-4'>
@@ -30,6 +32,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 				control={control}
 				name={name}
 				defaultValue={undefined}
+				rules={{ required, ...rules }}
 				render={({ field: { value, onChange } }) => (
 					<ReactSelect
 						components={animatedComponents}

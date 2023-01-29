@@ -18,8 +18,9 @@ const queryClient = new QueryClient({
 	}
 })
 
-void worker.start()
-
+if (import.meta.env.VITE_MSW) {
+	void worker.start()
+}
 const container = document.querySelector('#root')
 if (container) {
 	const root = createRoot(container)
