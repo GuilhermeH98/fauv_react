@@ -1,5 +1,6 @@
 import { DialogHeader } from 'components/Dialog/Header'
 import Input from 'components/Inputs/Input'
+import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -28,6 +29,10 @@ export function CreateEditUnit({
 			{
 				onSuccess() {
 					onClose()
+					createSnackbar('success', 'Planta salva com sucesso!')
+				},
+				onError() {
+					createSnackbar('error', 'Erro ao salvar planta!')
 				}
 			}
 		)

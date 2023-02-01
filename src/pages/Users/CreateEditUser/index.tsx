@@ -1,6 +1,7 @@
 import { DialogHeader } from 'components/Dialog/Header'
 import Input from 'components/Inputs/Input'
 import { Multiselect } from 'components/Inputs/Multiselect'
+import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -36,6 +37,10 @@ export function CreateEditUser({
 			{
 				onSuccess() {
 					onClose()
+					createSnackbar('success', 'Usuário salvo com sucesso!')
+				},
+				onError() {
+					createSnackbar('error', 'Erro ao salvar usuário!')
 				}
 			}
 		)
@@ -71,7 +76,6 @@ export function CreateEditUser({
 				<hr className='border-bluishgray-fauv' />
 
 				<Input label='Nome' id='name' register={register} required />
-				<Input label='VW ID' id='vwId' register={register} required />
 				<Multiselect
 					control={control}
 					label='Papeis'
@@ -86,6 +90,7 @@ export function CreateEditUser({
 								: true
 					}}
 				/>
+				<Input label='VW ID' id='vwId' register={register} required />
 			</div>
 		</form>
 	)

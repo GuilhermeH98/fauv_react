@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babel/core': ^7.20.12
+  '@babel/core': 7.20.12
   '@nabla/vite-plugin-eslint': 1.4.1
   '@tailwindcss/forms': 0.5.3
   '@tanstack/react-query': 4.13.5
@@ -51,6 +51,7 @@ specifiers:
   react-icons: ^4.7.1
   react-router-dom: 6.3.0
   react-select: ^5.7.0
+  react-toastify: ^9.1.1
   start-server-and-test: 1.14.0
   stylelint: 14.15.0
   stylelint-config-prettier: 9.0.4
@@ -74,6 +75,7 @@ dependencies:
   react-icons: 4.7.1_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   react-select: 5.7.0_ipdfgttstujsr3pjjqnczauija
+  react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
   zod: 3.19.1
 
 devDependencies:
@@ -4017,6 +4019,14 @@ packages:
       }
     engines: { node: '>=0.8' }
     dev: true
+
+  /clsx/1.2.1:
+    resolution:
+      {
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
+      }
+    engines: { node: '>=6' }
+    dev: false
 
   /color-convert/1.9.3:
     resolution:
@@ -9039,6 +9049,20 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/react'
+    dev: false
+
+  /react-toastify/9.1.1_biqbaboplfbrettd7655fr4n2y:
+    resolution:
+      {
+        integrity: sha512-pkFCla1z3ve045qvjEmn2xOJOy4ZciwRXm1oMPULVkELi5aJdHCN/FHnuqXq8IwGDLB7PPk2/J6uP9D8ejuiRw==
+      }
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-transition-group/4.4.5_biqbaboplfbrettd7655fr4n2y:

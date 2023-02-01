@@ -38,7 +38,7 @@ export default function SignUp(): ReactElement {
 				<option value='' disabled selected>
 					Selecione o papel
 				</option>
-				<option value='administrator'>Admin</option>
+				<option value='administrator'>Administrador</option>
 				<option value='inspector'>Inspetor</option>
 				<option value='consultant'>Consultante</option>
 			</select>

@@ -10,46 +10,51 @@ import { Users } from 'pages/Users'
 import type { ReactElement } from 'react'
 import { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function App(): ReactElement {
 	return (
-		<BrowserRouter>
-			<Suspense fallback={<LoadingOrError />}>
-				<Routes>
-					<Route
-						index
-						element={
-							<AuthWrapper>
-								<SignIn />
-							</AuthWrapper>
-						}
-					/>
-					<Route
-						path='/signup'
-						element={
-							<AuthWrapper>
-								<SignUp />
-							</AuthWrapper>
-						}
-					/>
+		<>
+			<BrowserRouter>
+				<Suspense fallback={<LoadingOrError />}>
+					<Routes>
+						<Route
+							index
+							element={
+								<AuthWrapper>
+									<SignIn />
+								</AuthWrapper>
+							}
+						/>
+						<Route
+							path='/signup'
+							element={
+								<AuthWrapper>
+									<SignUp />
+								</AuthWrapper>
+							}
+						/>
 
-					<Route
-						path='/*'
-						element={
-							<AuthWrapper authenticated>
-								<NavigationLayout>
-									<Routes>
-										<Route path='/users' element={<Users />} />
-										<Route path='/catalogs' element={<Catalogs />} />
-										<Route path='/units' element={<Units />} />
-										<Route path='/equipments' element={<Equipments />} />
-									</Routes>
-								</NavigationLayout>
-							</AuthWrapper>
-						}
-					/>
-				</Routes>
-			</Suspense>
-		</BrowserRouter>
+						<Route
+							path='/*'
+							element={
+								<AuthWrapper authenticated>
+									<NavigationLayout>
+										<Routes>
+											<Route path='/users' element={<Users />} />
+											<Route path='/catalogs' element={<Catalogs />} />
+											<Route path='/units' element={<Units />} />
+											<Route path='/equipments' element={<Equipments />} />
+										</Routes>
+									</NavigationLayout>
+								</AuthWrapper>
+							}
+						/>
+					</Routes>
+				</Suspense>
+			</BrowserRouter>
+			<ToastContainer position='bottom-center' theme='colored' />
+		</>
 	)
 }

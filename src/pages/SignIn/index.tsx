@@ -1,6 +1,7 @@
 import SecondaryButton from 'components/Buttons/SecondaryButton'
 import Checkbox from 'components/Checkbox'
 import SecondaryInput from 'components/Inputs/SecondaryInput'
+import { createSnackbar } from 'components/Snackbar/utils'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
@@ -22,6 +23,12 @@ export default function SignIn(): ReactElement {
 					localStorage.setItem('token', response.token)
 					localStorage.setItem('roles', JSON.stringify(response.roles))
 					navigate('/home')
+				},
+				onError() {
+					createSnackbar(
+						'error',
+						'Erro ao fazer login! Verifique suas informações.'
+					)
 				}
 			}
 		)

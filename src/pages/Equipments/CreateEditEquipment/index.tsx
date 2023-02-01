@@ -1,6 +1,7 @@
 import { DialogHeader } from 'components/Dialog/Header'
 import Input from 'components/Inputs/Input'
 import { Select } from 'components/Inputs/Select'
+import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useUnitsQuery } from 'pages/Units/api'
 import { useEffect } from 'react'
@@ -40,6 +41,10 @@ export function CreateEditEquipment({
 			{
 				onSuccess() {
 					onClose()
+					createSnackbar('success', 'Equipamento salvo com sucesso!')
+				},
+				onError() {
+					createSnackbar('error', 'Erro ao salvar equipamento!')
 				}
 			}
 		)
@@ -82,6 +87,7 @@ export function CreateEditEquipment({
 					options={mapSelectOptions(units?.filter(unit => unit.active))}
 					control={control}
 					staticMenu
+					required
 				/>
 			</div>
 		</form>
