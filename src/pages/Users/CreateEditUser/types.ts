@@ -6,7 +6,6 @@ export interface ICreateEditUserProperties {
 }
 
 export interface IFieldValues {
-	name: string
 	vwId: string
 	roles: string[]
 	active: boolean

@@ -7,15 +7,13 @@ export const handlers = [
 	mock('post', USERS_URL, {
 		id: 1,
 		vwId: 1,
-		name: 'Jose da Silva',
-		roles: [{ id: 1, name: 'administrator', active: true }],
+		roles: [{ name: 'administrator' }],
 		active: true
 	}),
 	mock('put', USERS_URL, {
 		id: 1,
 		vwId: '18787878',
-		name: 'Jose da Silva',
-		roles: [{ id: 1, name: 'administrator', active: true }],
+		roles: [{ name: 'administrator' }],
 		active: true
 	})
 ]

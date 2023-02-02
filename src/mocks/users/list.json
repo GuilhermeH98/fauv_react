@@ -1,8 +1,7 @@
 [
 	{
 		"id": 1,
-		"name": "John Doe",
-		"vwId": "1234567890",
+		"vwId": "EFC456",
 		"roles": [
 			{
 				"name": "administrator"
@@ -15,8 +14,7 @@
 	},
 	{
 		"id": 2,
-		"name": "Simon Oliveira",
-		"vwId": "1234565678",
+		"vwId": "ABC123",
 		"roles": [
 			{
 				"name": "consultant"

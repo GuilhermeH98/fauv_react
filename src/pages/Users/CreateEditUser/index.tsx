@@ -57,7 +57,7 @@ export function CreateEditUser({
 
 	return (
 		<form onSubmit={handleSubmit(onCreateEditUser)}>
-			<div className='flex flex-col gap-4'>
+			<div className='flex h-80 flex-col gap-4'>
 				<DialogHeader
 					title={selectedUser ? 'Detalhes do Usuário' : 'Novo Usuário'}
 					isFormDialog
@@ -66,7 +66,7 @@ export function CreateEditUser({
 				{selectedUser && (
 					<div className='flex pt-2 pb-1'>
 						<span className='font-inter text-lg   font-bold '>
-							{selectedUser.name}
+							{selectedUser.vwId}
 						</span>
 						<div className='my-auto ml-auto'>
 							<Switch id='active' label='Usuário Ativo' register={register} />
@@ -74,8 +74,8 @@ export function CreateEditUser({
 					</div>
 				)}
 				<hr className='border-bluishgray-fauv' />
+				<Input label='VW ID' id='vwId' register={register} required />
 
-				<Input label='Nome' id='name' register={register} required />
 				<Multiselect
 					control={control}
 					label='Papeis'
@@ -90,7 +90,6 @@ export function CreateEditUser({
 								: true
 					}}
 				/>
-				<Input label='VW ID' id='vwId' register={register} required />
 			</div>
 		</form>
 	)

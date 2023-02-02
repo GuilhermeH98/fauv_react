@@ -14,7 +14,6 @@ export const ROLES_OPTIONS: ISelectOption[] = [
 export const User = z.object({
 	id: z.number(),
 	vwId: z.string(),
-	name: z.string(),
 	roles: z.array(Role).min(1),
 	active: z.boolean()
 })
@@ -23,7 +22,6 @@ export type IUser = z.infer<typeof User>
 export const UserPayload = z.object({
 	id: z.number().optional(),
 	vwId: z.string(),
-	name: z.string(),
 	roles: z.array(z.string()).min(1),
 	active: z.boolean()
 })
