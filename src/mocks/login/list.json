@@ -1,10 +1,3 @@
 {
-	"name": "Nunes",
-	"token": "1ASLqwsdkASKEWsdkqwe",
-	"active": true,
-	"roles": [
-		{
-			"name": "administrator"
-		}
-	]
+	"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTY3ODkiLCJjdXJyZW50X3JvbGVzIjoiW3tcImlkXCI6MSxcIm5hbWVcIjpcImFkbWluaXN0cmF0b3JcIixcImFkbWluXCI6dHJ1ZSxcImF1dGhvcml0eVwiOlwiQURNSU5cIn1dIiwiaXNzIjoiRkFVVl9BVVRIRU5USVRPUiIsImV4cCI6MTY3NTIzMDU3OSwiaWF0IjoxNjc1MjE2MTc5fQ.EGzSiEQumckHxVj5d2p-nMC1RfKGxKPJgcSapLRitaHDr8bV7-5M4hR5XhG0rnYGceP6OtIunXrZhFmrB9gYLA"
 }

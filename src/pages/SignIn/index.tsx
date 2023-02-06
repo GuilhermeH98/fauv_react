@@ -1,5 +1,4 @@
 import SecondaryButton from 'components/Buttons/SecondaryButton'
-import Checkbox from 'components/Checkbox'
 import SecondaryInput from 'components/Inputs/SecondaryInput'
 import { createSnackbar } from 'components/Snackbar/utils'
 import { AuthenticationLayout } from 'layouts/Authentication'
@@ -21,7 +20,17 @@ export default function SignIn(): ReactElement {
 			{
 				onSuccess(response: ICredentials) {
 					localStorage.setItem('token', response.token)
-					localStorage.setItem('roles', JSON.stringify(response.roles))
+					// const decodedToken = jwt_decode<IJWTPayload>(response.token)
+					// try {
+					// 	const rolesParseResult = z
+					// 		.array(Role)
+					// 		.safeParse(JSON.parse(decodedToken.current_roles))
+
+					// 	localStorage.setItem('roles', rolesParseResult)
+					// } catch {
+					// 	createSnackbar('error', 'erro ao decodificar token')
+					// }
+
 					navigate('/home')
 				},
 				onError() {
@@ -54,10 +63,9 @@ export default function SignIn(): ReactElement {
 				register={register}
 			/>
 			<div className='flex w-72 justify-between'>
-				<Checkbox id='remember' label='Lembrar-me' />
 				<Link
 					to='/signup'
-					className=' font-montserrat text-base font-semibold leading-4 text-blue-fauv'
+					className=' ml-auto font-montserrat text-base font-semibold leading-4 text-blue-fauv'
 				>
 					Novo usuário?
 				</Link>
