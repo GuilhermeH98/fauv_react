@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import type { ICredentials, ISignInPayload } from './api'
 import { useSignInMutation } from './api'
+import { setCredentialsLocalStorage } from './utils'
 
 export default function SignIn(): ReactElement {
 	const navigate = useNavigate()
@@ -19,18 +20,7 @@ export default function SignIn(): ReactElement {
 			{ ...data },
 			{
 				onSuccess(response: ICredentials) {
-					localStorage.setItem('token', response.token)
-					// const decodedToken = jwt_decode<IJWTPayload>(response.token)
-					// try {
-					// 	const rolesParseResult = z
-					// 		.array(Role)
-					// 		.safeParse(JSON.parse(decodedToken.current_roles))
-
-					// 	localStorage.setItem('roles', rolesParseResult)
-					// } catch {
-					// 	createSnackbar('error', 'erro ao decodificar token')
-					// }
-
+					setCredentialsLocalStorage(response)
 					navigate('/home')
 				},
 				onError() {

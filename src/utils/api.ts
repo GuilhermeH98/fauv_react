@@ -15,7 +15,7 @@ export async function request(url: string, init?: IRequestInit) {
 
 	const token = localStorage.getItem('token')
 	if (token) {
-		headers.Authorization = `Bearer ${token}`
+		headers.Authorization = `${token}`
 	}
 
 	const response = await fetch(
@@ -40,8 +40,7 @@ export async function request(url: string, init?: IRequestInit) {
 	} catch {
 		// No response body.
 	}
-
-	return response.json()
+	return null
 }
 
 export const post = async (
