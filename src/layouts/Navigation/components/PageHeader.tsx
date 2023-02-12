@@ -24,6 +24,15 @@ export default function PageHeader(): ReactElement {
 
 			{isAdmin && (
 				<>
+					<Link to='/cars' className='my-auto ml-auto '>
+						<RiCarLine
+							className={` text-icon  ${
+								location.pathname === '/cars'
+									? 'text-blue-fauv'
+									: 'text-gray-fauv-3'
+							}`}
+						/>
+					</Link>
 					<IndustyIcon currentPath={location.pathname} />
 					<Link to='/equipments' className='my-auto '>
 						<RiMicroscopeLine
@@ -34,13 +43,7 @@ export default function PageHeader(): ReactElement {
 							} `}
 						/>
 					</Link>
-					<RiCarLine
-						className={`my-auto cursor-pointer text-icon  ${
-							location.pathname === '/cars'
-								? 'text-blue-fauv'
-								: 'text-gray-fauv-3'
-						}`}
-					/>
+
 					<Link to='/users' className='my-auto '>
 						<RiGroupLine
 							className={`text-icon ${

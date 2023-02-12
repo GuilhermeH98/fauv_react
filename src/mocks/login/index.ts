@@ -5,5 +5,5 @@ import credentials from './list.json'
 
 export const handlers = [
 	mock('post', LOGIN_URL, credentials),
-	mock('post', REGISTER_URL, {})
+	mock('post', REGISTER_URL)
 ]

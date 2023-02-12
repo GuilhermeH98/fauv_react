@@ -1,0 +1,14 @@
+[
+	{
+		"id": 5,
+		"name": "Gol",
+		"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+		"active": false
+	},
+	{
+		"id": 6,
+		"name": "Fusca",
+		"unit": { "id": 6, "name": "Principal Brasil ", "active": true },
+		"active": true
+	}
+]

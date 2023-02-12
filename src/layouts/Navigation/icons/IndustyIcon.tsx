@@ -6,7 +6,7 @@ export function IndustyIcon({
 	currentPath
 }: INavigationIconProperties): ReactElement {
 	return (
-		<Link to='/units' className='my-auto ml-auto cursor-pointer'>
+		<Link to='/units' className='my-auto cursor-pointer text-icon '>
 			<svg
 				width='24'
 				height='24'
