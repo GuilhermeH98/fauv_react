@@ -1,0 +1,14 @@
+[
+	{
+		"id": 5,
+		"name": "Augusto Silva",
+		"email": "augusto.silva@abc.com",
+		"active": false
+	},
+	{
+		"id": 6,
+		"name": "Ricardo Novaes ",
+		"email": "ricardo.novaes@abc.com",
+		"active": true
+	}
+]

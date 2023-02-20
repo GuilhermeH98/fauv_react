@@ -3,6 +3,7 @@ import LoadingOrError from 'components/LoadingOrError'
 import { NavigationLayout } from 'layouts/Navigation'
 import { Cars } from 'pages/Cars'
 import { Catalogs } from 'pages/Catalogs'
+import { Employees } from 'pages/Employees'
 import { Equipments } from 'pages/Equipments'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
@@ -48,6 +49,7 @@ export default function App(): ReactElement {
 											<Route path='/units' element={<Units />} />
 											<Route path='/equipments' element={<Equipments />} />
 											<Route path='/cars' element={<Cars />} />
+											<Route path='/employees' element={<Employees />} />
 										</Routes>
 									</NavigationLayout>
 								</AuthWrapper>

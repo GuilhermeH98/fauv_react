@@ -2,6 +2,7 @@ import { getIsAdmin } from 'components/AuthWrapper/utils'
 import type { ReactElement } from 'react'
 import {
 	RiCarLine,
+	RiContactsLine,
 	RiGroupLine,
 	RiListSettingsLine,
 	RiMailSettingsLine,
@@ -48,6 +49,15 @@ export default function PageHeader(): ReactElement {
 						<RiGroupLine
 							className={`text-icon ${
 								location.pathname === '/users'
+									? 'text-blue-fauv'
+									: 'text-gray-fauv-3'
+							} `}
+						/>
+					</Link>
+					<Link to='/employees' className='my-auto '>
+						<RiContactsLine
+							className={`text-icon ${
+								location.pathname === '/employees'
 									? 'text-blue-fauv'
 									: 'text-gray-fauv-3'
 							} `}
