@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import type { IButtonProperties } from './Button/types'
+import type { IButtonProperties } from './types'
 
 export default function SecondaryButton({
 	disabled,
