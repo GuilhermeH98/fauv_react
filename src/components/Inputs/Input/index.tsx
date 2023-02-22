@@ -5,6 +5,7 @@ import type { IInputProperties } from '../types'
 export default function Input<TFieldValues extends FieldValues>({
 	type,
 	id,
+	widthClassName,
 	placeholder,
 	required = false,
 	label,
@@ -12,7 +13,7 @@ export default function Input<TFieldValues extends FieldValues>({
 	rules
 }: IInputProperties<TFieldValues>): ReactElement {
 	return (
-		<div className='grid gap-4'>
+		<div className={`grid ${widthClassName ?? ' w-full'} gap-4`}>
 			{label && (
 				<label
 					className='font-inter text-base font-semibold leading-[160%]  text-black-fauv-3'
@@ -29,7 +30,9 @@ export default function Input<TFieldValues extends FieldValues>({
 					required,
 					...rules
 				})}
-				className='h-10 rounded border border-bluishgray-fauv focus:border-blue-fauv '
+				className={`h-10 rounded border border-bluishgray-fauv focus:border-blue-fauv  ${
+					widthClassName ?? ' w-full'
+				}`}
 			/>
 		</div>
 	)

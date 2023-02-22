@@ -1,0 +1,20 @@
+[
+	{
+		"id": 5,
+		"partNumber": "SHD13NH4",
+		"stepType": "SHD13NH4",
+		"active": true
+	},
+	{
+		"id": 6,
+		"partNumber": "SHD13NH5",
+		"stepType": "SHD13NH5",
+		"active": false
+	},
+	{
+		"id": 4,
+		"partNumber": "SHD13NH6",
+		"stepType": "SHD13NH6",
+		"active": false
+	}
+]

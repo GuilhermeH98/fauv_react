@@ -13,6 +13,11 @@ export interface ITableProperties<TData, TKey extends keyof TData> {
 	onRowClick?: (row: TData) => void
 }
 
+export type ITableContentProperties<TData, TKey extends keyof TData> = Omit<
+	ITableProperties<TData, TKey>,
+	'title'
+>
+
 export interface ITableRowsProperties<TData, TKey extends keyof TData> {
 	data: TData[]
 	columns: IColumnDefinitionType<TData, TKey>[]

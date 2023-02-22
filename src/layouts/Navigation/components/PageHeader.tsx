@@ -2,6 +2,7 @@ import { getIsAdmin } from 'components/AuthWrapper/utils'
 import type { ReactElement } from 'react'
 import {
 	RiCarLine,
+	RiCarWashingLine,
 	RiContactsLine,
 	RiGroupLine,
 	RiListSettingsLine,
@@ -25,7 +26,16 @@ export default function PageHeader(): ReactElement {
 
 			{isAdmin && (
 				<>
-					<Link to='/cars' className='my-auto ml-auto '>
+					<Link to='/models' className='my-auto ml-auto'>
+						<RiCarWashingLine
+							className={` text-icon  ${
+								location.pathname === '/models'
+									? 'text-blue-fauv'
+									: 'text-gray-fauv-3'
+							}`}
+						/>
+					</Link>
+					<Link to='/cars' className='my-auto '>
 						<RiCarLine
 							className={` text-icon  ${
 								location.pathname === '/cars'

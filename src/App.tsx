@@ -5,6 +5,8 @@ import { Cars } from 'pages/Cars'
 import { Catalogs } from 'pages/Catalogs'
 import { Employees } from 'pages/Employees'
 import { Equipments } from 'pages/Equipments'
+import { Models } from 'pages/Models'
+import { CreateEditModel } from 'pages/Models/CreateEditModel'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
 import { Units } from 'pages/Units'
@@ -42,16 +44,32 @@ export default function App(): ReactElement {
 							path='/*'
 							element={
 								<AuthWrapper authenticated>
-									<NavigationLayout>
-										<Routes>
-											<Route path='/users' element={<Users />} />
-											<Route path='/catalogs' element={<Catalogs />} />
-											<Route path='/units' element={<Units />} />
-											<Route path='/equipments' element={<Equipments />} />
-											<Route path='/cars' element={<Cars />} />
-											<Route path='/employees' element={<Employees />} />
-										</Routes>
-									</NavigationLayout>
+									<Routes>
+										<Route
+											path='/models/create'
+											element={<CreateEditModel />}
+										/>
+										<Route path='/models/edit' element={<CreateEditModel />} />
+										<Route
+											path='/*'
+											element={
+												<NavigationLayout>
+													<Routes>
+														<Route path='/users' element={<Users />} />
+														<Route path='/catalogs' element={<Catalogs />} />
+														<Route path='/units' element={<Units />} />
+														<Route
+															path='/equipments'
+															element={<Equipments />}
+														/>
+														<Route path='/cars' element={<Cars />} />
+														<Route path='/employees' element={<Employees />} />
+														<Route path='/models' element={<Models />} />
+													</Routes>
+												</NavigationLayout>
+											}
+										/>
+									</Routes>
 								</AuthWrapper>
 							}
 						/>

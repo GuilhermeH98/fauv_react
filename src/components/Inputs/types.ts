@@ -11,6 +11,7 @@ export interface IInputProperties<TFieldValues extends FieldValues>
 	type?: string
 	required?: boolean
 	label?: string
+	widthClassName?: string
 	register: UseFormRegister<TFieldValues>
 	rules?: Exclude<
 		RegisterOptions,
