@@ -7,9 +7,15 @@ export const columns: IColumnDefinitionType<IModel, keyof IModel>[] = [
 		header: 'Part Number'
 	},
 	{
-		key: 'stepType',
-		header: 'Step'
+		key: 'car',
+		header: 'Modelo',
+		valueGetter: row => row.car.name
 	},
+	{
+		key: 'stepDescription',
+		header: 'Descritivo'
+	},
+
 	{
 		key: 'active',
 		header: 'Ativo',

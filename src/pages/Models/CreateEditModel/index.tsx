@@ -1,13 +1,13 @@
 import Button from 'components/Buttons/Button'
 import OutlinedButton from 'components/Buttons/OutlinedButton'
 import Input from 'components/Inputs/Input'
+import { Select } from 'components/Inputs/Select'
 import { createSnackbar } from 'components/Snackbar/utils'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 import type { IModel } from '../api'
 import { useModelMutation } from '../api'
-import type { IFieldValues } from './types'
 
 function assertLocationState(state: unknown): state is IModel {
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -19,9 +19,9 @@ export function CreateEditModel() {
 
 	const { mutate } = useModelMutation(!!state)
 
-	const { reset, register, handleSubmit } = useForm<IFieldValues>()
+	const { control, reset, register, handleSubmit } = useForm<IModel>()
 
-	function onCreateEditModel(values: IFieldValues) {
+	function onCreateEditModel(values: IModel) {
 		const payload = state
 			? {
 					...values,
@@ -69,7 +69,19 @@ export function CreateEditModel() {
 								register={register}
 								required
 							/>
-							<Input label='Step' id='stepType' register={register} required />
+							<Input
+								label='Step'
+								id='stepDescription'
+								register={register}
+								required
+							/>
+							<Select
+								label='Carro'
+								name='car'
+								control={control}
+								options={[]}
+								required
+							/>
 						</div>
 					</div>
 				</form>

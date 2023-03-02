@@ -1,3 +1,4 @@
+import { Car } from 'pages/Cars/api'
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
@@ -9,6 +10,13 @@ export enum PointAxis {
 	Z = 'Z',
 	T = 'T',
 	D = 'D'
+}
+
+export enum Level {
+	LOW = 'LOW',
+	MEDIUM = 'MEDIUM',
+	HIGH = 'HIGH',
+	CRITICAL = 'CRITICAL'
 }
 
 export enum CatalogType {
@@ -40,23 +48,32 @@ export const Pmp = z.object({
 })
 export type IPmp = z.infer<typeof Pmp>
 
+export const FmImpact = z.object({
+	id: z.number(),
+	info: z.number()
+})
+
 export const Fm = z.object({
 	id: z.number(),
 	name: z.string(),
-	highTolerance: z.number(),
+	higherTolerance: z.number(),
 	lowerTolerance: z.number(),
 	defaultValue: z.number(),
 	axis: z.nativeEnum(PointAxis),
-	catalog_type: z.nativeEnum(CatalogType),
-	pmpDTOList: z.array(Pmp),
-	photo: z.string()
+	catalogType: z.nativeEnum(CatalogType),
+	pmpList: z.array(Pmp),
+	level: z.nativeEnum(Level),
+	fmImpactList: z.array(FmImpact),
+	photo: z.string(),
+	active: z.boolean()
 })
 export type IFm = z.infer<typeof Fm>
 
 export const Model = z.object({
 	id: z.number(),
 	partNumber: z.string(),
-	stepType: z.string(),
+	stepDescription: z.string(),
+	car: Car,
 	active: z.boolean()
 })
 export type IModel = z.infer<typeof Model>
