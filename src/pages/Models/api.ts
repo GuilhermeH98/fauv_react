@@ -31,7 +31,7 @@ export const NominalAxisCoordinate = z.object({
 	id: z.number(),
 	name: z.string(),
 	lowerTolerance: z.number(),
-	highTolerance: z.number(),
+	higherTolerance: z.number(),
 	axis: z.nativeEnum(PointAxis),
 	pmpId: z.number()
 })

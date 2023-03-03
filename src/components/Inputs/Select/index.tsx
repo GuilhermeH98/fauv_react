@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form'
 import ReactSelect from 'react-select'
 import makeAnimated from 'react-select/animated'
 import type { ISelectOption } from 'utils/miscellaneous'
-import type { ISelectProperties } from '../Multiselect/types'
+import type { ISelectProperties } from '../types'
 
 const animatedComponents = makeAnimated()
 
@@ -16,10 +16,11 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 	label,
 	staticMenu = false,
 	required = false,
+	widthClassName,
 	rules
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
-		<div className='grid gap-4'>
+		<div className={`grid gap-4  ${widthClassName ?? ' w-full'}`}>
 			{label && (
 				<label
 					className='font-inter text-base font-semibold leading-[160%]  text-black-fauv-3'

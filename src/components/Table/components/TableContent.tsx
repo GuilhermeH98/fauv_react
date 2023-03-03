@@ -9,7 +9,7 @@ export default function TableContent<TData, TKey extends keyof TData>({
 	onRowClick
 }: ITableContentProperties<TData, TKey>): ReactElement {
 	return (
-		<table className='  w-full  text-left text-sm text-gray-500'>
+		<table className='  w-full  border-2 text-left text-sm text-gray-500'>
 			<TableHeader columns={columns} />
 			<TableRows data={data} columns={columns} onRowClick={onRowClick} />
 		</table>

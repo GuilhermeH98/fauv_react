@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import type { ISelectOption } from 'utils/miscellaneous'
-import type { ISelectProperties } from './types'
+import type { ISelectProperties } from '../types'
 
 const animatedComponents = makeAnimated()
 
