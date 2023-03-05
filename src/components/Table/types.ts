@@ -1,9 +1,10 @@
 export interface IColumnDefinitionType<TData, TKey extends keyof TData> {
-	key: TKey
+	key: TKey | string
 	header: string
 	width?: number
 	valueFormatter?: (value: TData[TKey]) => string
 	valueGetter?: (row: TData) => string
+	render?: (row: TData) => JSX.Element
 }
 
 export interface ITableProperties<TData, TKey extends keyof TData> {
@@ -11,6 +12,7 @@ export interface ITableProperties<TData, TKey extends keyof TData> {
 	columns: IColumnDefinitionType<TData, TKey>[]
 	title: string
 	onRowClick?: (row: TData) => void
+	className?: string
 }
 
 export type ITableContentProperties<TData, TKey extends keyof TData> = Omit<

@@ -19,11 +19,15 @@ function TableRows<TData, TKey extends keyof TData>({
 						index % 2 === 0 ? 'bg-softblue-fauv' : ''
 					}`}
 				>
-					<>
-						{column.valueGetter?.(row) ||
-							column.valueFormatter?.(row[column.key]) ||
-							row[column.key]}
-					</>
+					{column.render ? (
+						column.render(row)
+					) : (
+						<>
+							{column.valueGetter?.(row) ||
+								column.valueFormatter?.(row[column.key as TKey]) ||
+								row[column.key as TKey]}
+						</>
+					)}
 				</td>
 			))}
 		</tr>

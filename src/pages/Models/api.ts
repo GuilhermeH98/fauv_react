@@ -28,13 +28,14 @@ export enum CatalogType {
 }
 
 export const NominalAxisCoordinate = z.object({
-	id: z.number(),
+	id: z.number().nullish(),
 	name: z.string(),
 	lowerTolerance: z.number(),
 	higherTolerance: z.number(),
 	axis: z.nativeEnum(PointAxis),
 	pmpId: z.number()
 })
+export type INominalAxisCoordinate = z.infer<typeof NominalAxisCoordinate>
 
 export const Pmp = z.object({
 	id: z.number(),
@@ -74,6 +75,8 @@ export const Model = z.object({
 	partNumber: z.string(),
 	stepDescription: z.string(),
 	car: Car,
+	pmpList: z.array(Pmp),
+	fmList: z.array(Fm),
 	active: z.boolean()
 })
 export type IModel = z.infer<typeof Model>

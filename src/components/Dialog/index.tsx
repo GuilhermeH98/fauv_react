@@ -6,7 +6,8 @@ export function Dialog({
 	children,
 	isOpen,
 	onClose,
-	widthClass
+	widthClass = 'w-[40.75rem]',
+	heightClass = ''
 }: IDialogProperties): ReactElement | null {
 	if (!isOpen) {
 		return null
@@ -15,15 +16,13 @@ export function Dialog({
 	return (
 		<div
 			className='fixed	inset-0 z-50 bg-gray-transparent	'
-			onClick={onClose}
+			onMouseDown={onClose}
 			aria-hidden='true'
 		>
 			<div className='flex h-screen items-center justify-center'>
 				<div
-					className={`flex ${
-						widthClass ?? 'w-[40.75rem]'
-					} max-h-[90%] flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-white p-6`}
-					onClick={onContentClick}
+					className={`flex ${widthClass} ${heightClass} max-h-[90%] flex-col overflow-y-auto overflow-x-hidden rounded-lg bg-white p-6`}
+					onMouseDown={onContentClick}
 					aria-hidden='true'
 				>
 					{children}

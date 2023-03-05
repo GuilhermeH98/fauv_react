@@ -5,4 +5,10 @@ export interface IDialogProperties {
 	isOpen: boolean
 	onClose?: () => void
 	widthClass?: string
+	heightClass?: string
+}
+
+export interface IConfirmDialogProperties extends IDialogProperties {
+	title: string
+	onConfirm: () => void
 }

@@ -24,6 +24,16 @@ export function mapSelectOptions<TItem>(
 	)
 }
 
+export function mapEnumOptions<TEnum extends Record<string, number | string>>(
+	options: TEnum,
+	getLabel?: (value: number | string) => string
+): ISelectOption[] {
+	return Object.values(options).map(value => ({
+		value,
+		label: getLabel ? getLabel(value) : options[value]
+	}))
+}
+
 export function useMediaQuery(query: string): boolean {
 	const [matches, setMatches] = useState(() => matchMedia(query).matches)
 
