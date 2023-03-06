@@ -17,6 +17,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 	staticMenu = false,
 	required = false,
 	widthClassName,
+	isSearchable = false,
 	rules
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
@@ -42,7 +43,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 						onChange={selectedOption => {
 							onChange((selectedOption as ISelectOption).value)
 						}}
-						isSearchable
+						isSearchable={isSearchable}
 						isDisabled={false}
 						isLoading={false}
 						isRtl={false}
@@ -56,6 +57,14 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 							menu: baseStyles => ({
 								...baseStyles,
 								position: staticMenu ? 'static' : 'absolute'
+							}),
+
+							input: baseStyles => ({
+								...baseStyles,
+								'--tw-ring-color': 'none',
+								':focus': {
+									outlineColor: 'none'
+								}
 							})
 						}}
 						className={`${className}`}

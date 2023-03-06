@@ -1,5 +1,5 @@
-export interface IFieldValues {
-	partNumber: string
-	stepType: string
-	active: boolean
+import type { IModel } from '../api'
+
+export type IFieldValues = Omit<IModel, 'car'> & {
+	car: number
 }

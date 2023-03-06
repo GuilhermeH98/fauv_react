@@ -34,7 +34,7 @@ export function ConfirmDialog({
 					</div>
 					<hr className='my-[-16px] border-bluishgray-fauv' />
 
-					<div> {children}</div>
+					<div className=' font-inter  '> {children}</div>
 					<div className='flex justify-end'>
 						<OutlinedButton
 							className='mr-4'

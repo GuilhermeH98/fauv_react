@@ -32,6 +32,7 @@ export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
 	staticMenu?: boolean
 	required?: boolean
 	widthClassName?: string
+	isSearchable?: boolean
 	rules?: Exclude<
 		RegisterOptions,
 		'setValueAs' | 'valueAsDate' | 'valueAsNumber'

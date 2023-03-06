@@ -4,18 +4,14 @@
 		"partNumber": "SHD13NH4",
 		"stepDescription": "SHD13NH4",
 		"car": {
-			"id": 0,
-			"name": "Anchieta",
-			"active": true,
-			"unit": {
-				"id": 0,
-				"name": "Anchieta",
-				"active": true
-			}
+			"id": 1,
+			"name": "Gol",
+			"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+			"active": false
 		},
 		"pmpList": [
 			{
-				"id": 0,
+				"id": 1,
 				"name": "PONTO A",
 				"workingOn": "X",
 				"x": -125.321,
@@ -24,7 +20,7 @@
 				"active": true,
 				"axisCoordinateList": [
 					{
-						"id": 0,
+						"id": 1,
 						"name": "string",
 						"lowerTolerance": -125.321,
 						"higherTolerance": 125.321,
@@ -45,7 +41,7 @@
 				"catalogType": "GRUNDGEOMETRIE",
 				"pmpList": [
 					{
-						"id": 0,
+						"id": 1,
 						"name": "PONTO A",
 						"workingOn": "X",
 						"x": -125.321,
@@ -54,7 +50,7 @@
 						"active": true,
 						"axisCoordinateList": [
 							{
-								"id": 0,
+								"id": 1,
 								"name": "string",
 								"lowerTolerance": -125.321,
 								"higherTolerance": 125.321,

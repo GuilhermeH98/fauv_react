@@ -2,34 +2,38 @@ import type { IColumnDefinitionType } from 'components/Table/types'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import type { IFm, IPmp } from '../api'
 
-export function getPmpColumns(
+export function getFmColumns(
 	onRemove: (row: IFm | IPmp, rowType: 'fm' | 'pmp') => void
-): IColumnDefinitionType<IPmp, keyof IPmp>[] {
+): IColumnDefinitionType<IFm, keyof IFm>[] {
 	return [
 		{
 			key: 'name',
 			header: 'Nome'
 		},
 		{
-			key: 'workingOn',
-			header: 'Nominal'
+			key: 'higherTolerance',
+			header: 'Tolerância Superior'
 		},
 		{
-			key: 'x',
-			header: 'X'
+			key: 'lowerTolerance',
+			header: 'Tolerância Inferior'
 		},
 		{
-			key: 'y',
-			header: 'Y'
+			key: 'defaultValue',
+			header: 'Valor Padrão'
 		},
 		{
-			key: 'z',
-			header: 'Z'
+			key: 'axis',
+			header: 'Eixo'
+		},
+
+		{
+			key: 'catalogType',
+			header: 'Catálogo'
 		},
 		{
-			key: 'active',
-			header: 'Ativo',
-			valueFormatter: value => (value ? 'Sim' : 'Não')
+			key: 'level',
+			header: 'Nível'
 		},
 		{
 			key: 'actions',
@@ -38,7 +42,7 @@ export function getPmpColumns(
 				<RiDeleteBinLine
 					className=' cursor-pointer text-icon text-gray-fauv-2 '
 					onClick={event => {
-						onRemove(row, 'pmp')
+						onRemove(row, 'fm')
 						event.stopPropagation()
 					}}
 				/>
