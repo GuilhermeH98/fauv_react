@@ -38,7 +38,7 @@ export function CreateEditPmp({
 
 	function onSubmit(values: IPmp) {
 		if (selectedPmp) {
-			updatePmp(selectedPmp.id, { ...values })
+			updatePmp({ ...values, id: selectedPmp.id })
 		} else {
 			addPmp({ ...values, active: true })
 		}
@@ -47,9 +47,13 @@ export function CreateEditPmp({
 
 	useEffect(() => {
 		if (selectedPmp) {
-			reset(selectedPmp)
+			const { axisCoordinateList, ...pmp } = selectedPmp
+			reset(pmp)
+			if (axisCoordinateList) {
+				append(axisCoordinateList)
+			}
 		}
-	}, [selectedPmp, reset])
+	}, [selectedPmp, reset, append])
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -94,6 +98,7 @@ export function CreateEditPmp({
 						className='ml-auto'
 						onClick={() =>
 							append({
+								id: -1,
 								name: '',
 								axis: PointAxis.X,
 								lowerTolerance: 0,

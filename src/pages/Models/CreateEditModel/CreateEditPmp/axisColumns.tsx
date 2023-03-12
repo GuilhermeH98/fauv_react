@@ -64,7 +64,7 @@ export function getColumns(
 		},
 		{
 			key: 'actions',
-			header: 'Ações',
+			header: 'Remover',
 			render: row => (
 				<RiDeleteBinLine
 					className=' cursor-pointer text-icon text-gray-fauv-2 '

@@ -12,14 +12,21 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { RiArrowGoBackLine, RiUploadCloud2Line } from 'react-icons/ri'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { mapSelectOptions, useToggle } from 'utils/miscellaneous'
-import type { IFm, IModel, IPmp } from '../api'
+import type { IFieldValues, IFm, IModel, IPmp } from '../api'
 import { useModelMutation } from '../api'
 import { CreateEditFm } from './CreateEditFm'
 import { CreateEditPmp } from './CreateEditPmp'
 import { getFmColumns } from './fmColumns'
 import { getPmpColumns } from './pmpColumns'
-import type { IFieldValues } from './types'
 import { UploadDialog } from './UploadDialog'
+import {
+	formatFm,
+	formatModelPayload,
+	formatModelState,
+	formatPmp,
+	getFmRows,
+	getPmpRows
+} from './utils'
 
 function assertLocationState(state: unknown): state is IModel {
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -40,7 +47,6 @@ export function CreateEditModel() {
 		reset,
 		register,
 		handleSubmit,
-		watch,
 		formState: { isSubmitting, isValid }
 	} = useForm<IFieldValues>()
 
@@ -73,9 +79,6 @@ export function CreateEditModel() {
 		name: 'fmList'
 	})
 
-	const watchPmpList = watch('pmpList')
-	console.log(watchPmpList)
-
 	function onClosePmpDialog() {
 		setSelectedPmp(null)
 		toggleIsPmpDialogOpen()
@@ -102,11 +105,43 @@ export function CreateEditModel() {
 		toggleIsRemoveDialogOpen()
 	}
 
+	function onUpdatePmp(pmp: IPmp) {
+		const pmpIndex = pmpFields.findIndex(p =>
+			pmp.numberId ? p.numberId === pmp.numberId : p.id === pmp.id
+		)
+		updatePmp(pmpIndex, formatPmp(pmp))
+	}
+
+	function onAddPmp(pmp: IPmp) {
+		appendPmp(formatPmp(pmp))
+	}
+
+	function onAddFm(fm: IFm) {
+		appendFm(formatFm(fm))
+	}
+
+	function onUpdateFm(fm: IFm) {
+		const fmIndex = fmFields.findIndex(f =>
+			fm.numberId ? f.numberId === fm.numberId : f.id === fm.id
+		)
+		updateFm(fmIndex, formatFm(fm))
+	}
+
 	function onConfirmRemove() {
 		if (selectedPmp) {
-			removePmp(selectedPmp.id)
+			const pmpIndex = fmFields.findIndex(f =>
+				selectedPmp.numberId
+					? f.numberId === selectedPmp.numberId
+					: f.id === selectedPmp.id
+			)
+			removePmp(pmpIndex)
 		} else if (selectedFm) {
-			removeFm(selectedFm.id)
+			const fmIndex = fmFields.findIndex(f =>
+				selectedFm.numberId
+					? f.numberId === selectedFm.numberId
+					: f.id === selectedFm.id
+			)
+			removeFm(fmIndex)
 		}
 		onCloseRemoveDialog()
 	}
@@ -121,15 +156,17 @@ export function CreateEditModel() {
 	}
 
 	function onCreateEditModel(values: IFieldValues) {
+		const formatedValues = formatModelPayload(values)
 		const payload = state
 			? {
-					...values,
+					...formatedValues,
 					id: (state as IModel).id
 			  }
 			: {
-					...values,
+					...formatedValues,
 					active: true
 			  }
+
 		const car = cars?.find(c => c.id === payload.car)
 		if (car) {
 			mutate(
@@ -137,6 +174,7 @@ export function CreateEditModel() {
 				{
 					onSuccess() {
 						createSnackbar('success', 'Modelo salvo com sucesso!')
+						navigate('/models', { replace: true })
 					},
 					onError() {
 						createSnackbar('error', 'Erro ao salvar Modelo!')
@@ -147,7 +185,8 @@ export function CreateEditModel() {
 	}
 	useEffect(() => {
 		if (assertLocationState(state)) {
-			reset({ ...state, car: state.car.id })
+			const formattedState = formatModelState(state)
+			reset({ ...formattedState, car: state.car.id })
 		}
 	}, [state, reset])
 
@@ -178,7 +217,11 @@ export function CreateEditModel() {
 										<span>Upload </span>
 									</div>
 								</OutlinedButton>
-								<Button className='ml-4' disabled={!isValid || isSubmitting}>
+								<Button
+									className='ml-4'
+									disabled={!isValid || isSubmitting}
+									isSubmit
+								>
 									Salvar
 								</Button>
 							</div>
@@ -209,7 +252,7 @@ export function CreateEditModel() {
 							</div>
 							<TableContent
 								columns={getPmpColumns(onRemoveRow)}
-								data={pmpFields}
+								data={getPmpRows(pmpFields)}
 								className='max-h-96 border-2'
 								onRowClick={onPmpClick}
 							/>
@@ -224,7 +267,7 @@ export function CreateEditModel() {
 							</div>
 							<TableContent
 								columns={getFmColumns(onRemoveRow)}
-								data={fmFields}
+								data={getFmRows(fmFields)}
 								className='max-h-96 border-2'
 								onRowClick={onFmClick}
 							/>
@@ -247,21 +290,22 @@ export function CreateEditModel() {
 				<CreateEditPmp
 					onClose={onClosePmpDialog}
 					selectedPmp={selectedPmp}
-					addPmp={appendPmp}
-					updatePmp={updatePmp}
+					addPmp={onAddPmp}
+					updatePmp={onUpdatePmp}
 				/>
 			</Dialog>
 			<Dialog
 				isOpen={isFmDialogOpen}
 				onClose={onCloseFmDialog}
+				heightClass='h-[90%]'
 				widthClass='w-[55rem]'
 			>
 				<CreateEditFm
 					onClose={onCloseFmDialog}
 					selectedFm={selectedFm}
-					addFm={appendFm}
-					updateFm={updateFm}
-					fieldsPmpList={pmpFields}
+					addFm={onAddFm}
+					updateFm={onUpdateFm}
+					fieldsPmpList={getPmpRows(pmpFields)}
 				/>
 			</Dialog>
 			<ConfirmDialog
@@ -281,7 +325,6 @@ export function CreateEditModel() {
 				Deseja excluir {selectedPmp ? 'PMP' : 'FM'}? É necessário salvar o
 				Modelo para persistir as alterações.
 			</ConfirmDialog>
-			{/* ADD ONCONFIRMARTION */}
 			<UploadDialog
 				isOpen={isUploadDialogOpen}
 				onClose={toggleIsUploadDialogOpen}

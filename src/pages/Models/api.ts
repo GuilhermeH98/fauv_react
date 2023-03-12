@@ -28,12 +28,13 @@ export enum CatalogType {
 }
 
 export const NominalAxisCoordinate = z.object({
-	id: z.number().nullish(),
+	id: z.number(),
 	name: z.string(),
 	lowerTolerance: z.number(),
 	higherTolerance: z.number(),
 	axis: z.nativeEnum(PointAxis),
-	pmpId: z.number()
+	numberId: z.number().nullish(),
+	pmpId: z.number().nullish()
 })
 export type INominalAxisCoordinate = z.infer<typeof NominalAxisCoordinate>
 
@@ -44,15 +45,18 @@ export const Pmp = z.object({
 	x: z.number(),
 	y: z.number(),
 	z: z.number(),
+	numberId: z.number().nullish(),
 	active: z.boolean(),
-	axisCoordinateList: z.array(NominalAxisCoordinate)
+	axisCoordinateList: z.array(NominalAxisCoordinate).nullish()
 })
 export type IPmp = z.infer<typeof Pmp>
 
 export const FmImpact = z.object({
 	id: z.number(),
-	info: z.number()
+	info: z.string(),
+	numberId: z.number().nullish()
 })
+export type IFmImpact = z.infer<typeof FmImpact>
 
 export const Fm = z.object({
 	id: z.number(),
@@ -64,9 +68,10 @@ export const Fm = z.object({
 	catalogType: z.nativeEnum(CatalogType),
 	pmpList: z.array(Pmp),
 	level: z.nativeEnum(Level),
-	fmImpactList: z.array(FmImpact),
-	photo: z.string(),
-	active: z.boolean()
+	photo: z.string().nullish(),
+	numberId: z.number().nullish(),
+	active: z.boolean(),
+	fmImpactList: z.array(FmImpact).nullish()
 })
 export type IFm = z.infer<typeof Fm>
 
@@ -81,12 +86,54 @@ export const Model = z.object({
 })
 export type IModel = z.infer<typeof Model>
 
-export const ModelPayload = Model.partial({ id: true })
-
-export const ModelDetails = Model.extend({
-	pmpList: z.array(Pmp),
-	fmList: z.array(Fm)
+export const PmpPayload = Pmp.extend({
+	id: z.number().nullish(),
+	axisCoordinateList: z.array(
+		NominalAxisCoordinate.extend({
+			id: z.number().nullish(),
+			pmpId: z.number().nullish()
+		})
+	)
 })
+
+export const FmPayload = Fm.extend({
+	id: z.number().nullish(),
+	fmImpactList: z.array(FmImpact.extend({ id: z.number().nullish() }))
+})
+
+export const ModelPayload = Model.extend({
+	id: z.number().nullish(),
+	pmpList: z.array(PmpPayload),
+	fmList: z.array(FmPayload)
+})
+
+export const PmpFieldValue = PmpPayload.extend({
+	x: z.string(),
+	y: z.string(),
+	z: z.string(),
+	axisCoordinateList: z.array(
+		NominalAxisCoordinate.extend({
+			id: z.number().nullish(),
+			lowerTolerance: z.string(),
+			higherTolerance: z.string()
+		})
+	)
+})
+export type IPmpFieldValue = z.infer<typeof PmpFieldValue>
+
+export const FmFieldValue = FmPayload.extend({
+	defaultValue: z.string(),
+	lowerTolerance: z.string(),
+	higherTolerance: z.string()
+})
+export type IFmFieldValue = z.infer<typeof FmFieldValue>
+
+export const FieldValues = ModelPayload.extend({
+	car: z.number(),
+	pmpList: z.array(PmpFieldValue),
+	fmList: z.array(FmFieldValue)
+})
+export type IFieldValues = z.infer<typeof FieldValues>
 
 export const useModelsQuery = makeQuery(MODELS_URL, z.array(Model))
 

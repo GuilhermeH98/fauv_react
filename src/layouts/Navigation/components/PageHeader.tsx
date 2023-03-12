@@ -5,12 +5,10 @@ import {
 	RiCarWashingLine,
 	RiContactsLine,
 	RiGroupLine,
-	RiListSettingsLine,
 	RiMailSettingsLine,
 	RiMicroscopeLine
 } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
-import { ClipboardIcon } from '../icons/ClipboardIcon'
 import { IndustyIcon } from '../icons/IndustyIcon'
 
 export default function PageHeader(): ReactElement {
@@ -73,9 +71,9 @@ export default function PageHeader(): ReactElement {
 							} `}
 						/>
 					</Link>
-					<RiMailSettingsLine className='my-auto cursor-pointer text-icon text-gray-fauv-3' />
-					<RiListSettingsLine className='my-auto cursor-pointer text-icon text-gray-fauv-3' />
-					<ClipboardIcon currentPath={location.pathname} />
+					<RiMailSettingsLine className='my-auto mr-auto cursor-pointer text-icon text-gray-fauv-3' />
+					{/* <RiListSettingsLine className='my-auto cursor-pointer text-icon text-gray-fauv-3' />
+					<ClipboardIcon currentPath={location.pathname} /> */}
 				</>
 			)}
 		</header>

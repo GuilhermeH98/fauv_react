@@ -76,7 +76,7 @@ export default function App(): ReactElement {
 					</Routes>
 				</Suspense>
 			</BrowserRouter>
-			<ToastContainer position='bottom-center' theme='light' />
+			<ToastContainer position='bottom-center' theme='colored' />
 		</>
 	)
 }

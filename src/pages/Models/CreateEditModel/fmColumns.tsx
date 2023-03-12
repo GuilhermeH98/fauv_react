@@ -12,15 +12,18 @@ export function getFmColumns(
 		},
 		{
 			key: 'higherTolerance',
-			header: 'Tolerância Superior'
+			header: 'Tolerância Superior',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'lowerTolerance',
-			header: 'Tolerância Inferior'
+			header: 'Tolerância Inferior',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'defaultValue',
-			header: 'Valor Padrão'
+			header: 'Valor Padrão',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'axis',

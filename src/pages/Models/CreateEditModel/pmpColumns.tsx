@@ -16,15 +16,18 @@ export function getPmpColumns(
 		},
 		{
 			key: 'x',
-			header: 'X'
+			header: 'X',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'y',
-			header: 'Y'
+			header: 'Y',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'z',
-			header: 'Z'
+			header: 'Z',
+			valueFormatter: value => value?.toString().replace('.', ',') || ''
 		},
 		{
 			key: 'active',

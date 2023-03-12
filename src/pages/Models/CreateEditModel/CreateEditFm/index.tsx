@@ -1,16 +1,19 @@
+import OutlinedButton from 'components/Buttons/OutlinedButton'
 import { DialogHeader } from 'components/Dialog/Header'
 import Division from 'components/Division'
 import Input from 'components/Inputs/Input'
 import { Multiselect } from 'components/Inputs/Multiselect'
 import { Select } from 'components/Inputs/Select'
 import Switch from 'components/Switch'
+import TableContent from 'components/Table/components/TableContent'
 import type { IFm } from 'pages/Models/api'
 import { CatalogType, Level, PointAxis } from 'pages/Models/api'
 
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { mapEnumOptions } from 'utils/miscellaneous'
-import type { ICreateEditFmProperties } from './types'
+import { getColumns } from './impatctColumns'
+import type { ICreateEditFmProperties, IImpactRow } from './types'
 
 export function CreateEditFm({
 	onClose,
@@ -27,9 +30,18 @@ export function CreateEditFm({
 		formState: { isValid, isSubmitting }
 	} = useForm<IFm>()
 
+	const { fields, append, remove } = useFieldArray({
+		control,
+		name: 'fmImpactList'
+	})
+
+	function onRemoveImpact(impact: IImpactRow) {
+		remove(impact.id)
+	}
+
 	function onSubmit(values: IFm) {
 		if (selectedFm) {
-			updateFm(selectedFm.id, { ...values })
+			updateFm({ ...values, id: selectedFm.id })
 		} else {
 			addFm({ ...values, active: true })
 		}
@@ -104,17 +116,41 @@ export function CreateEditFm({
 						type='number'
 						id='higherTolerance'
 						register={register}
+						required
 					/>
 					<Input
 						label='Tolerância Inferior'
 						type='number'
 						id='lowerTolerance'
 						register={register}
+						required
 					/>
-					{/* FM IMPACT LIST 
+				</div>
+				<Division />
+				<div className='flex'>
+					<p className='pt-2 font-inter text-base font-semibold  leading-[160%] text-black-fauv-3'>
+						Impactos
+					</p>
+					<OutlinedButton
+						className='ml-auto'
+						onClick={() =>
+							append({
+								id: -1,
+								info: ''
+							})
+						}
+					>
+						Adicionar
+					</OutlinedButton>
+				</div>
+				<TableContent
+					data={[...fields.map((field, index) => ({ ...field, id: index }))]}
+					columns={getColumns(register, onRemoveImpact)}
+					className='h-[380px] border-2'
+				/>
+				{/* FM IMPACT LIST 
 					PHOTO
 					  */}
-				</div>
 			</div>
 		</form>
 	)

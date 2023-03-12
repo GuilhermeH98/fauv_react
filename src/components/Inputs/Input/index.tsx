@@ -26,6 +26,7 @@ export default function Input<TFieldValues extends FieldValues>({
 				type={type ?? 'text'}
 				id={id}
 				placeholder={placeholder}
+				step='any'
 				{...register(id, {
 					required,
 					...rules
