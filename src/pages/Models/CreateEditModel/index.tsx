@@ -105,35 +105,91 @@ export function CreateEditModel() {
 		toggleIsRemoveDialogOpen()
 	}
 
+	function checkFmName(name: string) {
+		if (fmFields.findIndex(f => f.name === name) > -1) {
+			createSnackbar('error', 'Já existe FM com esse nome')
+			return false
+		}
+		return true
+	}
+
+	function checkPmpName(name: string) {
+		if (pmpFields.findIndex(p => p.name === name) > -1) {
+			createSnackbar('error', 'Já existe PMP com esse nome')
+			return false
+		}
+		return true
+	}
+
 	function onUpdatePmp(pmp: IPmp) {
 		const pmpIndex = pmpFields.findIndex(p =>
 			pmp.numberId ? p.numberId === pmp.numberId : p.id === pmp.id
 		)
-		updatePmp(pmpIndex, formatPmp(pmp))
+		if (pmpIndex > -1) {
+			const outdatedPmp = pmpFields[pmpIndex]
+			if (outdatedPmp.name === pmp.name || checkPmpName(pmp.name)) {
+				const formattedPmp = formatPmp(pmp)
+
+				// Update fm pmp list
+				for (const fmField of fmFields) {
+					const fmIndex = fmFields.findIndex(f => f.name === fmField.name)
+					const fm = fmFields[fmIndex]
+					if (fm.pmpList.findIndex(p => p.name === outdatedPmp.name) > -1) {
+						const fmPmpList = fm.pmpList.filter(
+							p => p.name !== outdatedPmp.name
+						)
+						fmPmpList.push(pmp)
+						updateFm(fmIndex, { ...fm, pmpList: fmPmpList })
+					}
+				}
+				updatePmp(pmpIndex, formattedPmp)
+				onClosePmpDialog()
+			}
+		}
 	}
 
 	function onAddPmp(pmp: IPmp) {
-		appendPmp(formatPmp(pmp))
+		if (checkPmpName(pmp.name)) {
+			appendPmp(formatPmp(pmp))
+			onClosePmpDialog()
+		}
 	}
 
 	function onAddFm(fm: IFm) {
-		appendFm(formatFm(fm))
+		if (checkFmName(fm.name)) {
+			appendFm(formatFm(fm))
+			onCloseFmDialog()
+		}
 	}
 
 	function onUpdateFm(fm: IFm) {
 		const fmIndex = fmFields.findIndex(f =>
 			fm.numberId ? f.numberId === fm.numberId : f.id === fm.id
 		)
-		updateFm(fmIndex, formatFm(fm))
+		if (fmFields[fmIndex].name === fm.name || checkFmName(fm.name)) {
+			updateFm(fmIndex, formatFm(fm))
+			onCloseFmDialog()
+		}
 	}
 
 	function onConfirmRemove() {
 		if (selectedPmp) {
-			const pmpIndex = fmFields.findIndex(f =>
+			const pmpIndex = pmpFields.findIndex(f =>
 				selectedPmp.numberId
 					? f.numberId === selectedPmp.numberId
 					: f.id === selectedPmp.id
 			)
+			// Remove pmp from fm list
+			const outdatedPmp = pmpFields[pmpIndex]
+			for (const fmField of fmFields) {
+				const fmIndex = fmFields.findIndex(f => f.name === fmField.name)
+				const fm = fmFields[fmIndex]
+				if (fm.pmpList.findIndex(p => p.name === outdatedPmp.name) > -1) {
+					const fmPmpList = fm.pmpList.filter(p => p.name !== outdatedPmp.name)
+					updateFm(fmIndex, { ...fm, pmpList: fmPmpList })
+				}
+			}
+
 			removePmp(pmpIndex)
 		} else if (selectedFm) {
 			const fmIndex = fmFields.findIndex(f =>
@@ -156,14 +212,22 @@ export function CreateEditModel() {
 	}
 
 	function onCreateEditModel(values: IFieldValues) {
-		const formatedValues = formatModelPayload(values)
+		const formattedValues = formatModelPayload({
+			...values
+		})
 		const payload = state
 			? {
-					...formatedValues,
+					...formattedValues,
 					id: (state as IModel).id
 			  }
 			: {
-					...formatedValues,
+					...formattedValues,
+					fmList: [
+						...formattedValues.fmList.map(f => ({
+							...f,
+							pmpList: [...f.pmpList.map(p => p.name)]
+						}))
+					],
 					active: true
 			  }
 
@@ -288,7 +352,6 @@ export function CreateEditModel() {
 				widthClass='w-[55rem]'
 			>
 				<CreateEditPmp
-					onClose={onClosePmpDialog}
 					selectedPmp={selectedPmp}
 					addPmp={onAddPmp}
 					updatePmp={onUpdatePmp}
@@ -301,7 +364,6 @@ export function CreateEditModel() {
 				widthClass='w-[55rem]'
 			>
 				<CreateEditFm
-					onClose={onCloseFmDialog}
 					selectedFm={selectedFm}
 					addFm={onAddFm}
 					updateFm={onUpdateFm}

@@ -14,7 +14,6 @@ import { getColumns } from './axisColumns'
 import type { IAxisRow, ICreateEditPmpProperties } from './types'
 
 export function CreateEditPmp({
-	onClose,
 	selectedPmp,
 	addPmp,
 	updatePmp
@@ -42,7 +41,6 @@ export function CreateEditPmp({
 		} else {
 			addPmp({ ...values, active: true })
 		}
-		onClose()
 	}
 
 	useEffect(() => {

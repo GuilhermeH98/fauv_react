@@ -75,6 +75,11 @@ export const Fm = z.object({
 })
 export type IFm = z.infer<typeof Fm>
 
+export const FmCreateEdit = Fm.extend({
+	pmpList: z.array(z.string())
+})
+export type IFmCreateEdit = z.infer<typeof FmCreateEdit>
+
 export const Model = z.object({
 	id: z.number(),
 	partNumber: z.string(),
@@ -98,7 +103,8 @@ export const PmpPayload = Pmp.extend({
 
 export const FmPayload = Fm.extend({
 	id: z.number().nullish(),
-	fmImpactList: z.array(FmImpact.extend({ id: z.number().nullish() }))
+	fmImpactList: z.array(FmImpact.extend({ id: z.number().nullish() })),
+	pmpList: z.array(Pmp).or(z.array(z.string()))
 })
 
 export const ModelPayload = Model.extend({
@@ -124,7 +130,8 @@ export type IPmpFieldValue = z.infer<typeof PmpFieldValue>
 export const FmFieldValue = FmPayload.extend({
 	defaultValue: z.string(),
 	lowerTolerance: z.string(),
-	higherTolerance: z.string()
+	higherTolerance: z.string(),
+	pmpList: z.array(Pmp)
 })
 export type IFmFieldValue = z.infer<typeof FmFieldValue>
 
@@ -138,3 +145,22 @@ export type IFieldValues = z.infer<typeof FieldValues>
 export const useModelsQuery = makeQuery(MODELS_URL, z.array(Model))
 
 export const useModelMutation = makeMutation(MODELS_URL, ModelPayload)
+
+// export const useSendFilesMutation = () =>
+// 	useMutation(async (item: File) => {
+// 		const headers: Record<string, string> = {
+// 			'Content-Type': 'multipart/form-data'
+// 		}
+// 		const data = new FormData()
+// 		data.append('file', new Blob([item], { type: item.type }), item.name)
+
+// 		const token = localStorage.getItem('token')
+// 		if (token) {
+// 			headers.Authorization = `${token}`
+// 		}
+
+// 		await axios.post(`documents/report-income/upload`, data, {
+// 			baseURL: import.meta.env.VITE_API_URL ?? window.location.origin,
+// 			headers
+// 		})
+// 	})

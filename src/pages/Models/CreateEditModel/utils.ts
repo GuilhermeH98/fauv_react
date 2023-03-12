@@ -33,6 +33,7 @@ export function formatModelPayload(values: IFieldValues) {
 			defaultValue: Number.parseFloat(fm.defaultValue),
 			lowerTolerance: Number.parseFloat(fm.lowerTolerance),
 			higherTolerance: Number.parseFloat(fm.higherTolerance),
+			// pmpList: fm.pmpList.map(pmp => values.pmpList.find(p => p.id === pmp)),
 			fmImpactList: fm.fmImpactList.map(fmImpact => ({
 				...fmImpact,
 				id: fmImpact.id && fmImpact.id > -1 ? fmImpact.id : null

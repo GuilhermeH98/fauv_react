@@ -6,7 +6,7 @@ import { Multiselect } from 'components/Inputs/Multiselect'
 import { Select } from 'components/Inputs/Select'
 import Switch from 'components/Switch'
 import TableContent from 'components/Table/components/TableContent'
-import type { IFm } from 'pages/Models/api'
+import type { IFmCreateEdit, IPmp } from 'pages/Models/api'
 import { CatalogType, Level, PointAxis } from 'pages/Models/api'
 
 import { useEffect } from 'react'
@@ -16,7 +16,6 @@ import { getColumns } from './impatctColumns'
 import type { ICreateEditFmProperties, IImpactRow } from './types'
 
 export function CreateEditFm({
-	onClose,
 	selectedFm,
 	addFm,
 	updateFm,
@@ -28,7 +27,7 @@ export function CreateEditFm({
 		register,
 		handleSubmit,
 		formState: { isValid, isSubmitting }
-	} = useForm<IFm>()
+	} = useForm<IFmCreateEdit>()
 
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -39,18 +38,29 @@ export function CreateEditFm({
 		remove(impact.id)
 	}
 
-	function onSubmit(values: IFm) {
+	function onSubmit(values: IFmCreateEdit) {
 		if (selectedFm) {
-			updateFm({ ...values, id: selectedFm.id })
+			updateFm({
+				...values,
+				id: selectedFm.id,
+				pmpList: [
+					...values.pmpList.map(pmp => fieldsPmpList.find(p => p.name === pmp))
+				] as IPmp[]
+			})
 		} else {
-			addFm({ ...values, active: true })
+			addFm({
+				...values,
+				active: true,
+				pmpList: [
+					...values.pmpList.map(pmp => fieldsPmpList.find(p => p.name === pmp))
+				] as IPmp[]
+			})
 		}
-		onClose()
 	}
 
 	useEffect(() => {
 		if (selectedFm) {
-			reset(selectedFm)
+			reset({ ...selectedFm, pmpList: selectedFm.pmpList.map(p => p.name) })
 		}
 	}, [selectedFm, reset])
 
@@ -80,7 +90,10 @@ export function CreateEditFm({
 						name='pmpList'
 						control={control}
 						options={[
-							...fieldsPmpList.map(pmp => ({ label: pmp.name, value: pmp.id }))
+							...fieldsPmpList.map(pmp => ({
+								label: pmp.name,
+								value: pmp.name
+							}))
 						]}
 						required
 					/>
