@@ -3,9 +3,11 @@ import type {
 	IFm,
 	IFmFieldValue,
 	IModel,
+	IModelPreview,
 	IPmp,
 	IPmpFieldValue
 } from '../api'
+import { CatalogType, PointAxis } from '../api'
 
 export function formatModelPayload(values: IFieldValues) {
 	return {
@@ -33,7 +35,23 @@ export function formatModelPayload(values: IFieldValues) {
 			defaultValue: Number.parseFloat(fm.defaultValue),
 			lowerTolerance: Number.parseFloat(fm.lowerTolerance),
 			higherTolerance: Number.parseFloat(fm.higherTolerance),
-			// pmpList: fm.pmpList.map(pmp => values.pmpList.find(p => p.id === pmp)),
+			pmpList: fm.pmpList.map(pmp => ({
+				...pmp,
+				id: pmp.id && pmp.id > -1 ? pmp.id : null,
+				x: Number.parseFloat(pmp.x),
+				y: Number.parseFloat(pmp.y),
+				z: Number.parseFloat(pmp.z),
+				axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+					...axisCoordinate,
+					id:
+						axisCoordinate.id && axisCoordinate.id > -1
+							? axisCoordinate.id
+							: null,
+					lowerTolerance: Number.parseFloat(axisCoordinate.lowerTolerance),
+					higherTolerance: Number.parseFloat(axisCoordinate.higherTolerance),
+					pmpId: pmp.id && pmp.id > -1 ? pmp.id : null
+				}))
+			})),
 			fmImpactList: fm.fmImpactList.map(fmImpact => ({
 				...fmImpact,
 				id: fmImpact.id && fmImpact.id > -1 ? fmImpact.id : null
@@ -45,19 +63,18 @@ export function formatModelPayload(values: IFieldValues) {
 export function formatModelState(model: IModel) {
 	return {
 		...model,
+		car: model.car.id,
 		pmpList: model.pmpList.map(pmp => ({
 			...pmp,
 			numberId: pmp.id,
 			x: pmp.x.toString(),
 			y: pmp.y.toString(),
 			z: pmp.z.toString(),
-			axisCoordinateList: pmp.axisCoordinateList
-				? pmp.axisCoordinateList.map(axisCoordinate => ({
-						...axisCoordinate,
-						lowerTolerance: axisCoordinate.lowerTolerance.toString(),
-						higherTolerance: axisCoordinate.higherTolerance.toString()
-				  }))
-				: []
+			axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+				...axisCoordinate,
+				lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+				higherTolerance: axisCoordinate.higherTolerance.toString()
+			}))
 		})),
 		fmList: model.fmList.map(fm => ({
 			...fm,
@@ -65,11 +82,70 @@ export function formatModelState(model: IModel) {
 			lowerTolerance: fm.lowerTolerance.toString(),
 			higherTolerance: fm.higherTolerance.toString(),
 			defaultValue: fm.defaultValue.toString(),
-			fmImpactList: fm.fmImpactList
-				? fm.fmImpactList.map(fmImpact => ({
-						...fmImpact
-				  }))
-				: []
+			pmpList: fm.pmpList.map(pmp => ({
+				...pmp,
+				numberId: pmp.id,
+				x: pmp.x.toString(),
+				y: pmp.y.toString(),
+				z: pmp.z.toString(),
+				axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+					...axisCoordinate,
+					lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+					higherTolerance: axisCoordinate.higherTolerance.toString()
+				}))
+			})),
+			fmImpactList: fm.fmImpactList.map(fmImpact => ({
+				...fmImpact
+			}))
+		}))
+	}
+}
+
+export function formatModelPreview(model: IModelPreview) {
+	// TODO create function to format pmpPreview and use on fm pmpList
+	return {
+		...model,
+		car: model.car ? model.car.id : null,
+		stepDescription: model.stepDescription ?? '',
+		active: model.active ?? true,
+		pmpList: model.pmpList.map(pmp => ({
+			...pmp,
+			numberId: pmp.id,
+			x: pmp.x.toString(),
+			y: pmp.y.toString(),
+			z: pmp.z.toString(),
+			workingOn: pmp.workingOn || PointAxis.X,
+			axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+				...axisCoordinate,
+				lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+				higherTolerance: axisCoordinate.higherTolerance.toString(),
+				axis: axisCoordinate.axis || PointAxis.X
+			}))
+		})),
+		fmList: model.fmList.map(fm => ({
+			...fm,
+			numberId: fm.id,
+			catalogType: fm.catalogType || CatalogType.DICHTIGKEIT,
+			lowerTolerance: fm.lowerTolerance.toString(),
+			higherTolerance: fm.higherTolerance.toString(),
+			defaultValue: fm.defaultValue.toString(),
+			pmpList: fm.pmpList.map(pmp => ({
+				...pmp,
+				numberId: pmp.id,
+				x: pmp.x.toString(),
+				y: pmp.y.toString(),
+				z: pmp.z.toString(),
+				workingOn: pmp.workingOn || PointAxis.X,
+				axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+					...axisCoordinate,
+					lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+					higherTolerance: axisCoordinate.higherTolerance.toString(),
+					axis: axisCoordinate.axis || PointAxis.X
+				}))
+			})),
+			fmImpactList: fm.fmImpactList.map(fmImpact => ({
+				...fmImpact
+			}))
 		}))
 	}
 }
@@ -81,15 +157,13 @@ export function formatPmp(pmp: IPmp) {
 		x: pmp.x.toString(),
 		y: pmp.y.toString(),
 		z: pmp.z.toString(),
-		axisCoordinateList: pmp.axisCoordinateList
-			? pmp.axisCoordinateList.map(axisCoordinate => ({
-					...axisCoordinate,
-					numberId:
-						typeof axisCoordinate.id === 'number' ? axisCoordinate.id : null,
-					lowerTolerance: axisCoordinate.lowerTolerance.toString(),
-					higherTolerance: axisCoordinate.higherTolerance.toString()
-			  }))
-			: []
+		axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
+			...axisCoordinate,
+			numberId:
+				typeof axisCoordinate.id === 'number' ? axisCoordinate.id : null,
+			lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+			higherTolerance: axisCoordinate.higherTolerance.toString()
+		}))
 	}
 }
 
@@ -100,11 +174,10 @@ export function formatFm(fm: IFm) {
 		lowerTolerance: fm.lowerTolerance.toString(),
 		higherTolerance: fm.higherTolerance.toString(),
 		defaultValue: fm.defaultValue.toString(),
-		fmImpactList: fm.fmImpactList
-			? fm.fmImpactList.map(fmImpact => ({
-					...fmImpact
-			  }))
-			: []
+		pmpList: fm.pmpList.map(pmp => formatPmp(pmp)),
+		fmImpactList: fm.fmImpactList.map(fmImpact => ({
+			...fmImpact
+		}))
 	}
 }
 
@@ -134,6 +207,7 @@ export function getFmRows(fmList: IFmFieldValue[]): IFm[] {
 		fmImpactList: fm.fmImpactList.map(fmImpact => ({
 			...fmImpact,
 			id: fmImpact.numberId || fmImpact.id || index
-		}))
+		})),
+		pmpList: getPmpRows(fm.pmpList)
 	}))
 }

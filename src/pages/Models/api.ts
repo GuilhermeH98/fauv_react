@@ -1,8 +1,10 @@
+import { useMutation } from '@tanstack/react-query'
 import { Car } from 'pages/Cars/api'
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
 export const MODELS_URL = 'model'
+export const MODEL_PREVIEW_URL = 'model/preview'
 
 export enum PointAxis {
 	X = 'X',
@@ -47,7 +49,7 @@ export const Pmp = z.object({
 	z: z.number(),
 	numberId: z.number().nullish(),
 	active: z.boolean(),
-	axisCoordinateList: z.array(NominalAxisCoordinate).nullish()
+	axisCoordinateList: z.array(NominalAxisCoordinate)
 })
 export type IPmp = z.infer<typeof Pmp>
 
@@ -71,7 +73,7 @@ export const Fm = z.object({
 	photo: z.string().nullish(),
 	numberId: z.number().nullish(),
 	active: z.boolean(),
-	fmImpactList: z.array(FmImpact).nullish()
+	fmImpactList: z.array(FmImpact)
 })
 export type IFm = z.infer<typeof Fm>
 
@@ -104,7 +106,7 @@ export const PmpPayload = Pmp.extend({
 export const FmPayload = Fm.extend({
 	id: z.number().nullish(),
 	fmImpactList: z.array(FmImpact.extend({ id: z.number().nullish() })),
-	pmpList: z.array(Pmp).or(z.array(z.string()))
+	pmpList: z.array(PmpPayload)
 })
 
 export const ModelPayload = Model.extend({
@@ -112,6 +114,7 @@ export const ModelPayload = Model.extend({
 	pmpList: z.array(PmpPayload),
 	fmList: z.array(FmPayload)
 })
+export type IModelPayload = z.infer<typeof ModelPayload>
 
 export const PmpFieldValue = PmpPayload.extend({
 	x: z.string(),
@@ -131,36 +134,77 @@ export const FmFieldValue = FmPayload.extend({
 	defaultValue: z.string(),
 	lowerTolerance: z.string(),
 	higherTolerance: z.string(),
-	pmpList: z.array(Pmp)
+	pmpList: z.array(PmpFieldValue)
 })
 export type IFmFieldValue = z.infer<typeof FmFieldValue>
 
 export const FieldValues = ModelPayload.extend({
-	car: z.number(),
+	car: z.number().nullish(),
 	pmpList: z.array(PmpFieldValue),
 	fmList: z.array(FmFieldValue)
 })
 export type IFieldValues = z.infer<typeof FieldValues>
 
+export interface IFilesUpload {
+	dmoFile: File
+	csvFile: File | null | undefined
+}
+
+const PmpPreview = Pmp.extend({
+	id: z.number().nullish(),
+	workingOn: z.nativeEnum(PointAxis).nullish(),
+	axisCoordinateList: z.array(
+		NominalAxisCoordinate.extend({
+			id: z.number().nullish(),
+			axis: z.nativeEnum(PointAxis).nullish(),
+			workingOn: z.nativeEnum(PointAxis).nullish()
+		})
+	)
+})
+
+export const ModelPreview = Model.extend({
+	id: z.number().nullish(),
+	stepDescription: z.string().nullish(),
+	car: Car.nullish(),
+	active: z.boolean().nullish(),
+	pmpList: z.array(PmpPreview),
+	fmList: z.array(
+		Fm.extend({
+			id: z.number().nullish(),
+			catalogType: z.nativeEnum(CatalogType).nullish(),
+			pmpList: z.array(PmpPreview)
+		})
+	)
+})
+export type IModelPreview = z.infer<typeof ModelPreview>
+// export type IModelPreview = Nullable<IModel>
+
 export const useModelsQuery = makeQuery(MODELS_URL, z.array(Model))
 
 export const useModelMutation = makeMutation(MODELS_URL, ModelPayload)
 
-// export const useSendFilesMutation = () =>
-// 	useMutation(async (item: File) => {
-// 		const headers: Record<string, string> = {
-// 			'Content-Type': 'multipart/form-data'
-// 		}
-// 		const data = new FormData()
-// 		data.append('file', new Blob([item], { type: item.type }), item.name)
+export const useSendFilesMutation = () =>
+	useMutation(async (files: IFilesUpload) => {
+		const headers: Record<string, string> = {
+			'Content-Type': 'multipart/form-data'
+		}
 
-// 		const token = localStorage.getItem('token')
-// 		if (token) {
-// 			headers.Authorization = `${token}`
-// 		}
+		const formData = new FormData()
+		formData.append('dmoFile', new Blob([files.dmoFile]))
+		if (files.csvFile) {
+			formData.append('csvFile', new Blob([files.csvFile]))
+		}
 
-// 		await axios.post(`documents/report-income/upload`, data, {
-// 			baseURL: import.meta.env.VITE_API_URL ?? window.location.origin,
-// 			headers
-// 		})
-// 	})
+		const token = localStorage.getItem('token')
+		if (token) {
+			headers.Authorization = `${token}`
+		}
+
+		const response = await fetch(`/${MODEL_PREVIEW_URL}`, {
+			method: 'POST',
+			body: formData,
+			headers
+		})
+
+		return response.json()
+	})

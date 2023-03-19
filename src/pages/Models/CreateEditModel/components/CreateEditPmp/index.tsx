@@ -47,9 +47,7 @@ export function CreateEditPmp({
 		if (selectedPmp) {
 			const { axisCoordinateList, ...pmp } = selectedPmp
 			reset(pmp)
-			if (axisCoordinateList) {
-				append(axisCoordinateList)
-			}
+			append(axisCoordinateList)
 		}
 	}, [selectedPmp, reset, append])
 

@@ -12,16 +12,18 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { RiArrowGoBackLine, RiUploadCloud2Line } from 'react-icons/ri'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { mapSelectOptions, useToggle } from 'utils/miscellaneous'
-import type { IFieldValues, IFm, IModel, IPmp } from '../api'
+import type { IFieldValues, IFm, IModel, IModelPreview, IPmp } from '../api'
 import { useModelMutation } from '../api'
-import { CreateEditFm } from './CreateEditFm'
-import { CreateEditPmp } from './CreateEditPmp'
+import { CreateEditFm } from './components/CreateEditFm'
+import { CreateEditPmp } from './components/CreateEditPmp'
+import { PmpFilter } from './components/PmpFilter'
+import { UploadDialog } from './components/UploadDialog'
 import { getFmColumns } from './fmColumns'
 import { getPmpColumns } from './pmpColumns'
-import { UploadDialog } from './UploadDialog'
 import {
 	formatFm,
 	formatModelPayload,
+	formatModelPreview,
 	formatModelState,
 	formatPmp,
 	getFmRows,
@@ -34,6 +36,16 @@ function assertLocationState(state: unknown): state is IModel {
 }
 
 export function CreateEditModel() {
+	const [isReturnDialogOpen, toggleIsReturnDialogOpen] = useToggle()
+	const [isPmpDialogOpen, toggleIsPmpDialogOpen] = useToggle()
+	const [isRemoveDialogOpen, toggleIsRemoveDialogOpen] = useToggle()
+	const [isFmDialogOpen, toggleIsFmDialogOpen] = useToggle()
+	const [isUploadDialogOpen, toggleIsUploadDialogOpen] = useToggle()
+	const [filteredPmpList, setFilteredPmpList] = useState<IPmp[]>([])
+	const [pmpList, setPmpList] = useState<IPmp[]>([])
+
+	const [selectedPmp, setSelectedPmp] = useState<IPmp | null>(null)
+	const [selectedFm, setSelectedFm] = useState<IFm | null>(null)
 	const { state } = useLocation()
 
 	const { data: cars } = useCarsQuery()
@@ -49,15 +61,6 @@ export function CreateEditModel() {
 		handleSubmit,
 		formState: { isSubmitting, isValid }
 	} = useForm<IFieldValues>()
-
-	const [isReturnDialogOpen, toggleIsReturnDialogOpen] = useToggle()
-	const [isPmpDialogOpen, toggleIsPmpDialogOpen] = useToggle()
-	const [isRemoveDialogOpen, toggleIsRemoveDialogOpen] = useToggle()
-	const [isFmDialogOpen, toggleIsFmDialogOpen] = useToggle()
-	const [isUploadDialogOpen, toggleIsUploadDialogOpen] = useToggle()
-
-	const [selectedPmp, setSelectedPmp] = useState<IPmp | null>(null)
-	const [selectedFm, setSelectedFm] = useState<IFm | null>(null)
 
 	const {
 		fields: pmpFields,
@@ -78,6 +81,10 @@ export function CreateEditModel() {
 		control,
 		name: 'fmList'
 	})
+
+	useEffect(() => {
+		setPmpList(getPmpRows(pmpFields))
+	}, [pmpFields, setPmpList])
 
 	function onClosePmpDialog() {
 		setSelectedPmp(null)
@@ -138,7 +145,7 @@ export function CreateEditModel() {
 						const fmPmpList = fm.pmpList.filter(
 							p => p.name !== outdatedPmp.name
 						)
-						fmPmpList.push(pmp)
+						fmPmpList.push(formatPmp(pmp))
 						updateFm(fmIndex, { ...fm, pmpList: fmPmpList })
 					}
 				}
@@ -222,12 +229,6 @@ export function CreateEditModel() {
 			  }
 			: {
 					...formattedValues,
-					fmList: [
-						...formattedValues.fmList.map(f => ({
-							...f,
-							pmpList: [...f.pmpList.map(p => p.name)]
-						}))
-					],
 					active: true
 			  }
 
@@ -247,10 +248,15 @@ export function CreateEditModel() {
 			)
 		}
 	}
+
+	// TODO: Create new function to handle reset and use inside useEffect
+	function onUploadSuccess(modelPreview: IModelPreview) {
+		reset(formatModelPreview(modelPreview))
+	}
+
 	useEffect(() => {
 		if (assertLocationState(state)) {
-			const formattedState = formatModelState(state)
-			reset({ ...formattedState, car: state.car.id })
+			reset(formatModelState(state))
 		}
 	}, [state, reset])
 
@@ -314,18 +320,25 @@ export function CreateEditModel() {
 							<div className='flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
 								PONTOS PMP
 							</div>
+							<div className='flex'>
+								<OutlinedButton
+									className='mr-auto'
+									onClick={toggleIsPmpDialogOpen}
+								>
+									Adicionar PMP
+								</OutlinedButton>
+								<PmpFilter
+									pmpList={pmpList}
+									setFilteredList={setFilteredPmpList}
+								/>
+							</div>
 							<TableContent
 								columns={getPmpColumns(onRemoveRow)}
-								data={getPmpRows(pmpFields)}
+								data={filteredPmpList}
 								className='max-h-96 border-2'
 								onRowClick={onPmpClick}
 							/>
-							<OutlinedButton
-								className='mr-auto'
-								onClick={toggleIsPmpDialogOpen}
-							>
-								Adicionar PMP
-							</OutlinedButton>
+
 							<div className='w- flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
 								FUNTIONSMASSE (FM)
 							</div>
@@ -367,7 +380,7 @@ export function CreateEditModel() {
 					selectedFm={selectedFm}
 					addFm={onAddFm}
 					updateFm={onUpdateFm}
-					fieldsPmpList={getPmpRows(pmpFields)}
+					fieldsPmpList={pmpList}
 				/>
 			</Dialog>
 			<ConfirmDialog
@@ -390,6 +403,7 @@ export function CreateEditModel() {
 			<UploadDialog
 				isOpen={isUploadDialogOpen}
 				onClose={toggleIsUploadDialogOpen}
+				onUploadSuccess={onUploadSuccess}
 			/>
 		</>
 	)
