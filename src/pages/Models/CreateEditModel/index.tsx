@@ -16,6 +16,7 @@ import type { IFieldValues, IFm, IModel, IModelPreview, IPmp } from '../api'
 import { useModelMutation } from '../api'
 import { CreateEditFm } from './components/CreateEditFm'
 import { CreateEditPmp } from './components/CreateEditPmp'
+import { FmFilter } from './components/FmFilter'
 import { PmpFilter } from './components/PmpFilter'
 import { UploadDialog } from './components/UploadDialog'
 import { getFmColumns } from './fmColumns'
@@ -42,7 +43,9 @@ export function CreateEditModel() {
 	const [isFmDialogOpen, toggleIsFmDialogOpen] = useToggle()
 	const [isUploadDialogOpen, toggleIsUploadDialogOpen] = useToggle()
 	const [filteredPmpList, setFilteredPmpList] = useState<IPmp[]>([])
+	const [filteredFmList, setFilteredFmList] = useState<IFm[]>([])
 	const [pmpList, setPmpList] = useState<IPmp[]>([])
+	const [fmList, setFmList] = useState<IFm[]>([])
 
 	const [selectedPmp, setSelectedPmp] = useState<IPmp | null>(null)
 	const [selectedFm, setSelectedFm] = useState<IFm | null>(null)
@@ -85,6 +88,10 @@ export function CreateEditModel() {
 	useEffect(() => {
 		setPmpList(getPmpRows(pmpFields))
 	}, [pmpFields, setPmpList])
+
+	useEffect(() => {
+		setFmList(getFmRows(fmFields))
+	}, [fmFields, setFmList])
 
 	function onClosePmpDialog() {
 		setSelectedPmp(null)
@@ -338,22 +345,24 @@ export function CreateEditModel() {
 								className='max-h-96 border-2'
 								onRowClick={onPmpClick}
 							/>
-
 							<div className='w- flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
 								FUNTIONSMASSE (FM)
 							</div>
+							<div className='flex'>
+								<OutlinedButton
+									className='mr-auto'
+									onClick={toggleIsFmDialogOpen}
+								>
+									Adicionar FM
+								</OutlinedButton>
+								<FmFilter fmList={fmList} setFilteredList={setFilteredFmList} />
+							</div>
 							<TableContent
 								columns={getFmColumns(onRemoveRow)}
-								data={getFmRows(fmFields)}
+								data={filteredFmList}
 								className='max-h-96 border-2'
 								onRowClick={onFmClick}
 							/>
-							<OutlinedButton
-								className='mr-auto'
-								onClick={toggleIsFmDialogOpen}
-							>
-								Adicionar FM
-							</OutlinedButton>
 						</div>
 					</form>
 				</div>
