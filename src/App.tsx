@@ -7,6 +7,7 @@ import { Employees } from 'pages/Employees'
 import { Equipments } from 'pages/Equipments'
 import { Models } from 'pages/Models'
 import { CreateEditModel } from 'pages/Models/CreateEditModel'
+import { Samples } from 'pages/Samples'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
 import { Units } from 'pages/Units'
@@ -65,6 +66,7 @@ export default function App(): ReactElement {
 														<Route path='/cars' element={<Cars />} />
 														<Route path='/employees' element={<Employees />} />
 														<Route path='/models' element={<Models />} />
+														<Route path='/samples' element={<Samples />} />
 													</Routes>
 												</NavigationLayout>
 											}

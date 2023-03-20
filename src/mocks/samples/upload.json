@@ -1,0 +1,133 @@
+{
+	"id": 0,
+	"uploadDate": "2020-07-10 15:00:00",
+	"uploadUser": {
+		"vwId": "ABC123",
+		"active": true,
+		"roles": [
+			{
+				"name": "adminstrator | inspector | consultant",
+				"admin": true
+			}
+		]
+	},
+	"model": {
+		"id": 1,
+		"partNumber": "SHD13NH4",
+		"stepDescription": "SHD13NH4",
+		"car": {
+			"id": 0,
+			"name": "Gol",
+			"active": true,
+			"unit": {
+				"id": 0,
+				"name": "Anchieta",
+				"active": true
+			}
+		},
+		"pmpList": [
+			{
+				"id": 0,
+				"name": "PONTO A",
+				"axis": "X",
+				"x": -125.321,
+				"y": -125.321,
+				"z": -125.321,
+				"active": true,
+				"axisCoordinateList": [
+					{
+						"id": 0,
+						"name": "string",
+						"lowerTolerance": -125.321,
+						"higherTolerance": 125.321,
+						"axis": "X",
+						"pmpId": 0
+					}
+				]
+			}
+		],
+		"fmList": [
+			{
+				"id": 1,
+				"name": "FM01",
+				"higherTolerance": 123.321,
+				"lowerTolerance": 124.321,
+				"defaultValue": 124.321,
+				"axis": "X",
+				"catalogType": "GRUNDGEOMETRIE",
+				"pmpList": [
+					{
+						"id": 0,
+						"name": "PONTO A",
+						"axis": "X",
+						"x": -125.321,
+						"y": -125.321,
+						"z": -125.321,
+						"active": true,
+						"axisCoordinateList": [
+							{
+								"id": 0,
+								"name": "string",
+								"lowerTolerance": -125.321,
+								"higherTolerance": 125.321,
+								"axis": "X",
+								"pmpId": 0
+							}
+						]
+					}
+				],
+				"photo": "string",
+				"level": "LOW",
+				"fmImpactList": [
+					{
+						"id": 1,
+						"info": "Erro na porta"
+					}
+				],
+				"active": true
+			}
+		],
+		"active": true
+	},
+	"equipment": {
+		"id": 0,
+		"name": "AK12",
+		"active": true,
+		"unit": {
+			"id": 0,
+			"name": "Anchieta",
+			"active": true
+		}
+	},
+	"scan_init_date": "2020-07-10 15:00:00 (year/month/day) hours:minutes:seconds",
+	"scan_end_date": "2020-07-10 15:00:00 (year/month/day) hours:minutes:seconds",
+	"pin": "888888888",
+	"pmpSampleList": [
+		{
+			"id": 0,
+			"name": "PONTO_1",
+			"x": -125.321,
+			"y": -125.321,
+			"z": -125.321,
+			"nominalPmpId": 2,
+			"measuremnetAxisCoordinateList": [
+				{
+					"id": 1,
+					"name": "string",
+					"axis": "X",
+					"value": -125.321,
+					"toleranceType": "INTOL"
+				}
+			]
+		}
+	],
+	"fmSampleList": [
+		{
+			"id": 0,
+			"value": -125.321,
+			"toleranceType": "INTOL",
+			"nominalFmId": 2
+		}
+	],
+	"status": "ERROR"
+}

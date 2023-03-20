@@ -9,17 +9,20 @@ const config = {
 			colors: {
 				transparent: 'transparent',
 				current: 'currentColor',
+				'black-fauv': '#404040',
+				'black-fauv-2': '#2D2D2D',
+				'black-fauv-3': '#4F4F4F',
 				'blue-fauv': '#2274AC',
+				'bluishgray-fauv': '#CDDDE8',
 				'softblue-fauv': '#EBF9FD',
 				'gray-fauv': '#E5EBF0',
 				'gray-fauv-2': '#828282',
 				'gray-fauv-3': '#A0ACB4',
-				'bluishgray-fauv': '#CDDDE8',
-				'black-fauv': '#404040',
-				'black-fauv-2': '#2D2D2D',
-				'black-fauv-3': '#4F4F4F',
-				'white-transparent': 'rgb(250, 250, 250, 0.18)',
-				'gray-transparent': 'rgba(100, 100, 100, .7)'
+				'gray-transparent': 'rgba(100, 100, 100, .7)',
+				'green-fauv': '#51AE30',
+				'red-fauv': '#AE3030',
+				'yellow-fauv': '#FFD100',
+				'white-transparent': 'rgb(250, 250, 250, 0.18)'
 			},
 			fontFamily: {
 				lexend: ['Lexend Deca', 'sans-serif'],
@@ -27,7 +30,9 @@ const config = {
 				inter: ['Inter', 'sans-serif']
 			},
 			fontSize: {
+				'xs-fauv': '0.75rem',
 				'xl-fauv': '4rem',
+
 				base: '1rem',
 				icon: '1.5rem'
 			},

@@ -1,12 +1,12 @@
 import Button from 'components/Buttons/Button'
 import { Dialog } from 'components/Dialog'
 import { createSnackbar } from 'components/Snackbar/utils'
-import type { IModelPreview } from 'pages/Models/api'
-import { useSendFilesMutation } from 'pages/Models/api'
 import type { ReactElement } from 'react'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { RiUploadCloud2Line } from 'react-icons/ri'
+import type { ISample } from '../api'
+import { useSendFileMutation } from '../api'
 import type { IUploadDialogProperties, IUploadValues } from './types'
 
 export function UploadDialog({
@@ -15,9 +15,8 @@ export function UploadDialog({
 	onUploadSuccess
 }: IUploadDialogProperties): ReactElement | null {
 	const [dmoFile, setDmoFile] = useState<File | null>(null)
-	const [csvFile, setCsvFile] = useState<File | null>(null)
 
-	const { mutate } = useSendFilesMutation()
+	const { mutate } = useSendFileMutation()
 
 	const {
 		register,
@@ -26,7 +25,6 @@ export function UploadDialog({
 	} = useForm<IUploadValues>()
 
 	const inputDmoReference = useRef<HTMLInputElement>(null)
-	const inputCsvReference = useRef<HTMLInputElement>(null)
 
 	function handleDmoButtonClick() {
 		if (inputDmoReference.current) {
@@ -34,23 +32,12 @@ export function UploadDialog({
 		}
 	}
 
-	function handleCsvButtonClick() {
-		if (inputCsvReference.current) {
-			inputCsvReference.current.click()
-		}
-	}
-
 	const handleDmoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setDmoFile(event.target.files?.[0] ?? null)
 	}
 
-	const handleCsvChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setCsvFile(event.target.files?.[0] ?? null)
-	}
-
 	function onCloseDialog() {
 		setDmoFile(null)
-		setCsvFile(null)
 
 		onClose()
 	}
@@ -58,9 +45,9 @@ export function UploadDialog({
 	function onSubmit() {
 		if (dmoFile) {
 			mutate(
-				{ dmoFile, csvFile },
+				{ dmoFile },
 				{
-					onSuccess(response: IModelPreview) {
+					onSuccess(response: ISample) {
 						onUploadSuccess(response)
 						onCloseDialog()
 						createSnackbar('success', 'Upload com sucesso!')
@@ -87,15 +74,15 @@ export function UploadDialog({
 			<form className='flex flex-1 flex-col ' onSubmit={handleSubmit(onSubmit)}>
 				<div className='flex'>
 					<div className='relative my-auto  mr-auto font-inter text-lg  font-bold '>
-						Upload DMO/CSV
+						Upload DMO
 					</div>
 					<Button disabled={!dmoFile || isSubmitting || !isValid} isSubmit>
-						Enviar arquivos
+						Enviar arquivo
 					</Button>
 				</div>
 
 				<hr className='my-4 border-bluishgray-fauv' />
-				<div className='col flex flex-1 gap-6'>
+				<div className='col flex flex-1'>
 					<div className='flex flex-1  flex-col rounded-lg bg-gray-fauv'>
 						<RiUploadCloud2Line
 							size={60}
@@ -123,38 +110,6 @@ export function UploadDialog({
 							className='mx-auto mb-auto mt-4 w-fit'
 						>
 							Upload DMO
-						</Button>
-					</div>
-
-					<div className='flex flex-1  flex-col rounded-lg bg-gray-fauv'>
-						<RiUploadCloud2Line
-							size={60}
-							className='mx-auto mt-auto text-blue-fauv'
-						/>
-						<p className='mx-auto mt-8 font-inter  font-semibold'>
-							Faça o upload de um arquivo CSV
-						</p>
-
-						{csvFile && (
-							<p className='mx-auto mt-2 font-inter '>
-								Arquivo: {csvFile.name}
-							</p>
-						)}
-						<input
-							id='csvFile'
-							type='file'
-							{...register('csvFile')}
-							ref={inputCsvReference}
-							onChange={handleCsvChange}
-							className='hidden'
-						/>
-
-						<Button
-							onClick={handleCsvButtonClick}
-							disabled={!dmoFile}
-							className='mx-auto mb-auto mt-4 w-fit'
-						>
-							Upload CSV
 						</Button>
 					</div>
 				</div>

@@ -36,10 +36,10 @@ export default function SideNav(): ReactElement {
 					/>
 				</Link>
 
-				<Link to='/sample' className='mx-auto '>
+				<Link to='/samples' className='mx-auto '>
 					<RiSearchLine
 						className={`text-icon ${
-							location.pathname === '/sample'
+							location.pathname === '/samples'
 								? 'text-blue-fauv'
 								: 'text-gray-fauv-3'
 						} `}
