@@ -47,17 +47,7 @@
 						"x": -125.321,
 						"y": -125.321,
 						"z": -125.321,
-						"active": true,
-						"axisCoordinateList": [
-							{
-								"id": 1,
-								"name": "string",
-								"lowerTolerance": -125.321,
-								"higherTolerance": 125.321,
-								"axis": "X",
-								"pmpId": 0
-							}
-						]
+						"active": true
 					}
 				],
 				"photo": "string",

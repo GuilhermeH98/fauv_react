@@ -4,6 +4,8 @@ import { Model } from 'pages/Models/api'
 import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
+export const SAMPLES_URL = 'sample'
+
 export enum STATUS {
 	SUCCESS = 'SUCCESS',
 	ERROR = 'ERROR',
@@ -27,19 +29,20 @@ const UserWithCredentials = z.object({
 		.nullish()
 })
 
-export const SAMPLES_URL = 'sample'
-
 const Sample = z.object({
 	id: z.number(),
 	uploadDate: z.string(),
-	model: Model.pick({ partNumber: true, car: true }),
+	model: Model.pick({ partNumber: true, car: true, stepDescription: true }),
 	equipment: Equipment,
 	status: z.nativeEnum(STATUS),
 	uploadUser: UserWithCredentials,
+	ak: z.number(),
+	bk: z.number(),
+	io: z.number()
 	//  TODO: Verify if this is needed
-	scan_init_date: z.string().nullish(),
-	scan_end_date: z.string().nullish(),
-	pin: z.string().nullish()
+	// scan_init_date: z.string().nullish(),
+	// scan_end_date: z.string().nullish(),
+	// pin: z.string().nullish()
 	//  TODO: Diferent type from default Pmp and Fm. Need confirmation
 	// pmpSampleList: z.array(Pmp).nullish(),
 	// fmSampleList: z.array(Fm).nullish()

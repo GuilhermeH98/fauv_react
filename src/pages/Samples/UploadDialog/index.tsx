@@ -69,7 +69,7 @@ export function UploadDialog({
 			isOpen={isOpen}
 			onClose={onCloseDialog}
 			heightClass='h-[28rem]'
-			widthClass='w-[55rem]'
+			widthClass='w-[45rem]'
 		>
 			<form className='flex flex-1 flex-col ' onSubmit={handleSubmit(onSubmit)}>
 				<div className='flex'>

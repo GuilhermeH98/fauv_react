@@ -43,7 +43,7 @@ export type INominalAxisCoordinate = z.infer<typeof NominalAxisCoordinate>
 export const Pmp = z.object({
 	id: z.number(),
 	name: z.string(),
-	workingOn: z.nativeEnum(PointAxis),
+	workingOn: z.nativeEnum(PointAxis).nullish(),
 	x: z.number(),
 	y: z.number(),
 	z: z.number(),
@@ -68,7 +68,9 @@ export const Fm = z.object({
 	defaultValue: z.number(),
 	axis: z.nativeEnum(PointAxis),
 	catalogType: z.nativeEnum(CatalogType),
-	pmpList: z.array(Pmp),
+	pmpList: z.array(
+		Pmp.extend({ axisCoordinateList: z.array(NominalAxisCoordinate).nullish() })
+	),
 	level: z.nativeEnum(Level),
 	photo: z.string().nullish(),
 	numberId: z.number().nullish(),
@@ -150,16 +152,16 @@ export interface IFilesUpload {
 	csvFile: File | null | undefined
 }
 
+const NominalAxisCoordinatePreview = NominalAxisCoordinate.extend({
+	id: z.number().nullish(),
+	axis: z.nativeEnum(PointAxis).nullish(),
+	workingOn: z.nativeEnum(PointAxis).nullish()
+})
+
 const PmpPreview = Pmp.extend({
 	id: z.number().nullish(),
 	workingOn: z.nativeEnum(PointAxis).nullish(),
-	axisCoordinateList: z.array(
-		NominalAxisCoordinate.extend({
-			id: z.number().nullish(),
-			axis: z.nativeEnum(PointAxis).nullish(),
-			workingOn: z.nativeEnum(PointAxis).nullish()
-		})
-	)
+	axisCoordinateList: z.array(NominalAxisCoordinatePreview)
 })
 
 export const ModelPreview = Model.extend({
@@ -172,7 +174,11 @@ export const ModelPreview = Model.extend({
 		Fm.extend({
 			id: z.number().nullish(),
 			catalogType: z.nativeEnum(CatalogType).nullish(),
-			pmpList: z.array(PmpPreview)
+			pmpList: z.array(
+				PmpPreview.extend({
+					axisCoordinateList: z.array(NominalAxisCoordinatePreview).nullish()
+				})
+			)
 		})
 	)
 })

@@ -1,4 +1,11 @@
 import type { ReactElement } from 'react'
+import {
+	RiCarFill,
+	RiCheckboxCircleFill,
+	RiCloseCircleFill,
+	RiErrorWarningFill
+} from 'react-icons/ri'
+import { STATUS } from '../api'
 import type { ISampleCardsProperties } from './types'
 
 export function SampleCards({
@@ -8,37 +15,47 @@ export function SampleCards({
 		<>
 			{samples.map((sample, index) => (
 				<div
-					className='h-20 w-[11.625rem] rounded-[0.625rem] bg-bluishgray-fauv'
-					key={`sample-${index}`}
+					key={`card-${index}`}
+					className={`h-20 rounded-[0.625rem] bg-bluishgray-fauv ${
+						index > 2 ? 'hidden 2xl:block' : ''
+					}`}
 				>
-					<div>ola</div>
+					<div className='mt-2 flex h-6 justify-between align-middle'>
+						<RiCarFill size={26} className='ml-4  text-blue-fauv' />
+						<span className='mx-3  whitespace-nowrap py-1 font-inter text-sm font-bold text-blue-fauv'>
+							{sample.model.car.name} - {sample.model.partNumber}
+						</span>
+					</div>
+					<div className='mb-3 flex '>
+						<div className='ml-4 mt-1 flex flex-col'>
+							<span className=' text-sm font-semibold text-gray-fauv-3	'>
+								{sample.model.stepDescription}
+							</span>
+							<span className='text-xs font-semibold text-gray-fauv-3 '>
+								{sample.uploadDate}
+							</span>
+						</div>
+						{sample.status === STATUS.SUCCESS && (
+							<RiCheckboxCircleFill
+								size={32}
+								className='ml-auto mr-2 mt-2 text-green-fauv'
+							/>
+						)}
+						{sample.status === STATUS.WARNING && (
+							<RiErrorWarningFill
+								size={32}
+								className='ml-auto mr-2 mt-2 text-gray-fauv-3'
+							/>
+						)}
+						{sample.status === STATUS.ERROR && (
+							<RiCloseCircleFill
+								size={32}
+								className='ml-auto mr-2 mt-2 text-red-fauv'
+							/>
+						)}
+					</div>
 				</div>
 			))}
 		</>
 	)
-	// <div className='h-20 w-[11.625rem] rounded-[0.625rem] bg-bluishgray-fauv'>
-	// 	<div className='mt-2 flex h-6 justify-between align-middle'>
-	// 		<RiCarFill size={26} className='ml-4  text-blue-fauv' />
-	// 		<span className='mr-3 py-1 font-inter text-sm font-bold text-blue-fauv'>
-	// 			{/* GET MODEL.NAME + PARTNUMBER */}
-	// 			POLO - 9338729
-	// 		</span>
-	// 	</div>
-	// 	<div className='mb-3 flex '>
-	// 		<div className='ml-4 mt-1 flex flex-col'>
-	// 			<span className='text-sm font-semibold text-gray-fauv-3'>
-	// 				{/* GET MODEL.STEP? */}
-	// 				ETAPA - B1
-	// 			</span>
-	// 			<span className='text-xs font-semibold text-gray-fauv-3 '>
-	// 				{/* GET SAMPLE UPLOAD */}
-	// 				10/11/2022 - 08:40
-	// 			</span>
-	// 		</div>
-	// 		<RiCheckboxCircleFill
-	// 			size={32}
-	// 			className='ml-auto mr-2 mt-2 text-green-fauv'
-	// 		/>
-	// 	</div>
-	// </div>
 }

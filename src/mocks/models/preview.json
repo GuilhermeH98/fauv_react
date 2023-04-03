@@ -11749,30 +11749,7 @@
 					"y": -197.5,
 					"z": 168,
 					"active": true,
-					"model": null,
-					"axisCoordinateList": [
-						{
-							"id": null,
-							"name": "LOC202__X",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "X"
-						},
-						{
-							"id": null,
-							"name": "LOC202__Y",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "Y"
-						},
-						{
-							"id": null,
-							"name": "LOC202__Z",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "Z"
-						}
-					]
+					"model": null
 				},
 				{
 					"id": null,
@@ -11782,30 +11759,7 @@
 					"y": -477.5,
 					"z": 168.001,
 					"active": true,
-					"model": null,
-					"axisCoordinateList": [
-						{
-							"id": null,
-							"name": "LOC205__X",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "X"
-						},
-						{
-							"id": null,
-							"name": "LOC205__Y",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "Y"
-						},
-						{
-							"id": null,
-							"name": "LOC205__Z",
-							"lowerTolerance": -2,
-							"higherTolerance": 2,
-							"axis": "Z"
-						}
-					]
+					"model": null
 				}
 			]
 		},

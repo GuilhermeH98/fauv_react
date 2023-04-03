@@ -5,6 +5,7 @@ export interface IColumnDefinitionType<TData, TKey extends keyof TData> {
 	valueFormatter?: (value: TData[TKey]) => string
 	valueGetter?: (row: TData) => string
 	render?: (row: TData) => JSX.Element
+	headerColor?: string
 }
 
 export interface ITableProperties<TData, TKey extends keyof TData> {

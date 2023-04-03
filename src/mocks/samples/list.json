@@ -12,13 +12,16 @@
 				}
 			]
 		},
+		"ak": 15,
+		"bk": 12,
+		"io": 8,
 		"model": {
 			"id": 1,
 			"partNumber": "SHD13NH4",
 			"stepDescription": "SHD13NH4",
 			"car": {
 				"id": 0,
-				"name": "Gol",
+				"name": "Modelo Y",
 				"active": true,
 				"unit": {
 					"id": 0,
@@ -145,13 +148,16 @@
 				}
 			]
 		},
+		"ak": 10,
+		"bk": 8,
+		"io": 5,
 		"model": {
 			"id": 1,
 			"partNumber": "SHD13NH4",
 			"stepDescription": "SHD13NH4",
 			"car": {
 				"id": 0,
-				"name": "Gol",
+				"name": "Modelo Y",
 				"active": true,
 				"unit": {
 					"id": 0,
@@ -278,13 +284,16 @@
 				}
 			]
 		},
+		"ak": 20,
+		"bk": 10,
+		"io": 4,
 		"model": {
 			"id": 1,
 			"partNumber": "SHD13NH4",
 			"stepDescription": "SHD13NH4",
 			"car": {
 				"id": 0,
-				"name": "Gol",
+				"name": "Modelo Y",
 				"active": true,
 				"unit": {
 					"id": 0,

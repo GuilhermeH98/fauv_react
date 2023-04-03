@@ -35,6 +35,21 @@ export function getColumns(): IColumnDefinitionType<ISample, keyof ISample>[] {
 			valueGetter: row => row.model.car.name
 		},
 		{
+			key: 'ak',
+			header: 'AK',
+			headerColor: 'text-red-fauv'
+		},
+		{
+			key: 'bk',
+			header: 'BK',
+			headerColor: 'text-yellow-fauv'
+		},
+		{
+			key: 'io',
+			header: 'IO',
+			headerColor: 'text-green-fauv'
+		},
+		{
 			key: 'uploadDate',
 			header: 'Data',
 			valueGetter: row =>

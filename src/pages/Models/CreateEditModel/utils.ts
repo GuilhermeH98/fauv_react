@@ -88,11 +88,13 @@ export function formatModelState(model: IModel) {
 				x: pmp.x.toString(),
 				y: pmp.y.toString(),
 				z: pmp.z.toString(),
-				axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
-					...axisCoordinate,
-					lowerTolerance: axisCoordinate.lowerTolerance.toString(),
-					higherTolerance: axisCoordinate.higherTolerance.toString()
-				}))
+				axisCoordinateList: pmp.axisCoordinateList
+					? pmp.axisCoordinateList.map(axisCoordinate => ({
+							...axisCoordinate,
+							lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+							higherTolerance: axisCoordinate.higherTolerance.toString()
+					  }))
+					: []
 			})),
 			fmImpactList: fm.fmImpactList.map(fmImpact => ({
 				...fmImpact
@@ -114,7 +116,7 @@ export function formatModelPreview(model: IModelPreview) {
 			x: pmp.x.toString(),
 			y: pmp.y.toString(),
 			z: pmp.z.toString(),
-			workingOn: pmp.workingOn || PointAxis.X,
+			workingOn: pmp.workingOn,
 			axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
 				...axisCoordinate,
 				lowerTolerance: axisCoordinate.lowerTolerance.toString(),
@@ -125,7 +127,7 @@ export function formatModelPreview(model: IModelPreview) {
 		fmList: model.fmList.map(fm => ({
 			...fm,
 			numberId: fm.id,
-			catalogType: fm.catalogType || CatalogType.DICHTIGKEIT,
+			catalogType: fm.catalogType || CatalogType.GRUNDGEOMETRIE,
 			lowerTolerance: fm.lowerTolerance.toString(),
 			higherTolerance: fm.higherTolerance.toString(),
 			defaultValue: fm.defaultValue.toString(),
@@ -135,13 +137,15 @@ export function formatModelPreview(model: IModelPreview) {
 				x: pmp.x.toString(),
 				y: pmp.y.toString(),
 				z: pmp.z.toString(),
-				workingOn: pmp.workingOn || PointAxis.X,
-				axisCoordinateList: pmp.axisCoordinateList.map(axisCoordinate => ({
-					...axisCoordinate,
-					lowerTolerance: axisCoordinate.lowerTolerance.toString(),
-					higherTolerance: axisCoordinate.higherTolerance.toString(),
-					axis: axisCoordinate.axis || PointAxis.X
-				}))
+				workingOn: pmp.workingOn,
+				axisCoordinateList: pmp.axisCoordinateList
+					? pmp.axisCoordinateList.map(axisCoordinate => ({
+							...axisCoordinate,
+							lowerTolerance: axisCoordinate.lowerTolerance.toString(),
+							higherTolerance: axisCoordinate.higherTolerance.toString(),
+							axis: axisCoordinate.axis || PointAxis.X
+					  }))
+					: []
 			})),
 			fmImpactList: fm.fmImpactList.map(fmImpact => ({
 				...fmImpact
@@ -174,7 +178,9 @@ export function formatFm(fm: IFm) {
 		lowerTolerance: fm.lowerTolerance.toString(),
 		higherTolerance: fm.higherTolerance.toString(),
 		defaultValue: fm.defaultValue.toString(),
-		pmpList: fm.pmpList.map(pmp => formatPmp(pmp)),
+		pmpList: fm.pmpList.map(pmp =>
+			formatPmp({ ...pmp, axisCoordinateList: pmp.axisCoordinateList || [] })
+		),
 		fmImpactList: fm.fmImpactList.map(fmImpact => ({
 			...fmImpact
 		}))
