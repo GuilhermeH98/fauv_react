@@ -1,20 +1,19 @@
 import Button from 'components/Buttons/Button'
 import { Dialog } from 'components/Dialog'
 import PageTop from 'components/PageTop'
+import { Query } from 'components/Query'
 import Table from 'components/Table'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
 import { useToggle } from 'utils/miscellaneous'
+import { CreateEditUser } from './CreateEditUser'
 import type { IUser } from './api'
 import { useUsersQuery } from './api'
 import { columns } from './columns'
-import { CreateEditUser } from './CreateEditUser'
 
 export function Users(): ReactElement {
 	const [isDialogOpen, toggleIsDialogOpen] = useToggle()
 	const [selectedUserItem, setSelectedUserItem] = useState<IUser | null>(null)
-
-	const query = useUsersQuery()
 
 	function onUserClick(user: IUser) {
 		setSelectedUserItem(user)
@@ -31,14 +30,18 @@ export function Users(): ReactElement {
 			<PageTop>
 				<Button onClick={toggleIsDialogOpen}> Criar novo</Button>
 			</PageTop>
-			{query.data && (
-				<Table
-					title='Usuários'
-					data={query.data}
-					columns={columns}
-					onRowClick={onUserClick}
-				/>
-			)}
+			<Query
+				query={useUsersQuery()}
+				render={data => (
+					<Table
+						title='Usuários'
+						data={data}
+						columns={columns}
+						onRowClick={onUserClick}
+					/>
+				)}
+			/>
+
 			<Dialog isOpen={isDialogOpen} onClose={onCloseDialog}>
 				<CreateEditUser
 					onClose={onCloseDialog}

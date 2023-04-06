@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-import { QueryEmpty } from './Empty'
 import { QueryError } from './Error'
 import { QueryLoading } from './Loading'
 import type { IQueryProperties } from './types'
@@ -19,11 +18,7 @@ export function Query<TData>({
 	}
 
 	if (query.isSuccess) {
-		return Array.isArray(query.data) && query.data.length === 0 ? (
-			<QueryEmpty />
-		) : (
-			render(query.data)
-		)
+		return render(query.data)
 	}
 	return <QueryError onRetry={query.refetch} />
 }
