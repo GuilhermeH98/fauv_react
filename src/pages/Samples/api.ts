@@ -4,7 +4,7 @@ import { Model } from 'pages/Models/api'
 import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const SAMPLES_URL = 'sample'
+export const SAMPLES_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}sample`
 
 export enum STATUS {
 	SUCCESS = 'SUCCESS',

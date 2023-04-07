@@ -1,7 +1,9 @@
 import { makeMutation } from 'utils/api'
 import { z } from 'zod'
 
-export const LOGIN_URL = 'accessControl/login'
+export const LOGIN_URL = `${
+	import.meta.env.VITE_AUTHENTICATION_URL ?? ''
+}accessControl/login`
 
 export const Credentials = z.object({
 	token: z.string()

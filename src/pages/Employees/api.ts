@@ -1,7 +1,9 @@
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const EMPLOYEES_URL = 'employee'
+export const EMPLOYEES_URL = `${
+	import.meta.env.VITE_ANALYZER_URL ?? ''
+}employee`
 
 export const Employee = z.object({
 	id: z.number(),

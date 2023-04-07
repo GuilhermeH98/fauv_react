@@ -1,7 +1,9 @@
 import { makeMutation } from 'utils/api'
 import { z } from 'zod'
 
-export const REGISTER_URL = 'accessControl/register'
+export const REGISTER_URL = `${
+	import.meta.env.VITE_AUTHENTICATION_URL ?? ''
+}accessControl/register`
 
 export const RegisterPayload = z.object({
 	vwId: z.string(),

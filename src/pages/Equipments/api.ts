@@ -2,7 +2,9 @@ import { Unit } from 'pages/Units/api'
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const EQUIPMENTS_URL = 'equipment'
+export const EQUIPMENTS_URL = `${
+	import.meta.env.VITE_ANALYZER_URL ?? ''
+}equipment`
 
 export const Equipment = z.object({
 	id: z.number(),

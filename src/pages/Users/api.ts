@@ -3,7 +3,7 @@ import { makeMutation, makeQuery } from 'utils/api'
 import type { ISelectOption } from 'utils/miscellaneous'
 import { z } from 'zod'
 
-export const USERS_URL = 'user'
+export const USERS_URL = `${import.meta.env.VITE_AUTHENTICATION_URL ?? ''}user`
 
 export const ROLES_OPTIONS: ISelectOption[] = [
 	{ label: 'Administrador', value: 'administrator' },

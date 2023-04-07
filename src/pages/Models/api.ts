@@ -3,8 +3,10 @@ import { Car } from 'pages/Cars/api'
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const MODELS_URL = 'model'
-export const MODEL_PREVIEW_URL = 'model/preview'
+export const MODELS_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}model`
+export const MODEL_PREVIEW_URL = `${
+	import.meta.env.VITE_ANALYZER_URL ?? ''
+}model/preview`
 
 export enum PointAxis {
 	X = 'X',

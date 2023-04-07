@@ -1,7 +1,7 @@
 import { makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export const CATALOGS_URL = 'catalog'
+export const CATALOGS_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}catalog`
 
 export const Catalog = z.object({
 	id: z.number(),

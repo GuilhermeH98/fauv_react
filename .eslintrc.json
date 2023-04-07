@@ -172,7 +172,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/**/*.ts?(x)"],
+			"files": ["src/**/*.ts?(x)", "env.d.ts"],
 			"parserOptions": {
 				"project": ["./tsconfig.json"]
 			}
