@@ -10,6 +10,7 @@ import { CreateEditModel } from 'pages/Models/CreateEditModel'
 import { Samples } from 'pages/Samples'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
+import { Statistic } from 'pages/Statistic'
 import { Units } from 'pages/Units'
 import { Users } from 'pages/Users'
 import type { ReactElement } from 'react'
@@ -67,6 +68,7 @@ export default function App(): ReactElement {
 														<Route path='/employees' element={<Employees />} />
 														<Route path='/models' element={<Models />} />
 														<Route path='/samples' element={<Samples />} />
+														<Route path='/statistic' element={<Statistic />} />
 													</Routes>
 												</NavigationLayout>
 											}

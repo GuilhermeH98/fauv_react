@@ -11,7 +11,7 @@ export default function Table<TData, TKey extends keyof TData>({
 	className = ''
 }: ITableProperties<TData, TKey>): ReactElement {
 	return (
-		<div className='flex h-96 flex-1 flex-col overflow-auto'>
+		<div className='flex flex-1 flex-col overflow-auto'>
 			<TableTitle dataLength={data.length} title={title} />
 			<div className={`flex-1 overflow-auto bg-white  ${className}`}>
 				<TableContent data={data} columns={columns} onRowClick={onRowClick} />

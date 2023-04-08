@@ -17,7 +17,7 @@ export default function PageHeader(): ReactElement {
 	const isAdmin = getIsAdmin()
 
 	return (
-		<header className='fixed flex h-12 w-full content-center gap-10 border-b border-bluishgray-fauv bg-white sm:h-16  '>
+		<header className='fixed z-50 flex h-12 w-full content-center gap-10 border-b border-bluishgray-fauv bg-white sm:h-16  '>
 			<span className='relative left-7 my-auto font-lexend  text-3xl font-semibold  tracking-[.175em] text-blue-fauv'>
 				FAUV
 			</span>

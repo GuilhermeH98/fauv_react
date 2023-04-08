@@ -5,7 +5,7 @@ import {
 	RiCloseCircleFill,
 	RiErrorWarningFill
 } from 'react-icons/ri'
-import { STATUS } from '../api'
+import { Status } from '../api'
 import type { ISampleCardsProperties } from './types'
 
 export function SampleCards({
@@ -35,19 +35,19 @@ export function SampleCards({
 								{sample.uploadDate}
 							</span>
 						</div>
-						{sample.status === STATUS.SUCCESS && (
+						{sample.status === Status.SUCCESS && (
 							<RiCheckboxCircleFill
 								size={32}
 								className='ml-auto mr-2 mt-2 text-green-fauv'
 							/>
 						)}
-						{sample.status === STATUS.WARNING && (
+						{sample.status === Status.WARNING && (
 							<RiErrorWarningFill
 								size={32}
 								className='ml-auto mr-2 mt-2 text-gray-fauv-3'
 							/>
 						)}
-						{sample.status === STATUS.ERROR && (
+						{sample.status === Status.ERROR && (
 							<RiCloseCircleFill
 								size={32}
 								className='ml-auto mr-2 mt-2 text-red-fauv'

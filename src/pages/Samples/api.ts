@@ -6,7 +6,7 @@ import { z } from 'zod'
 
 export const SAMPLES_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}sample`
 
-export enum STATUS {
+export enum Status {
 	SUCCESS = 'SUCCESS',
 	ERROR = 'ERROR',
 	WARNING = 'WARNING'
@@ -34,7 +34,7 @@ const Sample = z.object({
 	uploadDate: z.string(),
 	model: Model.pick({ partNumber: true, car: true, stepDescription: true }),
 	equipment: Equipment,
-	status: z.nativeEnum(STATUS),
+	status: z.nativeEnum(Status),
 	uploadUser: UserWithCredentials,
 	ak: z.number(),
 	bk: z.number(),

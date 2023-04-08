@@ -1,11 +1,12 @@
 import type { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import type { INavigationIconProperties } from './types'
 
 export function BarChartIcon({
 	currentPath
 }: INavigationIconProperties): ReactElement {
 	return (
-		<div className='mx-auto cursor-pointer'>
+		<Link to='/statistic' className='mx-auto cursor-pointer'>
 			<svg
 				width='24'
 				height='24'
@@ -35,6 +36,6 @@ export function BarChartIcon({
 					strokeLinejoin='round'
 				/>
 			</svg>
-		</div>
+		</Link>
 	)
 }
