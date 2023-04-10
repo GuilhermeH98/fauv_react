@@ -14,6 +14,7 @@ export interface ITableProperties<TData, TKey extends keyof TData> {
 	title: string
 	onRowClick?: (row: TData) => void
 	className?: string
+	blueHeader?: boolean
 }
 
 export type ITableContentProperties<TData, TKey extends keyof TData> = Omit<
@@ -29,6 +30,7 @@ export interface ITableRowsProperties<TData, TKey extends keyof TData> {
 
 export interface ITableHeaderProperties<TData, TKey extends keyof TData> {
 	columns: IColumnDefinitionType<TData, TKey>[]
+	blueHeader?: boolean
 }
 
 export interface ITableTitleProperties {

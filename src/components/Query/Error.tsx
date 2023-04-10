@@ -4,7 +4,7 @@ import type { IQueryErrorProperties } from './types'
 
 export function QueryError({ onRetry }: IQueryErrorProperties) {
 	return (
-		<div className=' flex h-full w-full flex-col rounded-lg bg-white'>
+		<div className=' flex h-full w-full flex-col rounded-lg'>
 			<div className='m-auto flex flex-col '>
 				<RiEmotionUnhappyFill
 					className='mx-auto mb-4 text-red-fauv'

@@ -19,6 +19,8 @@ export interface IInputProperties<TFieldValues extends FieldValues>
 		RegisterOptions,
 		'setValueAs' | 'valueAsDate' | 'valueAsNumber'
 	>
+	searchIcon?: boolean
+	roundedClassName?: string
 }
 
 export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {

@@ -7,40 +7,41 @@ export interface GraphProperties {
 }
 
 const mockData: IGraphicMeasurementFmDTO[] = [
-	{ value: 1, scanDate: '10/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.2, scanDate: '10/10', toleranceType: ToleranceType.INTOL },
 	{ value: 2, scanDate: '11/10', toleranceType: ToleranceType.INTOL },
-	{ value: 3, scanDate: '12/10', toleranceType: ToleranceType.OUTOL },
-	{ value: 4, scanDate: '13/10', toleranceType: ToleranceType.INTOL },
-	{ value: 5, scanDate: '14/10', toleranceType: ToleranceType.INTOL },
-	{ value: 6, scanDate: '15/10', toleranceType: ToleranceType.INTOL },
-	{ value: 70, scanDate: '16/10', toleranceType: ToleranceType.OUTOL },
-	{ value: 60, scanDate: '17/10', toleranceType: ToleranceType.INTOL },
-	{ value: 10, scanDate: '18/10', toleranceType: ToleranceType.INTOL },
-	{ value: 6, scanDate: '19/10', toleranceType: ToleranceType.INTOL },
-	{ value: 7, scanDate: '20/10', toleranceType: ToleranceType.INTOL },
-	{ value: 9, scanDate: '21/10', toleranceType: ToleranceType.INTOL },
-	{ value: 15, scanDate: '22/10', toleranceType: ToleranceType.OUTOL },
-	{ value: 21, scanDate: '23/10', toleranceType: ToleranceType.INTOL },
-	{ value: 35, scanDate: '24/10', toleranceType: ToleranceType.INTOL },
-	{ value: 85, scanDate: '25/10', toleranceType: ToleranceType.INTOL },
-	{ value: 45, scanDate: '26/10', toleranceType: ToleranceType.INTOL },
-	{ value: 20, scanDate: '27/10', toleranceType: ToleranceType.INTOL },
-	{ value: 65, scanDate: '28/10', toleranceType: ToleranceType.INTOL },
-	{ value: 54, scanDate: '01/11', toleranceType: ToleranceType.INTOL },
-	{ value: 12, scanDate: '02/11', toleranceType: ToleranceType.INTOL },
-	{ value: 23, scanDate: '03/11', toleranceType: ToleranceType.INTOL },
-	{ value: 3, scanDate: '04/11', toleranceType: ToleranceType.OUTOL },
-	{ value: 4, scanDate: '05/11', toleranceType: ToleranceType.INTOL },
-	{ value: 5, scanDate: '06/11', toleranceType: ToleranceType.INTOL }
+	{ value: 1.3, scanDate: '12/10', toleranceType: ToleranceType.OUTOL },
+	{ value: 1.5, scanDate: '13/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1, scanDate: '14/10', toleranceType: ToleranceType.INTOL },
+	{ value: 0.9, scanDate: '15/10', toleranceType: ToleranceType.INTOL },
+	{ value: 2.1, scanDate: '16/10', toleranceType: ToleranceType.OUTOL },
+	{ value: 2.2, scanDate: '17/10', toleranceType: ToleranceType.INTOL },
+	{ value: 2.5, scanDate: '18/10', toleranceType: ToleranceType.INTOL },
+	{ value: 2.5, scanDate: '19/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.7, scanDate: '20/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.8, scanDate: '21/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1, scanDate: '22/10', toleranceType: ToleranceType.OUTOL },
+	{ value: 2, scanDate: '23/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.4, scanDate: '24/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.6, scanDate: '25/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.2, scanDate: '26/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.3, scanDate: '27/10', toleranceType: ToleranceType.INTOL },
+	{ value: 1.4, scanDate: '28/10', toleranceType: ToleranceType.INTOL },
+	{ value: 2.5, scanDate: '01/11', toleranceType: ToleranceType.INTOL },
+	{ value: 2.3, scanDate: '02/11', toleranceType: ToleranceType.INTOL },
+	{ value: 1.4, scanDate: '03/11', toleranceType: ToleranceType.INTOL },
+	{ value: 1.7, scanDate: '04/11', toleranceType: ToleranceType.OUTOL },
+	{ value: 1.8, scanDate: '05/11', toleranceType: ToleranceType.INTOL },
+	{ value: 1.9, scanDate: '06/11', toleranceType: ToleranceType.INTOL }
 ]
 
 export function Graph() {
 	// { data }: GraphProperties
 	return (
 		<VictoryChart
+			height={240}
 			width={1100}
-			// width={1000}
-			// height={400}
+			// width={900}
+			// height={240}
 		>
 			<VictoryAxis
 				style={{

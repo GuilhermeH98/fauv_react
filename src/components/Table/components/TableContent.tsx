@@ -7,12 +7,13 @@ export default function TableContent<TData, TKey extends keyof TData>({
 	data,
 	columns,
 	onRowClick,
-	className = ''
+	className = '',
+	blueHeader
 }: ITableContentProperties<TData, TKey>): ReactElement {
 	return (
 		<div className={`${className} overflow-auto`}>
 			<table className='w-full text-left text-sm text-gray-500'>
-				<TableHeader columns={columns} />
+				<TableHeader columns={columns} blueHeader={blueHeader} />
 				<TableRows data={data} columns={columns} onRowClick={onRowClick} />
 			</table>
 		</div>
