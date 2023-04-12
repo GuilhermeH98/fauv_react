@@ -3,7 +3,12 @@ import Input from 'components/Inputs/Input'
 import TableContent from 'components/Table/components/TableContent'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { RiArrowDownSLine, RiArrowUpSLine, RiEyeFill } from 'react-icons/ri'
+import {
+	RiArrowDownSLine,
+	RiArrowUpSLine,
+	RiCarLine,
+	RiEyeFill
+} from 'react-icons/ri'
 import { useToggle } from 'utils/miscellaneous'
 import { Graph } from './components/Graph'
 
@@ -32,10 +37,12 @@ export function Statistic() {
 					<div className='flex px-8 pt-5 align-middle'>
 						<div className='my-auto flex flex-col'>
 							<h2 className='my-auto font-lexend text-xl font-bold'>FM_001</h2>
-							{/* TODO: USE API CATALOG */}
-							<span className='mt-1 font-lexend text-sm font-semibold text-gray-fauv-2'>
-								Catálogo: GRUNDGEOMETRIE
-							</span>
+							{/* TODO: USE API CATALOG  SHOW ONLY ON FM */}
+							{isFmList && (
+								<span className='mt-1 font-lexend text-sm font-semibold text-gray-fauv-2'>
+									Catálogo: GRUNDGEOMETRIE
+								</span>
+							)}
 						</div>
 						{/* TODO: Select with options OR BUTTON */}
 						<div className='relative ml-auto mt-auto'>
@@ -148,63 +155,45 @@ export function Statistic() {
 						</div>
 						<div className='my-auto flex justify-between'>
 							<div className='flex flex-col'>
-								<p className='font-lg font-lexend'>
+								<p className='font-lg text-center font-lexend'>
 									{/* TODO: Use API percentage for text */}
 									<span className='text-xl   text-green-fauv '>IO </span>
-									<span className='hidden text-sm xl:inline'>
-										Menor ou igual 75%{' '}
-									</span>
+									<span className='text-sm'>Menor ou igual 75% </span>
 								</p>
-								<p className='mx-auto font-lexend text-lg font-bold'>
-									27 (93%)
-								</p>
+								<p className='mx-auto font-lexend font-bold'>27 (93%)</p>
 							</div>
 							<div className='flex flex-col'>
-								<p className='font-lg font-lexend'>
+								<p className='font-lg text-center font-lexend '>
 									{/* TODO: Use API percentage for text */}
 									<span className='text-xl   text-yellow-fauv '>BK </span>
-									<span className='hidden text-sm xl:inline'>
-										Maior 75 % e menor 100%
-									</span>
+									<span className='text-sm'>Maior 75 % e menor 100%</span>
 								</p>
-								<p className='mx-auto font-lexend text-lg font-bold'>2 (5%) </p>
+								<p className='mx-auto font-lexend  font-bold'>2 (5%) </p>
 							</div>
 							<div className='flex flex-col'>
-								<p className='font-lg font-lexend'>
+								<p className='font-lg text-center font-lexend'>
 									{/* TODO: Use API percentage for text */}
 									<span className='text-xl   text-red-fauv '>AK </span>
-									<span className='hidden text-sm xl:inline'>Maior 100%</span>
+									<span className='text-sm'>Maior 100%</span>
 								</p>
-								<p className='mx-auto font-lexend text-lg font-bold'>1 (2%) </p>
+								<p className='mx-auto font-lexend font-bold'>1 (2%) </p>
 							</div>
 						</div>
 					</div>
 					{/* TODO: USE GRID TO REMOVE UNNECESSARY CONDITIONAL */}
 					{/* Card Photo */}
 					{selectedFm ? (
-						<div className='w-1/2  overflow-auto rounded-lg bg-white p-4 '>
+						<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
 							<h3 className=' font-lexend text-xl font-bold'>Foto</h3>
 
 							<hr className='mt-2 mb-4 border-bluishgray-fauv' />
 							{/* TODO: USE API PHOTO - REMOVE TEXT */}
-							<p className='my-4 font-lexend text-sm font-semibold'>
-								CP/CPK: 0,5 / 0,5
-							</p>
-							<p className='my-4 font-lexend text-sm font-semibold'>
-								PP/PPK: 0,5 / 0,5
-							</p>
-							<p className='my-4 font-lexend text-sm font-semibold'>
-								Nível sigma: 5,09
-							</p>
-							<p className='my-4 font-lexend text-sm font-semibold'>
-								Desvio padrão: 5,09
-							</p>
-							<p className='my-4 font-lexend text-sm font-semibold'>
-								Média: 5,09
-							</p>
-							<p className='mt-4 font-lexend text-sm font-semibold'>
-								Distribuição normal (Z): 5,09%
-							</p>
+							<div className='m-auto'>
+								<RiCarLine className='mx-auto text-gray-fauv-3' size={68} />
+								<p className='mx-auto mt-2 flex-1 text-lg  font-semibold text-gray-fauv-3'>
+									Não possui foto
+								</p>
+							</div>
 						</div>
 					) : (
 						<div className='w-1/2 overflow-auto rounded-lg bg-white p-4 '>
@@ -212,28 +201,29 @@ export function Statistic() {
 								blueHeader
 								className='max-h-[18rem]'
 								data={[
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'Y' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' },
-									{ name: 'FM_001', axis: 'X' }
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'Y', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
+									{ name: 'FM_001', axis: 'X', catalog: 'GEO' }
 								]}
 								columns={[
 									{ key: 'name', header: 'Nome' },
-									{ key: 'axis', header: 'Eixo' }
+									{ key: 'axis', header: 'Eixo' },
+									{ key: 'catalog', header: 'Catálogo' }
 								]}
 							/>
 						</div>
@@ -308,10 +298,11 @@ export function Statistic() {
 				<div className='flex-1 overflow-auto rounded-lg bg-white  p-2'>
 					{/* TODO: TITLE CARD */}
 					<div className='flex h-12 px-5 '>
-						<span className='my-auto  font-bold '>
+						<span className='my-auto  text-lg font-bold '>
 							{isFmList ? 'FM' : 'PMP'}
 						</span>
 					</div>
+
 					{/* TODO: CREATE CARD COMPOENNT */}
 					<div className='flex h-18 px-5 '>
 						<div className='my-auto flex flex-col'>
@@ -322,7 +313,7 @@ export function Statistic() {
 						</div>
 
 						<RiEyeFill
-							onClick={() => console.log('click')}
+							onClick={() => {}}
 							className='my-auto ml-auto cursor-pointer text-black-fauv'
 							size={28}
 						/>
@@ -338,7 +329,7 @@ export function Statistic() {
 
 						{/* TODO: CHANGE PMP/ FM ONCLICK  */}
 						<RiEyeFill
-							onClick={() => console.log('click')}
+							onClick={() => {}}
 							className='my-auto ml-auto cursor-pointer text-black-fauv'
 							size={28}
 						/>
@@ -353,7 +344,7 @@ export function Statistic() {
 						</div>
 						{/* TODO: CHANGE PMP/ FM ONCLICK  */}
 						<RiEyeFill
-							onClick={() => console.log('click')}
+							onClick={() => {}}
 							className='my-auto ml-auto cursor-pointer text-blue-fauv'
 							size={28}
 						/>
