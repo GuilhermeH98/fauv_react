@@ -16,13 +16,11 @@ export function UploadDialog({
 }: IUploadDialogProperties): ReactElement | null {
 	const [dmoFile, setDmoFile] = useState<File | null>(null)
 
-	const { mutate } = useSendFileMutation()
+	const { register, handleSubmit, formState } = useForm<IUploadValues>()
 
-	const {
-		register,
-		handleSubmit,
-		formState: { isSubmitting, isValid }
-	} = useForm<IUploadValues>()
+	const { isSubmitting } = formState
+
+	const { mutate } = useSendFileMutation()
 
 	const inputDmoReference = useRef<HTMLInputElement>(null)
 
@@ -76,7 +74,7 @@ export function UploadDialog({
 					<div className='relative my-auto  mr-auto font-inter text-lg  font-bold '>
 						Upload DMO
 					</div>
-					<Button disabled={!dmoFile || isSubmitting || !isValid} isSubmit>
+					<Button disabled={isSubmitting || !dmoFile} isSubmit>
 						Enviar arquivo
 					</Button>
 				</div>
@@ -94,6 +92,7 @@ export function UploadDialog({
 						<input
 							id='dmoFile'
 							type='file'
+							accept='.dmo,.txt,.csv'
 							{...register('dmoFile')}
 							ref={inputDmoReference}
 							onChange={handleDmoChange}

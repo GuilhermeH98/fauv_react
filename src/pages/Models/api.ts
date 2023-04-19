@@ -45,7 +45,6 @@ export type INominalAxisCoordinate = z.infer<typeof NominalAxisCoordinate>
 export const Pmp = z.object({
 	id: z.number(),
 	name: z.string(),
-	workingOn: z.nativeEnum(PointAxis).nullish(),
 	x: z.number(),
 	y: z.number(),
 	z: z.number(),

@@ -6,7 +6,7 @@ export function BarChartIcon({
 	currentPath
 }: INavigationIconProperties): ReactElement {
 	return (
-		<Link to='/statistic' className='mx-auto cursor-pointer'>
+		<Link to='/statisticPreview' className='mx-auto cursor-pointer'>
 			<svg
 				width='24'
 				height='24'
@@ -16,21 +16,33 @@ export function BarChartIcon({
 			>
 				<path
 					d='M18 20V10'
-					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
+					stroke={`${
+						currentPath === '/statisticPreview' || currentPath === '/statistic'
+							? '#2274AC'
+							: '#A0ACB4'
+					} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
 				<path
 					d='M12 20V4'
-					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
+					stroke={`${
+						currentPath === '/statisticPreview' || currentPath === '/statistic'
+							? '#2274AC'
+							: '#A0ACB4'
+					} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
 				<path
 					d='M6 20V14'
-					stroke={`${currentPath === '/statistic' ? '#2274AC' : '#A0ACB4'} `}
+					stroke={`${
+						currentPath === '/statisticPreview' || currentPath === '/statistic'
+							? '#2274AC'
+							: '#A0ACB4'
+					} `}
 					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'

@@ -269,102 +269,107 @@ export function CreateEditModel() {
 
 	return (
 		<>
-			<div className='flex h-auto min-h-screen  overflow-auto '>
-				<div className='flex-1 p-5'>
-					<form onSubmit={handleSubmit(onCreateEditModel)}>
-						<div className='flex flex-col gap-4'>
-							<div className='flex '>
-								<div className='relative'>
-									<RiArrowGoBackLine
-										onClick={toggleIsReturnDialogOpen}
-										className='absolute top-[0.425rem] cursor-pointer 
-								text-icon '
-									/>
-									<h2 className='pt-1 pl-9 text-xl font-bold text-black-fauv'>
-										{state ? 'Editar Modelo' : 'Novo Modelo'}
-									</h2>
-								</div>
-
-								<OutlinedButton
-									className='ml-auto'
-									onClick={toggleIsUploadDialogOpen}
-								>
-									<div className='flex'>
-										<RiUploadCloud2Line className='mr-2 text-icon' />
-										<span>Upload </span>
+			<div className='flex h-auto min-h-screen   bg-gray-fauv p-4 '>
+				<div className='flex h-auto flex-1 rounded-lg bg-white'>
+					<div className='flex-1 p-5'>
+						<form onSubmit={handleSubmit(onCreateEditModel)}>
+							<div className='flex flex-col gap-5'>
+								<div className='flex '>
+									<div className='relative'>
+										<RiArrowGoBackLine
+											onClick={toggleIsReturnDialogOpen}
+											className='absolute top-[0.425rem] cursor-pointer text-icon 
+								text-black '
+										/>
+										<h2 className='pt-1 pl-9 text-xl font-bold text-black-fauv'>
+											{state ? 'Editar Modelo' : 'Novo Modelo'}
+										</h2>
 									</div>
-								</OutlinedButton>
-								<Button
-									className='ml-4'
-									disabled={!isValid || isSubmitting}
-									isSubmit
-								>
-									Salvar
-								</Button>
-							</div>
-							<hr className='border-2 border-blue-fauv' />
-							<div className='flex gap-6'>
-								<Input
-									label='Part Number'
-									id='partNumber'
-									register={register}
-									required
+
+									<OutlinedButton
+										className='ml-auto'
+										onClick={toggleIsUploadDialogOpen}
+									>
+										<div className='flex'>
+											<RiUploadCloud2Line className='mr-2 text-icon' />
+											<span>Upload </span>
+										</div>
+									</OutlinedButton>
+									<Button
+										className='ml-4'
+										disabled={!isValid || isSubmitting}
+										isSubmit
+									>
+										Salvar
+									</Button>
+								</div>
+								<hr className='border-2 border-blue-fauv' />
+								<div className='flex gap-6'>
+									<Input
+										label='Part Number'
+										id='partNumber'
+										register={register}
+										required
+									/>
+									<Input
+										label='Step'
+										id='stepDescription'
+										register={register}
+										required
+									/>
+									<Select
+										label='Carro'
+										name='car'
+										control={control}
+										options={mapSelectOptions(cars)}
+										required
+									/>
+								</div>
+								<div className='flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
+									PONTOS PMP
+								</div>
+								<div className='flex'>
+									<OutlinedButton
+										className='mr-auto'
+										onClick={toggleIsPmpDialogOpen}
+									>
+										Adicionar PMP
+									</OutlinedButton>
+									<PmpFilter
+										pmpList={pmpList}
+										setFilteredList={setFilteredPmpList}
+									/>
+								</div>
+								<TableContent
+									columns={getPmpColumns(onRemoveRow)}
+									data={filteredPmpList}
+									className='max-h-96 border-2'
+									onRowClick={onPmpClick}
 								/>
-								<Input
-									label='Step'
-									id='stepDescription'
-									register={register}
-									required
-								/>
-								<Select
-									label='Carro'
-									name='car'
-									control={control}
-									options={mapSelectOptions(cars)}
-									required
-								/>
-							</div>
-							<div className='flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
-								PONTOS PMP
-							</div>
-							<div className='flex'>
-								<OutlinedButton
-									className='mr-auto'
-									onClick={toggleIsPmpDialogOpen}
-								>
-									Adicionar PMP
-								</OutlinedButton>
-								<PmpFilter
-									pmpList={pmpList}
-									setFilteredList={setFilteredPmpList}
+								<div className='w- flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
+									FUNTIONSMASSE (FM)
+								</div>
+								<div className='flex'>
+									<OutlinedButton
+										className='mr-auto'
+										onClick={toggleIsFmDialogOpen}
+									>
+										Adicionar FM
+									</OutlinedButton>
+									<FmFilter
+										fmList={fmList}
+										setFilteredList={setFilteredFmList}
+									/>
+								</div>
+								<TableContent
+									columns={getFmColumns(onRemoveRow)}
+									data={filteredFmList}
+									className='max-h-96 border-2'
+									onRowClick={onFmClick}
 								/>
 							</div>
-							<TableContent
-								columns={getPmpColumns(onRemoveRow)}
-								data={filteredPmpList}
-								className='max-h-96 border-2'
-								onRowClick={onPmpClick}
-							/>
-							<div className='w- flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
-								FUNTIONSMASSE (FM)
-							</div>
-							<div className='flex'>
-								<OutlinedButton
-									className='mr-auto'
-									onClick={toggleIsFmDialogOpen}
-								>
-									Adicionar FM
-								</OutlinedButton>
-								<FmFilter fmList={fmList} setFilteredList={setFilteredFmList} />
-							</div>
-							<TableContent
-								columns={getFmColumns(onRemoveRow)}
-								data={filteredFmList}
-								className='max-h-96 border-2'
-								onRowClick={onFmClick}
-							/>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 			<Dialog

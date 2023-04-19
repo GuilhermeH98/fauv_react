@@ -16,7 +16,10 @@ export function QueryError({ onRetry }: IQueryErrorProperties) {
 				>
 					Falha ao carregar os dados.
 				</p>
-				<Button className='mx-auto w-44 bg-red-fauv' onClick={onRetry}>
+				<Button
+					className='mx-auto w-44 bg-red-fauv hover:bg-[#7A2222]'
+					onClick={onRetry}
+				>
 					Tentar novamente
 				</Button>
 			</div>

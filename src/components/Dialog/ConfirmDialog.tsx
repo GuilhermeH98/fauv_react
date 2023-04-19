@@ -29,12 +29,12 @@ export function ConfirmDialog({
 					onMouseDown={onContentClick}
 					aria-hidden='true'
 				>
-					<div className='relative mx-auto  font-inter text-lg   font-bold '>
+					<div className='relative mx-auto  font-inter text-lg font-bold  text-black '>
 						{title}
 					</div>
 					<hr className='my-[-16px] border-bluishgray-fauv' />
 
-					<div className=' font-inter  '> {children}</div>
+					<div className=' font-inter text-black'> {children}</div>
 					<div className='flex justify-end'>
 						<OutlinedButton
 							className='mr-4'

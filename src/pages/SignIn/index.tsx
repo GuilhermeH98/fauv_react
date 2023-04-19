@@ -55,7 +55,7 @@ export default function SignIn(): ReactElement {
 			<div className='flex w-72 justify-between'>
 				<Link
 					to='/signup'
-					className=' ml-auto font-montserrat text-base font-semibold leading-4 text-blue-fauv'
+					className=' ml-auto font-montserrat text-base font-semibold leading-4 text-blue-fauv hover:text-[#2A6791]'
 				>
 					Novo usuário?
 				</Link>

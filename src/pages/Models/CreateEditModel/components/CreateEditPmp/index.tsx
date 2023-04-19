@@ -2,14 +2,12 @@ import OutlinedButton from 'components/Buttons/OutlinedButton'
 import { DialogHeader } from 'components/Dialog/Header'
 import Division from 'components/Division'
 import Input from 'components/Inputs/Input'
-import { Select } from 'components/Inputs/Select'
 import Switch from 'components/Switch'
 import TableContent from 'components/Table/components/TableContent'
 import type { IPmp } from 'pages/Models/api'
 import { PointAxis } from 'pages/Models/api'
 import { useEffect } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
-import { mapEnumOptions } from 'utils/miscellaneous'
 import { getColumns } from './axisColumns'
 import type { IAxisRow, ICreateEditPmpProperties } from './types'
 
@@ -72,16 +70,9 @@ export function CreateEditPmp({
 				<Division />
 				<div className='flex gap-6'>
 					<Input label='Nome' id='name' register={register} required />
-					<Select
-						label='Nominal'
-						name='workingOn'
-						options={mapEnumOptions(PointAxis)}
-						control={control}
-						required
-					/>
+					<Input type='number' label='X' id='x' register={register} required />
 				</div>
 				<div className='flex gap-6'>
-					<Input type='number' label='X' id='x' register={register} required />
 					<Input type='number' label='Y' id='y' register={register} required />
 					<Input type='number' label='Z' id='z' register={register} required />
 				</div>

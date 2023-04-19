@@ -1,9 +1,27 @@
+/* eslint-disable @typescript-eslint/parameter-properties */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import type { z } from 'zod'
 
 interface IRequestInit extends Omit<RequestInit, 'body'> {
 	method?: 'DELETE' | 'GET' | 'PATCH' | 'POST' | 'PUT'
 	body?: unknown
+}
+
+export class APIError extends Error {
+	public constructor(
+		public code: number,
+		message: string,
+		public payload: unknown
+	) {
+		super(message)
+		// eslint-disable-next-line unicorn/custom-error-definition
+		this.name = this.constructor.name
+
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, APIError)
+		}
+	}
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -33,6 +51,21 @@ export async function request(url: string, init?: IRequestInit) {
 			body: init?.body ? JSON.stringify(init.body) : undefined
 		}
 	)
+
+	if (!response.ok) {
+		let payload: unknown
+		try {
+			payload = await response.json()
+		} catch {
+			// No response body.
+		}
+		throw new APIError(
+			response.status,
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			(payload as Error)?.message || response.statusText,
+			payload
+		)
+	}
 
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return

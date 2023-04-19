@@ -5,7 +5,7 @@
 		"stepDescription": "SHD13NH4",
 		"car": {
 			"id": 1,
-			"name": "Gol",
+			"name": "Carro A",
 			"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
 			"active": false
 		},

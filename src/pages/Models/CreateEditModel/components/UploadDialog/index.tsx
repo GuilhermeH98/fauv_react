@@ -17,13 +17,11 @@ export function UploadDialog({
 	const [dmoFile, setDmoFile] = useState<File | null>(null)
 	const [csvFile, setCsvFile] = useState<File | null>(null)
 
-	const { mutate } = useSendFilesMutation()
+	const { register, handleSubmit, formState } = useForm<IUploadValues>()
 
-	const {
-		register,
-		handleSubmit,
-		formState: { isSubmitting, isValid }
-	} = useForm<IUploadValues>()
+	const { isSubmitting } = formState
+
+	const { mutate } = useSendFilesMutation()
 
 	const inputDmoReference = useRef<HTMLInputElement>(null)
 	const inputCsvReference = useRef<HTMLInputElement>(null)
@@ -89,7 +87,7 @@ export function UploadDialog({
 					<div className='relative my-auto  mr-auto font-inter text-lg  font-bold '>
 						Upload DMO/CSV
 					</div>
-					<Button disabled={!dmoFile || isSubmitting || !isValid} isSubmit>
+					<Button disabled={isSubmitting || !dmoFile} isSubmit>
 						Enviar arquivos
 					</Button>
 				</div>
@@ -107,6 +105,7 @@ export function UploadDialog({
 						<input
 							id='dmoFile'
 							type='file'
+							accept='.dmo,.txt'
 							{...register('dmoFile')}
 							ref={inputDmoReference}
 							onChange={handleDmoChange}
@@ -143,6 +142,7 @@ export function UploadDialog({
 						<input
 							id='csvFile'
 							type='file'
+							accept='.csv'
 							{...register('csvFile')}
 							ref={inputCsvReference}
 							onChange={handleCsvChange}

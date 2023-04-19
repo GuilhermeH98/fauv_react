@@ -1,14 +1,17 @@
 import FlatButton from 'components/Buttons/FlatButton'
+import OutlinedButton from 'components/Buttons/OutlinedButton'
 import Input from 'components/Inputs/Input'
 import TableContent from 'components/Table/components/TableContent'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
 	RiArrowDownSLine,
+	RiArrowGoBackLine,
 	RiArrowUpSLine,
 	RiCarLine,
 	RiEyeFill
 } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom'
 import { useToggle } from 'utils/miscellaneous'
 import { Graph } from './components/Graph'
 
@@ -20,6 +23,8 @@ export function Statistic() {
 	// // TODO: Change to use API PMP , START WITH NULL
 	// const [selectedPmp, setSelectedPmp] = useState(false)
 	const [isMenuOpen, toggleIsMenuOpen] = useToggle()
+
+	const navigate = useNavigate()
 
 	function onChangePmpFm(action: 'FM' | 'PMP') {
 		setIsFmList(action === 'FM')
@@ -36,29 +41,40 @@ export function Statistic() {
 					{/* TODO: USE API DATA FM NAME */}
 					<div className='flex px-8 pt-5 align-middle'>
 						<div className='my-auto flex flex-col'>
-							<h2 className='my-auto font-lexend text-xl font-bold'>FM_001</h2>
+							<div className='flex'>
+								<RiArrowGoBackLine
+									onClick={() => {
+										navigate('/statisticPreview')
+									}}
+									className='mr-2 cursor-pointer text-icon 	text-blue-fauv '
+								/>
+								<h2 className='my-auto font-lexend text-xl font-bold text-blue-fauv'>
+									FM_001
+								</h2>
+							</div>
+
 							{/* TODO: USE API CATALOG  SHOW ONLY ON FM */}
 							{isFmList && (
-								<span className='mt-1 font-lexend text-sm font-semibold text-gray-fauv-2'>
+								<span className='mt-1 font-lexend text-sm font-semibold text-blue-fauv '>
 									Catálogo: GRUNDGEOMETRIE
 								</span>
 							)}
 						</div>
 						{/* TODO: Select with options OR BUTTON */}
-						<div className='relative ml-auto mt-auto'>
-							<FlatButton onClick={toggleIsMenuOpen}>
+						<div className='relative my-auto ml-auto'>
+							<OutlinedButton onClick={toggleIsMenuOpen}>
 								<div className='flex'>
-									<span>Especificação - Valores individuais </span>
+									<span> Especificação - Valores Individuais</span>
 									{isMenuOpen ? (
 										<RiArrowUpSLine className='ml-2 text-icon' />
 									) : (
 										<RiArrowDownSLine className='ml-2 text-icon' />
 									)}
 								</div>
-							</FlatButton>
+							</OutlinedButton>
 
 							{isMenuOpen && (
-								<div className='absolute z-10 rounded border border-gray-200 bg-white py-1  shadow-md'>
+								<div className='absolute z-10 rounded-b border border-gray-200 bg-white py-1  shadow-md'>
 									{/* TODO: Use 4 options and create a function for every button */}
 									<FlatButton className='w-full text-start text-sm hover:bg-gray-100'>
 										CEP - Valores Individuais
@@ -90,7 +106,9 @@ export function Statistic() {
 					{/* Card Indicators */}
 					<div className='w-full  overflow-auto rounded-lg bg-white p-4 '>
 						<div className='mb-2 flex'>
-							<h3 className=' font-lexend text-xl font-bold'>Índices</h3>
+							<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
+								Índices
+							</h3>
 							<span className='ml-auto font-lexend  font-bold text-green-fauv'>
 								Processo Capaz
 							</span>
@@ -143,7 +161,7 @@ export function Statistic() {
 				<div className='mt-4 flex h-fit max-h-[22rem] min-h-[17.5rem] gap-4'>
 					{/* Card Status Percentage  */}
 					<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
-						<h3 className=' font-lexend text-xl font-bold'>
+						<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
 							{selectedFm ? 'FM' : 'PMP'} status porcentagem (%)
 						</h3>
 						<hr className='mt-2 mb-2 border-bluishgray-fauv' />
@@ -184,13 +202,18 @@ export function Statistic() {
 					{/* Card Photo */}
 					{selectedFm ? (
 						<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
-							<h3 className=' font-lexend text-xl font-bold'>Foto</h3>
+							<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
+								Foto
+							</h3>
 
 							<hr className='mt-2 mb-4 border-bluishgray-fauv' />
 							{/* TODO: USE API PHOTO - REMOVE TEXT */}
 							<div className='m-auto'>
-								<RiCarLine className='mx-auto text-gray-fauv-3' size={68} />
-								<p className='mx-auto mt-2 flex-1 text-lg  font-semibold text-gray-fauv-3'>
+								<RiCarLine
+									className='mx-auto text-gray-fauv-3 opacity-50'
+									size={68}
+								/>
+								<p className='mx-auto mt-2 flex-1 text-lg  font-semibold text-gray-fauv-3 opacity-75 '>
 									Não possui foto
 								</p>
 							</div>
@@ -298,7 +321,7 @@ export function Statistic() {
 				<div className='flex-1 overflow-auto rounded-lg bg-white  p-2'>
 					{/* TODO: TITLE CARD */}
 					<div className='flex h-12 px-5 '>
-						<span className='my-auto  text-lg font-bold '>
+						<span className='my-auto  text-lg font-bold text-blue-fauv '>
 							{isFmList ? 'FM' : 'PMP'}
 						</span>
 					</div>

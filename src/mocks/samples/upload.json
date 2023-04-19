@@ -17,7 +17,7 @@
 		"stepDescription": "SHD13NH4",
 		"car": {
 			"id": 0,
-			"name": "Gol",
+			"name": "Carro A",
 			"active": true,
 			"unit": {
 				"id": 0,

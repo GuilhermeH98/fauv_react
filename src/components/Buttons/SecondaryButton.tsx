@@ -9,7 +9,7 @@ export default function SecondaryButton({
 		<button
 			disabled={disabled}
 			type='submit'
-			className='mb-4 h-11 w-72 rounded-btn-2 bg-blue-fauv font-lexend text-white shadow-btn'
+			className='mb-4 h-11 w-72 rounded-btn-2 bg-blue-fauv font-lexend text-white shadow-btn hover:bg-[#2A6791]'
 		>
 			{children}
 		</button>

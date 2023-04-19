@@ -74,7 +74,7 @@ const mockData: IGraphicMeasurementFmDTO[] = [
 		statisticCriteriaList: []
 	},
 	{
-		value: 2.5,
+		value: 2.6,
 		scanDate: '18/10',
 		toleranceType: ToleranceType.INTOL,
 		statisticCriteriaList: []
@@ -216,11 +216,51 @@ export function Graph() {
 					axis: { stroke: 'transparent' },
 					grid: {
 						stroke: '#E5EBF0',
-						strokeWidth: 1.2
+						strokeWidth: 1
 					}
 				}}
 			/>
+			{/* RED AXIS/LINE */}
+			<VictoryLine
+				style={{
+					data: {
+						stroke: 'red',
+						strokeWidth: 1,
+						opacity: 0.5
+					}
+				}}
+				y={() => 2.2}
+				//
+			/>
 
+			<VictoryLine
+				style={{
+					data: {
+						stroke: 'red',
+						strokeWidth: 1,
+						opacity: 0.5
+					}
+					// labels: {
+					// 	fill: '#AE3030',
+					// 	fontSize: 10
+					// }
+				}}
+				y={() => 1.2}
+				// labels={['Limite Superior']}
+				// labelComponent={<VictoryLabel y={92} x={84} />}
+			/>
+			{/* ZONES */}
+			{/* <VictoryLine
+				style={{
+					data: {
+						stroke: '#51AE30',
+						strokeWidth: 0.8
+					}
+				}}
+				y={() => 1.4}
+			/> */}
+
+			{/* GRAPH DATA */}
 			<VictoryLine
 				interpolation='linear'
 				data={mockData}

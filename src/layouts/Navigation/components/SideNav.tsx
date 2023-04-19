@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react'
-import { RiDraftLine, RiSearchLine, RiUser3Line } from 'react-icons/ri'
+import { RiSearchLine } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BarChartIcon } from '../icons/BarChartIcon'
 import { PowerIcon } from '../icons/PowerIcon'
@@ -17,7 +17,7 @@ export default function SideNav(): ReactElement {
 	return (
 		<nav className='fixed bottom-0 left-0 top-12 w-24 p-4 sm:top-16 '>
 			<div className='flex h-full flex-col justify-center gap-10 overflow-auto rounded-lg bg-white shadow-nav '>
-				<Link to='/profile' className='mx-auto mt-auto '>
+				{/* <Link to='/profile' className='mx-auto mt-auto '>
 					<RiUser3Line
 						className={`text-icon ${
 							location.pathname === '/profile'
@@ -34,9 +34,9 @@ export default function SideNav(): ReactElement {
 								: 'text-gray-fauv-3'
 						} `}
 					/>
-				</Link>
+				</Link> */}
 
-				<Link to='/samples' className='mx-auto '>
+				<Link to='/samples' className='mx-auto mt-auto '>
 					<RiSearchLine
 						className={`text-icon ${
 							location.pathname === '/samples'

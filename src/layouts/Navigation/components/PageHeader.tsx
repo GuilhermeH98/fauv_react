@@ -5,7 +5,6 @@ import {
 	RiCarWashingLine,
 	RiContactsLine,
 	RiGroupLine,
-	RiMailSettingsLine,
 	RiMicroscopeLine
 } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
@@ -62,7 +61,7 @@ export default function PageHeader(): ReactElement {
 							} `}
 						/>
 					</Link>
-					<Link to='/employees' className='my-auto '>
+					<Link to='/employees' className='my-auto mr-auto'>
 						<RiContactsLine
 							className={`text-icon ${
 								location.pathname === '/employees'
@@ -71,7 +70,7 @@ export default function PageHeader(): ReactElement {
 							} `}
 						/>
 					</Link>
-					<RiMailSettingsLine className='my-auto mr-auto cursor-pointer text-icon text-gray-fauv-3' />
+					{/* <RiMailSettingsLine className='my-auto mr-auto cursor-pointer text-icon text-gray-fauv-3' /> */}
 					{/* <RiListSettingsLine className='my-auto cursor-pointer text-icon text-gray-fauv-3' />
 					<ClipboardIcon currentPath={location.pathname} /> */}
 				</>
