@@ -5,6 +5,7 @@ import {
 	RiCarWashingLine,
 	RiContactsLine,
 	RiGroupLine,
+	RiListSettingsLine,
 	RiMicroscopeLine
 } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
@@ -61,10 +62,19 @@ export default function PageHeader(): ReactElement {
 							} `}
 						/>
 					</Link>
-					<Link to='/employees' className='my-auto mr-auto'>
+					<Link to='/employees' className='my-auto'>
 						<RiContactsLine
 							className={`text-icon ${
 								location.pathname === '/employees'
+									? 'text-blue-fauv'
+									: 'text-gray-fauv-3'
+							} `}
+						/>
+					</Link>
+					<Link to='/statisticManagement' className='my-auto mr-auto'>
+						<RiListSettingsLine
+							className={`text-icon ${
+								location.pathname === '/statisticManagement'
 									? 'text-blue-fauv'
 									: 'text-gray-fauv-3'
 							} `}

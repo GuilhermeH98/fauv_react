@@ -18,7 +18,8 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 	required = false,
 	widthClassName,
 	isSearchable = false,
-	rules
+	rules,
+	defaultValue
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
 		<div className={`grid gap-4  ${widthClassName ?? ' w-full'}`}>
@@ -33,7 +34,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 			<Controller
 				control={control}
 				name={name}
-				defaultValue={undefined}
+				defaultValue={defaultValue}
 				rules={{ required, ...rules }}
 				render={({ field: { value, onChange } }) => (
 					<ReactSelect

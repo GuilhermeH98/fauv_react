@@ -11,6 +11,7 @@ import { Samples } from 'pages/Samples'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
 import { Statistic } from 'pages/Statistic'
+import { StatisticManagement } from 'pages/StatisticManagement'
 import { StatisticPreview } from 'pages/StatisticPreview'
 import { Units } from 'pages/Units'
 import { Users } from 'pages/Users'
@@ -46,40 +47,122 @@ export default function App(): ReactElement {
 						<Route
 							path='/*'
 							element={
-								<AuthWrapper authenticated>
-									<Routes>
-										<Route
-											path='/models/create'
-											element={<CreateEditModel />}
-										/>
-										<Route path='/models/edit' element={<CreateEditModel />} />
-										<Route
-											path='/*'
-											element={
-												<NavigationLayout>
-													<Routes>
-														<Route path='/users' element={<Users />} />
-														<Route path='/catalogs' element={<Catalogs />} />
-														<Route path='/units' element={<Units />} />
-														<Route
-															path='/equipments'
-															element={<Equipments />}
-														/>
-														<Route path='/cars' element={<Cars />} />
-														<Route path='/employees' element={<Employees />} />
-														<Route path='/models' element={<Models />} />
-														<Route path='/samples' element={<Samples />} />
-														<Route path='/statistic' element={<Statistic />} />
-														<Route
-															path='/statisticPreview'
-															element={<StatisticPreview />}
-														/>
-													</Routes>
-												</NavigationLayout>
-											}
-										/>
-									</Routes>
-								</AuthWrapper>
+								<Routes>
+									<Route
+										path='/models/create'
+										element={
+											<AuthWrapper authenticated restricted>
+												<CreateEditModel />
+											</AuthWrapper>
+										}
+									/>
+									<Route
+										path='/models/edit'
+										element={
+											<AuthWrapper authenticated restricted>
+												<CreateEditModel />
+											</AuthWrapper>
+										}
+									/>
+									<Route
+										path='/*'
+										element={
+											<NavigationLayout>
+												<Routes>
+													<Route
+														path='/users'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Users />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/catalogs'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Catalogs />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/units'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Units />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/equipments'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Equipments />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/cars'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Cars />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/employees'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Employees />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/models'
+														element={
+															<AuthWrapper authenticated restricted>
+																<Models />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/statisticManagement'
+														element={
+															<AuthWrapper authenticated restricted>
+																<StatisticManagement />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/samples'
+														element={
+															<AuthWrapper authenticated>
+																<Samples />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/statistic'
+														element={
+															<AuthWrapper authenticated>
+																<Statistic />
+															</AuthWrapper>
+														}
+													/>
+													<Route
+														path='/statisticPreview'
+														element={
+															<AuthWrapper authenticated>
+																<StatisticPreview />
+															</AuthWrapper>
+														}
+													/>
+													<Route path='/*' element={<div />} />
+												</Routes>
+											</NavigationLayout>
+										}
+									/>
+								</Routes>
 							}
 						/>
 					</Routes>

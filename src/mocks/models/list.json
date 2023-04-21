@@ -62,5 +62,133 @@
 			}
 		],
 		"active": true
+	},
+	{
+		"id": 2,
+		"partNumber": "XXXXXXX",
+		"stepDescription": "SHD13NH4",
+		"car": {
+			"id": 2,
+			"name": "Carro B",
+			"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+			"active": false
+		},
+		"pmpList": [
+			{
+				"id": 1,
+				"name": "PONTO A",
+				"workingOn": "X",
+				"x": -125.321,
+				"y": -125.321,
+				"z": -125.321,
+				"active": true,
+				"axisCoordinateList": [
+					{
+						"id": 1,
+						"name": "string",
+						"lowerTolerance": -125.321,
+						"higherTolerance": 125.321,
+						"axis": "X",
+						"pmpId": 0
+					}
+				]
+			}
+		],
+		"fmList": [
+			{
+				"id": 1,
+				"name": "FM01",
+				"higherTolerance": 123.321,
+				"lowerTolerance": 124.321,
+				"defaultValue": 124.321,
+				"axis": "X",
+				"catalogType": "GRUNDGEOMETRIE",
+				"pmpList": [
+					{
+						"id": 1,
+						"name": "PONTO A",
+						"workingOn": "X",
+						"x": -125.321,
+						"y": -125.321,
+						"z": -125.321,
+						"active": true
+					}
+				],
+				"photo": "string",
+				"level": "LOW",
+				"fmImpactList": [
+					{
+						"id": 1,
+						"info": "Erro na porta"
+					}
+				],
+				"active": true
+			}
+		],
+		"active": true
+	},
+	{
+		"id": 3,
+		"partNumber": "YYYYYYY",
+		"stepDescription": "SHD13NH4",
+		"car": {
+			"id": 2,
+			"name": "Carro B",
+			"unit": { "id": 6, "name": "Principal Alemanha ", "active": true },
+			"active": false
+		},
+		"pmpList": [
+			{
+				"id": 1,
+				"name": "PONTO A",
+				"workingOn": "X",
+				"x": -125.321,
+				"y": -125.321,
+				"z": -125.321,
+				"active": true,
+				"axisCoordinateList": [
+					{
+						"id": 1,
+						"name": "string",
+						"lowerTolerance": -125.321,
+						"higherTolerance": 125.321,
+						"axis": "X",
+						"pmpId": 0
+					}
+				]
+			}
+		],
+		"fmList": [
+			{
+				"id": 1,
+				"name": "FM01",
+				"higherTolerance": 123.321,
+				"lowerTolerance": 124.321,
+				"defaultValue": 124.321,
+				"axis": "X",
+				"catalogType": "GRUNDGEOMETRIE",
+				"pmpList": [
+					{
+						"id": 1,
+						"name": "PONTO A",
+						"workingOn": "X",
+						"x": -125.321,
+						"y": -125.321,
+						"z": -125.321,
+						"active": true
+					}
+				],
+				"photo": "string",
+				"level": "LOW",
+				"fmImpactList": [
+					{
+						"id": 1,
+						"info": "Erro na porta"
+					}
+				],
+				"active": true
+			}
+		],
+		"active": true
 	}
 ]

@@ -2,6 +2,7 @@ import type {
 	Control,
 	FieldValues,
 	Path,
+	PathValue,
 	RegisterOptions,
 	UseFormRegister
 } from 'react-hook-form'
@@ -28,7 +29,6 @@ export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
 	control: Control<TFieldValues, TContext>
 	name: Path<TFieldValues>
 	label?: string
-
 	className?: string
 	placeholder?: string
 	staticMenu?: boolean
@@ -39,4 +39,5 @@ export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
 		RegisterOptions,
 		'setValueAs' | 'valueAsDate' | 'valueAsNumber'
 	>
+	defaultValue?: PathValue<TFieldValues, Path<TFieldValues>>
 }
