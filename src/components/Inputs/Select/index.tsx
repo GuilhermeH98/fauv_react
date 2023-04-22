@@ -19,6 +19,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 	widthClassName,
 	isSearchable = false,
 	rules,
+	disabled = false,
 	defaultValue
 }: ISelectProperties<TFieldValues, TContext>) {
 	return (
@@ -45,7 +46,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 							onChange((selectedOption as ISelectOption).value)
 						}}
 						isSearchable={isSearchable}
-						isDisabled={false}
+						isDisabled={disabled}
 						isLoading={false}
 						isRtl={false}
 						closeMenuOnSelect

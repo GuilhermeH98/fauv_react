@@ -1,21 +1,25 @@
+import { Dialog } from 'components/Dialog'
 import { Select } from 'components/Inputs/Select'
 import { Query } from 'components/Query'
 import Table from 'components/Table'
 import { useCarsQuery } from 'pages/Cars/api'
 import { useModelsQuery } from 'pages/Models/api'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { mapSelectOptions } from 'utils/miscellaneous'
-import type { IFilterProperties } from './api'
+import { mapSelectOptions, useToggle } from 'utils/miscellaneous'
+import { ConfigurationDialog } from './ConfigurationDialog.tsx'
+import type { IFilterProperties, IStatisticConfiguration } from './api'
 import { useStatisticConfigurationsQuery } from './api'
 import { columns } from './columns'
 
 export function StatisticManagement() {
+	const [isDialogOpen, toggleIsDialogOpen] = useToggle()
+	const [selectedConfiguration, setSelectedConfiguration] =
+		useState<IStatisticConfiguration | null>(null)
 	const query = useStatisticConfigurationsQuery()
+	const configurations = query.data || []
 	const { data: cars } = useCarsQuery()
 	const { data: models } = useModelsQuery()
-
-	const configurations = query.data || []
 
 	const { control, setValue } = useForm<IFilterProperties>()
 	const [carIdValue, modelIdValue] = useWatch({
@@ -42,10 +46,18 @@ export function StatisticManagement() {
 		return isFilteredCard
 	})
 
+	function onCloseDialog() {
+		setSelectedConfiguration(null)
+		toggleIsDialogOpen()
+	}
+
+	function onRowClick(configuration: IStatisticConfiguration) {
+		setSelectedConfiguration(configuration)
+		toggleIsDialogOpen()
+	}
+
 	useEffect(() => {
-		if (carIdValue) {
-			setValue('modelId', '')
-		}
+		setValue('modelId', '')
 	}, [carIdValue, setValue])
 
 	return (
@@ -91,9 +103,16 @@ export function StatisticManagement() {
 						title='Configurações'
 						data={filteredConfigurations}
 						columns={columns}
+						onRowClick={onRowClick}
 					/>
 				)}
 			/>
+			<Dialog isOpen={isDialogOpen} onClose={onCloseDialog}>
+				<ConfigurationDialog
+					selectedConfiguration={selectedConfiguration}
+					onClose={onCloseDialog}
+				/>
+			</Dialog>
 		</>
 	)
 }

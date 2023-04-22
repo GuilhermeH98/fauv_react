@@ -4,5 +4,5 @@ import statisticConfigurations from './list.json'
 
 export const handlers = [
 	mock('get', STATISTIC_CONFIGURATIONS_URL, statisticConfigurations),
-	mock('post', STATISTIC_CONFIGURATIONS_URL)
+	mock('put', STATISTIC_CONFIGURATIONS_URL)
 ]

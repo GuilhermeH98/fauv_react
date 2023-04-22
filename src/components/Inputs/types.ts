@@ -22,6 +22,7 @@ export interface IInputProperties<TFieldValues extends FieldValues>
 	>
 	searchIcon?: boolean
 	roundedClassName?: string
+	disabled?: boolean
 }
 
 export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
@@ -40,4 +41,5 @@ export interface ISelectProperties<TFieldValues extends FieldValues, TContext> {
 		'setValueAs' | 'valueAsDate' | 'valueAsNumber'
 	>
 	defaultValue?: PathValue<TFieldValues, Path<TFieldValues>>
+	disabled?: boolean
 }

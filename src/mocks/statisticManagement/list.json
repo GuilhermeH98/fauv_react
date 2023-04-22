@@ -1,13 +1,13 @@
 [
 	{
 		"id": 1,
-		"useCep": true,
-		"cepSamples": 15,
-		"useSpecification": true,
-		"specificationSamples": 15,
-		"useCpCpk": true,
-		"cpk": 1.5,
-		"cp": 2.0,
+		"useCep": false,
+		"cepSamples": null,
+		"useSpecification": false,
+		"specificationSamples": null,
+		"useCpCpk": false,
+		"cpk": null,
+		"cp": null,
 		"usePpPpk": true,
 		"ppk": 1.5,
 		"pp": 2.0,
@@ -81,7 +81,7 @@
 	{
 		"id": 2,
 		"useCep": false,
-		"cepSamples": 15,
+		"cepSamples": 25,
 		"useSpecification": true,
 		"specificationSamples": 15,
 		"useCpCpk": true,
@@ -160,7 +160,7 @@
 	{
 		"id": 2,
 		"useCep": false,
-		"cepSamples": 15,
+		"cepSamples": 25,
 		"useSpecification": true,
 		"specificationSamples": 15,
 		"useCpCpk": true,

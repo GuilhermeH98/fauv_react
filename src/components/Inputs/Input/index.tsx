@@ -13,7 +13,8 @@ export default function Input<TFieldValues extends FieldValues>({
 	register,
 	rules,
 	searchIcon = false,
-	roundedClassName = 'rounded'
+	roundedClassName = 'rounded',
+	disabled = false
 }: IInputProperties<TFieldValues>): ReactElement {
 	return (
 		<div className={`grid ${widthClassName} relative gap-4`}>
@@ -29,13 +30,16 @@ export default function Input<TFieldValues extends FieldValues>({
 				type={type ?? 'text'}
 				id={id}
 				placeholder={placeholder}
+				disabled={disabled}
 				step='any'
 				{...register(id, {
 					required,
 					...rules
 				})}
 				className={`h-10  border border-bluishgray-fauv  focus:border-blue-fauv 
-				${roundedClassName} ${widthClassName} ${searchIcon ? 'pr-10' : ''}`}
+				${roundedClassName} ${widthClassName} ${searchIcon ? 'pr-10' : ''} ${
+					disabled ? 'bg-[#F2F2F2]' : ''
+				}`}
 			/>
 			{searchIcon && (
 				<div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
