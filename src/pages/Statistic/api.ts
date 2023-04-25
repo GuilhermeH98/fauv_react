@@ -1,9 +1,16 @@
+import { CatalogType, FmImpact } from 'pages/Models/api'
+import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
-export enum ToleranceType {
-	INTOL = 'INTOL',
-	OUTOL = 'OUTOL',
-	NOT_RECOGNIZED = 'NOT_RECOGNIZED'
+export const STATISTIC_URL = `${
+	import.meta.env.VITE_ANALYZER_URL ?? ''
+}statistic`
+
+export enum GraphicType {
+	CEP_INDIVIDUAL_VALUES = 'CEP_INDIVIDUAL_VALUES',
+	CEP_MOVEL_AMPLITUDE = 'CEP_MOVEL_AMPLITUDE',
+	INDIVIDUAL_VALUES = 'INDIVIDUAL_VALUES',
+	MOVEL_AMPLITUDE = 'MOVEL_AMPLITUDE'
 }
 
 export enum StatisticCriteria {
@@ -18,10 +25,93 @@ export enum StatisticCriteria {
 	OUT_OF_TOLERANCE = 'OUT_OF_TOLERANCE'
 }
 
-export const GraphicMeasurementFmDTO = z.object({
+const GraphicDetail = z.object({
+	sampleId: z.number(),
+	pin: z.string(),
+	updatedDate: z.string(),
 	value: z.number(),
-	scanDate: z.string(),
-	toleranceType: z.nativeEnum(ToleranceType),
 	statisticCriteriaList: z.array(z.nativeEnum(StatisticCriteria))
 })
-export type IGraphicMeasurementFmDTO = z.infer<typeof GraphicMeasurementFmDTO>
+export type IGraphicDetail = z.infer<typeof GraphicDetail>
+
+const GraphicValues = z.object({
+	graphicType: z.string(),
+	higherTolerance: z.number(),
+	lowerTolerance: z.number(),
+	mediumLine: z.number(),
+	detailedFmGraphicsList: z.array(GraphicDetail)
+})
+export type IGraphicValues = z.infer<typeof GraphicValues>
+
+const CepIndividualValuesGraphic = GraphicValues.extend({
+	positiveZoneA: z.number(),
+	positiveZoneB: z.number(),
+	posttiveZoneC: z.number(),
+	negativeZoneA: z.number(),
+	negativeZoneB: z.number(),
+	negativeZoneC: z.number()
+})
+
+// TODO add Z1 and Z2
+export const Statistic = z.object({
+	name: z.string(),
+	catalogType: z.nativeEnum(CatalogType),
+	totalIo: z.number(),
+	totalBk: z.number(),
+	totalAk: z.number(),
+	cp: z.number(),
+	cpk: z.number(),
+	pp: z.number(),
+	ppk: z.number(),
+	// z1: z.number(),
+	// z2: z.number(),
+	standardDeviation: z.number(),
+	sigmaLevel: z.number(),
+	average: z.number(),
+	nominalDistribution: z.number(),
+	mappedPmpList: z.array(z.string()),
+	impactList: z.array(FmImpact.pick({ info: true })),
+	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
+	cepMovelAmplitudeGraphic: GraphicValues,
+	individualValuesGraphic: GraphicValues,
+	movelAmplitudeGraphic: GraphicValues
+})
+export type IStatistic = z.infer<typeof Statistic>
+
+// TODO: VERIFY IF STATISTIC NEED TWO SEPARATE INTERFACE FOR PMP AND FM GRAPHIC
+export const PmpStatistic = z.object({
+	name: z.string(),
+	catalogType: z.nativeEnum(CatalogType),
+	totalIo: z.number(),
+	totalBk: z.number(),
+	totalAk: z.number(),
+	cp: z.number(),
+	cpk: z.number(),
+	pp: z.number(),
+	ppk: z.number(),
+	z1: z.number(),
+	z2: z.number(),
+	standardDeviation: z.number(),
+	sigmaLevel: z.number(),
+	average: z.number(),
+	nominalDistribution: z.number(),
+	mappedPmpList: z.array(z.string()),
+	impactList: z.array(FmImpact),
+	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
+	cepMovelAmplitudeGraphic: GraphicValues,
+	individualValuesGraphic: GraphicValues,
+	movelAmplitudeGraphic: GraphicValues
+})
+export type IPmpStatistic = z.infer<typeof PmpStatistic>
+
+export function useStatisticQuery(
+	isFm: boolean,
+	modelId: string,
+	name: string
+) {
+	const queryWithParameters = `${STATISTIC_URL}/${
+		isFm ? 'fm' : 'pmp'
+	}/${modelId}/${name}`
+
+	return makeQuery(queryWithParameters, isFm ? Statistic : PmpStatistic)
+}

@@ -16,21 +16,18 @@ export default function SignIn(): ReactElement {
 	const { mutate } = useSignInMutation()
 
 	function onSubmit(data: ISignInPayload): void {
-		mutate(
-			{ ...data },
-			{
-				onSuccess(response: ICredentials) {
-					setCredentialsLocalStorage(response)
-					navigate('/home')
-				},
-				onError() {
-					createSnackbar(
-						'error',
-						'Erro ao fazer login! Verifique suas informações.'
-					)
-				}
+		mutate(data, {
+			onSuccess(response: ICredentials) {
+				setCredentialsLocalStorage(response)
+				navigate('/home')
+			},
+			onError() {
+				createSnackbar(
+					'error',
+					'Erro ao fazer login! Verifique suas informações.'
+				)
 			}
-		)
+		})
 	}
 
 	return (

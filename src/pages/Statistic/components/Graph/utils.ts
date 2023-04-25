@@ -1,4 +1,5 @@
-import { StatisticCriteria } from '../api'
+import type { IGraphicDetail } from 'pages/Statistic/api'
+import { StatisticCriteria } from 'pages/Statistic/api'
 
 export function getStatisticCriteriaLabel(
 	statisticCriteria: StatisticCriteria
@@ -45,4 +46,19 @@ export function getCriteriaLabelList(
 		: `\n\u00A0Critérios: \n\u00A0\u00A0\u2022 ${statisticCriteriaList
 				.map(criteria => getStatisticCriteriaLabel(criteria))
 				.join('\n\u00A0\u00A0\u2022 ')}`
+}
+
+export function getGraphSmallestValue(
+	graphicValues: IGraphicDetail[],
+	lowerTolerance: number
+): number {
+	let smallestValue = graphicValues[0].value
+
+	for (let index = 1; index < graphicValues.length; index += 1) {
+		const { value } = graphicValues[index]
+		if (value < smallestValue) {
+			smallestValue = value
+		}
+	}
+	return smallestValue > lowerTolerance ? lowerTolerance : smallestValue
 }

@@ -39,7 +39,6 @@ export function ConfigurationDialog({
 		})
 
 	function onEditConfiguration(values: IFieldValues) {
-		console.log(values)
 		mutate(
 			{
 				...values,

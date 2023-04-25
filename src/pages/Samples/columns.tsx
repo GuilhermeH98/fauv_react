@@ -1,11 +1,10 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
 import { RiAlertLine, RiCheckLine, RiCloseLine } from 'react-icons/ri'
+import { formatDateWithHours } from 'utils/format'
 import type { ISample } from './api'
 import { Status } from './api'
 
-// TODO USE CALLBACK
 export function getColumns(): IColumnDefinitionType<ISample, keyof ISample>[] {
-	// onIconClick: (row: ISample) => void
 	return [
 		{
 			key: 'status',
@@ -52,16 +51,7 @@ export function getColumns(): IColumnDefinitionType<ISample, keyof ISample>[] {
 		{
 			key: 'uploadDate',
 			header: 'Data',
-			valueGetter: row =>
-				new Date(row.uploadDate)
-					.toLocaleDateString('pt-BR', {
-						year: 'numeric',
-						month: '2-digit',
-						day: '2-digit',
-						hour: '2-digit',
-						minute: '2-digit'
-					})
-					.replace(',', ' -')
+			valueGetter: row => formatDateWithHours(row.uploadDate)
 		}
 	]
 }

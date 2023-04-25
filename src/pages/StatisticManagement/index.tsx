@@ -62,7 +62,7 @@ export function StatisticManagement() {
 
 	return (
 		<>
-			<div className='mb-2 flex h-18 w-full items-center rounded-lg bg-white'>
+			<div className='mb-3 flex h-18 w-full items-center rounded-lg bg-white'>
 				<form className='flex w-full gap-6'>
 					<div className='ml-6 flex items-center'>
 						<span className='mr-2 font-inter text-base font-semibold  leading-[160%] text-black-fauv-3'>

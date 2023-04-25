@@ -15,12 +15,6 @@ export function Samples(): ReactElement {
 
 	const queryClient = useQueryClient()
 
-	// const navigate = useNavigate()
-
-	// function onIconClick(row: ISample) {
-	// 	navigate('statistics', { state: row })
-	// }
-
 	async function onUploadSuccess() {
 		await queryClient.invalidateQueries([SAMPLES_URL])
 	}
@@ -41,15 +35,10 @@ export function Samples(): ReactElement {
 							</Button>
 						</div>
 
-						<Table
-							title='Amostras'
-							data={data}
-							columns={getColumns()} // TODO SEND FUNCTION
-						/>
+						<Table title='Amostras' data={data} columns={getColumns()} />
 					</>
 				)}
 			/>
-
 			<UploadDialog
 				isOpen={isUploadDialogOpen}
 				onClose={toggleIsUploadDialogOpen}

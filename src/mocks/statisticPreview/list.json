@@ -1,0 +1,67 @@
+[
+	{
+		"carName": "Carro A",
+		"partNumber": "S123456",
+		"unitName": "Unidade A",
+		"initDate": "2023-04-05T20:26:52.766",
+		"endDate": "2023-04-06T20:26:52.766",
+		"numberOfSamples": 10,
+		"numberOfDefectiveSamples": 2,
+		"samplesIds": [1, 2, 3, 4, 5],
+		"modelId": 1,
+		"defaultFmNames": [
+			{
+				"name": "FM1",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM2",
+				"level": "CRITICAL",
+				"axis": "Y"
+			}
+		],
+		"defaultPmpNames": [
+			{
+				"name": "PMP1"
+			},
+			{
+				"name": "PMP2"
+			}
+		]
+	},
+	{
+		"carName": "Carro B",
+		"partNumber": "S12454",
+		"unitName": "Unidade A",
+		"initDate": "2023-04-05T20:26:52.766",
+		"endDate": "2023-04-06T20:26:52.766",
+		"numberOfSamples": 10,
+		"numberOfDefectiveSamples": 3,
+		"totalAk": 20,
+		"totalBk": 5,
+		"totalIo": 2,
+		"samplesIds": [1, 2, 3, 4, 5],
+		"modelId": 2,
+		"defaultFmNames": [
+			{
+				"name": "FM1",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM2",
+				"level": "CRITICAL",
+				"axis": "Y"
+			}
+		],
+		"defaultPmpNames": [
+			{
+				"name": "PMP1"
+			},
+			{
+				"name": "PMP2"
+			}
+		]
+	}
+]

@@ -1,0 +1,285 @@
+{
+	"name": "DLB001___XB211",
+	"catalogType": "DICHTIGKEIT",
+	"totalIo": 0.6,
+	"totalBk": 0.1,
+	"totalAk": 0.3,
+	"cp": 11.196067415730509,
+	"cpk": 1.2589472590242383,
+	"pp": 2.1111175757205145,
+	"ppk": 1.924107743804608,
+	"standardDeviation": 0.2368413800114152,
+	"sigmaLevel": 3.7768417770727147,
+	"average": -0.13287499999999852,
+	"nominalDistribution": 0,
+	"mappedPmpList": ["PMP_01", "PMP_02", "PMP_03", "PMP_04"],
+	"impactList": [
+		{ "info": "Falha no carro" },
+		{ "info": "Falha na lateral" },
+		{ "info": "Vazamento" }
+	],
+	"cepIndividualValuesGraphic": {
+		"graphicType": "CEP_INDIVIDUAL_VALUES",
+		"higherTolerance": 0.0011006134276676516,
+		"lowerTolerance": -0.2668506134276647,
+		"mediumLine": -0.13287499999999852,
+		"detailedFmGraphicsList": [
+			{
+				"sampleId": 32,
+				"pin": "70344264",
+				"updatedDate": "2023-04-05T20:26:52.766",
+				"value": -0.6599999999999682,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+			},
+			{
+				"sampleId": 31,
+				"pin": "70347074",
+				"updatedDate": "2023-04-06T20:26:37.07",
+				"value": -0.22000000000002728,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 30,
+				"pin": "70403299",
+				"updatedDate": "2023-04-07T20:26:06.881",
+				"value": -0.18700000000001182,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 29,
+				"pin": "70428407",
+				"updatedDate": "2023-04-08T20:25:54.864",
+				"value": 0.047000000000025466,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+			},
+			{
+				"sampleId": 28,
+				"pin": "70517323",
+				"updatedDate": "2023-04-09T20:25:36.149",
+				"value": 0.07600000000002183,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+			},
+			{
+				"sampleId": 27,
+				"pin": "70545562",
+				"updatedDate": "2023-04-10T20:25:22.073",
+				"value": -0.01700000000005275,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 26,
+				"pin": "70616385",
+				"updatedDate": "2023-04-11T20:25:04.485",
+				"value": -0.02400000000000091,
+				"statisticCriteriaList": [
+					"TWO_OUT_OF_THREE_CONSECUTIVE_POINTS_IN_ZONE_A"
+				]
+			},
+			{
+				"sampleId": 25,
+				"pin": "70631326",
+				"updatedDate": "2023-04-12T20:22:49.289",
+				"value": -0.07799999999997453,
+				"statisticCriteriaList": []
+			}
+		],
+		"positiveZoneA": 0.0011006134276676516,
+		"positiveZoneB": -0.04355792438155441,
+		"posttiveZoneC": -0.08821646219077647,
+		"negativeZoneA": -0.2668506134276647,
+		"negativeZoneB": -0.22219207561844262,
+		"negativeZoneC": -0.17753353780922057
+	},
+	"cepMovelAmplitudeGraphic": {
+		"graphicType": "CEP_MOVEL_AMPLITUDE",
+		"higherTolerance": 0.2369942857142821,
+		"lowerTolerance": 0.01729142857142831,
+		"mediumLine": 0.1271428571428552,
+		"detailedFmGraphicsList": [
+			{
+				"sampleId": 32,
+				"pin": "70344264",
+				"updatedDate": "2023-04-05T20:26:52.766",
+				"value": 0,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 31,
+				"pin": "70347074",
+				"updatedDate": "2023-04-06T20:26:37.07",
+				"value": 0.4399999999999409,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 30,
+				"pin": "70403299",
+				"updatedDate": "2023-04-07T20:26:06.881",
+				"value": 0.03300000000001546,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 29,
+				"pin": "70428407",
+				"updatedDate": "2023-04-08T20:25:54.864",
+				"value": 0.2340000000000373,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 28,
+				"pin": "70517323",
+				"updatedDate": "2023-04-09T20:25:36.149",
+				"value": 0.028999999999996362,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 27,
+				"pin": "70545562",
+				"updatedDate": "2023-04-11T20:25:22.073",
+				"value": 0.09300000000007458,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 26,
+				"pin": "70616385",
+				"updatedDate": "2023-04-15T20:25:04.485",
+				"value": 0.006999999999948159,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 25,
+				"pin": "70631326",
+				"updatedDate": "2023-04-17T20:22:49.289",
+				"value": 0.053999999999973625,
+				"statisticCriteriaList": []
+			}
+		]
+	},
+	"individualValuesGraphic": {
+		"graphicType": "INDIVIDUAL_VALUES",
+		"higherTolerance": 1.5,
+		"lowerTolerance": -1.5,
+		"mediumLine": -0.13287499999999852,
+		"detailedFmGraphicsList": [
+			{
+				"sampleId": 32,
+				"pin": "70344264",
+				"updatedDate": "2023-04-05T20:26:52.766",
+				"value": -0.6599999999999682,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 31,
+				"pin": "70347074",
+				"updatedDate": "2023-04-05T20:26:37.07",
+				"value": -0.22000000000002728,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 30,
+				"pin": "70403299",
+				"updatedDate": "2023-04-05T20:26:06.881",
+				"value": -0.18700000000001182,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 29,
+				"pin": "70428407",
+				"updatedDate": "2023-04-05T20:25:54.864",
+				"value": 0.047000000000025466,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 28,
+				"pin": "70517323",
+				"updatedDate": "2023-04-05T20:25:36.149",
+				"value": 0.07600000000002183,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 27,
+				"pin": "70545562",
+				"updatedDate": "2023-04-05T20:25:22.073",
+				"value": -0.01700000000005275,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 26,
+				"pin": "70616385",
+				"updatedDate": "2023-04-05T20:25:04.485",
+				"value": -0.02400000000000091,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 25,
+				"pin": "70631326",
+				"updatedDate": "2023-04-05T20:22:49.289",
+				"value": -0.07799999999997453,
+				"statisticCriteriaList": []
+			}
+		]
+	},
+	"movelAmplitudeGraphic": {
+		"graphicType": "MOVEL_AMPLITUDE",
+		"higherTolerance": 1,
+		"lowerTolerance": 0,
+		"mediumLine": 0.1271428571428552,
+		"detailedFmGraphicsList": [
+			{
+				"sampleId": 32,
+				"pin": "70344264",
+				"updatedDate": "2023-04-05T20:26:52.766",
+				"value": 0,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 31,
+				"pin": "70347074",
+				"updatedDate": "2023-04-05T20:26:37.07",
+				"value": 0.4399999999999409,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 30,
+				"pin": "70403299",
+				"updatedDate": "2023-04-05T20:26:06.881",
+				"value": 0.03300000000001546,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 29,
+				"pin": "70428407",
+				"updatedDate": "2023-04-05T20:25:54.864",
+				"value": 0.2340000000000373,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 28,
+				"pin": "70517323",
+				"updatedDate": "2023-04-05T20:25:36.149",
+				"value": 0.028999999999996362,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 27,
+				"pin": "70545562",
+				"updatedDate": "2023-04-05T20:25:22.073",
+				"value": 0.09300000000007458,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 26,
+				"pin": "70616385",
+				"updatedDate": "2023-04-05T20:25:04.485",
+				"value": 0.006999999999948159,
+				"statisticCriteriaList": []
+			},
+			{
+				"sampleId": 25,
+				"pin": "70631326",
+				"updatedDate": "2023-04-05T20:22:49.289",
+				"value": 0.053999999999973625,
+				"statisticCriteriaList": []
+			}
+		]
+	}
+}
