@@ -7,7 +7,7 @@ interface IPowerIconProperties {
 export function PowerIcon({ onClick }: IPowerIconProperties): ReactElement {
 	return (
 		<div
-			className='mx-auto mb-8 mt-auto cursor-pointer'
+			className='mx-auto  mb-auto cursor-pointer md:mb-8 md:mt-auto '
 			onClick={onClick}
 			aria-hidden='true'
 		>

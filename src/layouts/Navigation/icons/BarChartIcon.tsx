@@ -6,7 +6,7 @@ export function BarChartIcon({
 	currentPath
 }: INavigationIconProperties): ReactElement {
 	return (
-		<Link to='/statisticPreview' className='mx-auto cursor-pointer'>
+		<Link to='/statisticPreview' className='mx-auto -mb-10 cursor-pointer'>
 			<svg
 				width='24'
 				height='24'

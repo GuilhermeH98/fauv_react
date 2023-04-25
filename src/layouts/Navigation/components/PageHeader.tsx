@@ -1,18 +1,8 @@
 import { getIsAdmin } from 'components/AuthWrapper/utils'
 import type { ReactElement } from 'react'
-import {
-	RiCarLine,
-	RiCarWashingLine,
-	RiContactsLine,
-	RiGroupLine,
-	RiListSettingsLine,
-	RiMicroscopeLine
-} from 'react-icons/ri'
-import { Link, useLocation } from 'react-router-dom'
-import { IndustyIcon } from '../icons/IndustyIcon'
 
 export default function PageHeader(): ReactElement {
-	const location = useLocation()
+	// const location = useLocation()
 
 	const isAdmin = getIsAdmin()
 
@@ -24,7 +14,7 @@ export default function PageHeader(): ReactElement {
 
 			{isAdmin && (
 				<>
-					<Link to='/models' className='my-auto ml-auto'>
+					{/* <Link to='/models' className='my-auto ml-auto'>
 						<RiCarWashingLine
 							className={` text-icon  ${
 								location.pathname === '/models'
@@ -79,7 +69,7 @@ export default function PageHeader(): ReactElement {
 									: 'text-gray-fauv-3'
 							} `}
 						/>
-					</Link>
+					</Link> */}
 					{/* <RiMailSettingsLine className='my-auto mr-auto cursor-pointer text-icon text-gray-fauv-3' /> */}
 					{/* <RiListSettingsLine className='my-auto cursor-pointer text-icon text-gray-fauv-3' />
 					<ClipboardIcon currentPath={location.pathname} /> */}
