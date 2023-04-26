@@ -1,9 +1,7 @@
 import { makeMutation } from 'utils/api'
 import { z } from 'zod'
 
-export const LOGIN_URL = `${
-	import.meta.env.VITE_AUTHENTICATION_URL ?? ''
-}accessControl/login`
+export const LOGIN_URL = `${import.meta.env.VITE_AUTHENTICATION_URL ?? ''}accessControl/login`
 
 export const Credentials = z.object({
 	token: z.string()
@@ -11,7 +9,7 @@ export const Credentials = z.object({
 export type ICredentials = z.infer<typeof Credentials>
 
 export const SignInPayload = z.object({
-	username: z.string(),
+	vwId: z.string(),
 	password: z.string()
 })
 export type ISignInPayload = z.infer<typeof SignInPayload>

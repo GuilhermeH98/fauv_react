@@ -7,6 +7,6 @@ export interface ICreateEditEquipmentProperties {
 
 export interface IFieldValues {
 	name: string
-	unit: number
+	// unit: number
 	active: boolean
 }

@@ -15,7 +15,7 @@ export type ICar = z.infer<typeof Car>
 export const CarPayload = z.object({
 	id: z.number().optional(),
 	name: z.string(),
-	unit: z.number(),
+	unitId: z.number(),
 	active: z.boolean()
 })
 

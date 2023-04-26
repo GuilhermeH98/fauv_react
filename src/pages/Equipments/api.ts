@@ -17,7 +17,7 @@ export type IEquipment = z.infer<typeof Equipment>
 export const EquipmentPayload = z.object({
 	id: z.number().optional(),
 	name: z.string(),
-	unit: z.number(),
+	unitId: z.number(),
 	active: z.boolean()
 })
 

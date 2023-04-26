@@ -1,12 +1,9 @@
 import { DialogHeader } from 'components/Dialog/Header'
 import Input from 'components/Inputs/Input'
-import { Select } from 'components/Inputs/Select'
 import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
-import { useUnitsQuery } from 'pages/Units/api'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { mapSelectOptions } from 'utils/miscellaneous'
 import { useCarMutation } from '../api'
 import type { ICreateEditCarProperties, IFieldValues } from './types'
 
@@ -16,10 +13,9 @@ export function CreateEditCar({
 }: ICreateEditCarProperties) {
 	const { mutate } = useCarMutation(!!selectedCar)
 
-	const { data: units } = useUnitsQuery()
+	// const { data: units } = useUnitsQuery()
 
 	const {
-		control,
 		reset,
 		register,
 		handleSubmit,
@@ -29,9 +25,9 @@ export function CreateEditCar({
 	function onCreateEditCar(values: IFieldValues) {
 		const payload = selectedCar
 			? { id: selectedCar.id, ...values }
-			: { ...values, active: true }
+			: { ...values,active: true }
 		mutate(
-			{ ...payload },
+			{ ...payload, unitId: import.meta.env.VITE_UNIT_ID ?? 1 },
 			{
 				onSuccess() {
 					onClose()
@@ -44,7 +40,10 @@ export function CreateEditCar({
 		)
 	}
 	useEffect(() => {
-		if (selectedCar) reset({ ...selectedCar, unit: selectedCar.unit.id })
+		if (selectedCar) reset({ ...selectedCar, 
+			// unit: selectedCar.unit.id
+		 }
+			)
 	}, [selectedCar, reset])
 
 	return (
@@ -69,14 +68,14 @@ export function CreateEditCar({
 
 				<Input label='Nome' id='name' register={register} required />
 
-				<Select
+				{/* <Select
 					label='Planta'
 					name='unit'
 					options={mapSelectOptions(units?.filter(unit => unit.active))}
 					control={control}
 					staticMenu
 					required
-				/>
+				/> */}
 			</div>
 		</form>
 	)

@@ -1,12 +1,9 @@
 import { DialogHeader } from 'components/Dialog/Header'
 import Input from 'components/Inputs/Input'
-import { Select } from 'components/Inputs/Select'
 import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
-import { useUnitsQuery } from 'pages/Units/api'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { mapSelectOptions } from 'utils/miscellaneous'
 import { useEquipmentMutation } from '../api'
 import type { ICreateEditEquipmentProperties, IFieldValues } from './types'
 
@@ -16,12 +13,11 @@ export function CreateEditEquipment({
 }: ICreateEditEquipmentProperties) {
 	const { mutate } = useEquipmentMutation(!!selectedEquipment)
 
-	const { data: units } = useUnitsQuery()
+	// const { data: units } = useUnitsQuery()
 
 	const {
 		reset,
 		register,
-		control,
 		handleSubmit,
 		formState: { isSubmitting, isValid }
 	} = useForm<IFieldValues>()
@@ -37,7 +33,7 @@ export function CreateEditEquipment({
 					active: true
 			  }
 		mutate(
-			{ ...payload },
+			{ ...payload ,unitId: import.meta.env.VITE_UNIT_ID ?? 1 },
 			{
 				onSuccess() {
 					onClose()
@@ -51,7 +47,9 @@ export function CreateEditEquipment({
 	}
 	useEffect(() => {
 		if (selectedEquipment)
-			reset({ ...selectedEquipment, unit: selectedEquipment.unit.id })
+			reset({ ...selectedEquipment, 
+				// unit: selectedEquipment.unit.id 
+			})
 	}, [selectedEquipment, reset])
 
 	return (
@@ -66,7 +64,7 @@ export function CreateEditEquipment({
 				/>
 				{selectedEquipment && (
 					<div className='flex pt-2 pb-1'>
-						<span className='font-inter text-lg   font-bold '>
+						<span className='font-inter text-lg font-bold '>
 							{selectedEquipment.name}
 						</span>
 						<div className='my-auto ml-auto'>
@@ -81,14 +79,14 @@ export function CreateEditEquipment({
 				<hr className='border-bluishgray-fauv' />
 
 				<Input label='Nome' id='name' register={register} required />
-				<Select
+				{/* <Select
 					label='Planta'
 					name='unit'
 					options={mapSelectOptions(units?.filter(unit => unit.active))}
 					control={control}
 					staticMenu
 					required
-				/>
+				/> */}
 			</div>
 		</form>
 	)

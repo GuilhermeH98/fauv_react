@@ -1,3 +1,4 @@
+import { getIsAdmin } from 'components/AuthWrapper/utils'
 import type { ReactElement } from 'react'
 import {
 	RiCarLine,
@@ -14,6 +15,7 @@ export default function SideNav(): ReactElement {
 	const navigate = useNavigate()
 	const location = useLocation()
 
+	const isAdmin = getIsAdmin()
 	function onLogout(): void {
 		localStorage.removeItem('token')
 		localStorage.removeItem('roles')
@@ -41,8 +43,7 @@ export default function SideNav(): ReactElement {
 						} `}
 					/>
 				</Link> */}
-
-				<Link to='/cars' className='mx-auto mt-auto '>
+{isAdmin && <> 	<Link to='/cars' className='mx-auto mt-auto '>
 					<RiCarLine
 						className={` text-icon  ${
 							location.pathname === '/cars'
@@ -70,7 +71,16 @@ export default function SideNav(): ReactElement {
 								: 'text-gray-fauv-3'
 						} `}
 					/>
-				</Link>
+				</Link>			<Link to='/models' className='mx-auto'>
+					<RiCarWashingLine
+						className={` text-icon  ${
+							location.pathname === '/models'
+								? 'text-blue-fauv'
+								: 'text-gray-fauv-3'
+						}`}
+					/>
+				</Link></> }
+				
 				{/* <Link to='/employees' className='mx-auto'>
 					<RiContactsLine
 						className={`text-icon ${
@@ -90,17 +100,9 @@ export default function SideNav(): ReactElement {
 					/>
 				</Link> */}
 
-				<Link to='/models' className='mx-auto'>
-					<RiCarWashingLine
-						className={` text-icon  ${
-							location.pathname === '/models'
-								? 'text-blue-fauv'
-								: 'text-gray-fauv-3'
-						}`}
-					/>
-				</Link>
 
-				<Link to='/samples' className='mx-auto'>
+
+				<Link to='/samples' className={`mx-auto ${!isAdmin ? 'mt-auto' : ""}`}>
 					<RiSearchLine
 						className={`text-icon ${
 							location.pathname === '/samples'

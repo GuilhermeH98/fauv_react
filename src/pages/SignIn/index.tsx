@@ -37,7 +37,7 @@ export default function SignIn(): ReactElement {
 		>
 			<SecondaryInput
 				type='text'
-				id='username'
+				id='vwId'
 				placeholder='ID'
 				required
 				register={register}
