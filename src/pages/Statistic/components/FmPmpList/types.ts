@@ -1,8 +1,9 @@
-import type { IDefaultFm, IDefaultPmp } from 'pages/StatisticPreview/api'
+import type { IStatisticPreview } from 'pages/StatisticPreview/api'
 
 export interface IFmPmpListProperties {
+	currentName: string
+	filterValue: string
+	isFm: boolean
 	isShowingFmList: boolean
-	toggleIsShowingFmList: () => void
-	fmNamesList: IDefaultFm[]
-	pmpNamesList: IDefaultPmp[]
+	state: IStatisticPreview | null
 }

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import FlatButton from 'components/Buttons/FlatButton'
 import OutlinedButton from 'components/Buttons/OutlinedButton'
 import Input from 'components/Inputs/Input'
 import { Query } from 'components/Query'
 import TableContent from 'components/Table/components/TableContent'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import {
 	RiArrowDownSLine,
 	RiArrowGoBackLine,
@@ -24,37 +25,155 @@ import {
 } from './utils'
 
 export function Statistic() {
-	const [isShowingFmList, toggleIsShowingFmList] = useToggle(true)
+	const [isShowingFmList, setIsShowingFmList] = useState(true)
 	const [isMenuOpen, toggleIsMenuOpen] = useToggle()
 	const [selectedGraphicType, setSelectedGraphicType] = useState<GraphicType>(
 		GraphicType.CEP_INDIVIDUAL_VALUES
 	)
-
-	const { isFmVersion, modelId, name } = useParams() as Record<string, string>
-	const isFm = Boolean(isFmVersion)
+	const navigate = useNavigate()
 
 	const { state } = useLocation()
 	const isValidState = assertLocationState(state)
 
-	const { register } = useForm()
+	if (!isValidState) {
+		navigate('/statisticPreview')
+	}
 
-	const navigate = useNavigate()
+	const { fmOrPmp, modelId, name } = useParams() as Record<string, string>
+	const isFm = fmOrPmp === 'fm'
+
+	const { register, control } = useForm<{ filter: string }>({
+		defaultValues: { filter: '' }
+	})
 
 	const query = useStatisticQuery(isFm, modelId, name)()
+
+	const filterValue = useWatch({ control, name: 'filter' })
 
 	function onGraphicTypeChange(type: GraphicType) {
 		setSelectedGraphicType(type)
 		toggleIsMenuOpen()
 	}
 
-	// TODO USE AS EVERY PART OF THE PAGE THAT CHANGE WITH PMP OR FM
+	// const statisticData = query.data
+
+	// const [ioWidth, bkWidth, akWidth] = statisticData
+	// 	? [
+	// 			(statisticData.io * 100).toString(),
+	// 			(statisticData.bk * 100).toString(),
+	// 			(statisticData.ak * 100).toString()
+	// 	  ]
+	// 	: ['0', '0', '0']
+
+	// const widthVariants = {
+	// 	'0': 'w-[0%]',
+	// 	'1': 'w-[1%]',
+	// 	'2': 'w-[2%]',
+	// 	'3': 'w-[3%]',
+	// 	'4': 'w-[4%]',
+	// 	'5': 'w-[5%]',
+	// 	'6': 'w-[6%]',
+	// 	'7': 'w-[7%]',
+	// 	'8': 'w-[8%]',
+	// 	'9': 'w-[9%]',
+	// 	'10': 'w-[10%]',
+	// 	'11': 'w-[11%]',
+	// 	'12': 'w-[12%]',
+	// 	'13': 'w-[13%]',
+	// 	'14': 'w-[14%]',
+	// 	'15': 'w-[15%]',
+	// 	'16': 'w-[16%]',
+	// 	'17': 'w-[17%]',
+	// 	'18': 'w-[18%]',
+	// 	'19': 'w-[19%]',
+	// 	'20': 'w-[20%]',
+	// 	'21': 'w-[21%]',
+	// 	'22': 'w-[22%]',
+	// 	'23': 'w-[23%]',
+	// 	'24': 'w-[24%]',
+	// 	'25': 'w-[25%]',
+	// 	'26': 'w-[26%]',
+	// 	'27': 'w-[27%]',
+	// 	'28': 'w-[28%]',
+	// 	'29': 'w-[29%]',
+	// 	'30': 'w-[30%]',
+	// 	'31': 'w-[31%]',
+	// 	'32': 'w-[32%]',
+	// 	'33': 'w-[33%]',
+	// 	'34': 'w-[34%]',
+	// 	'35': 'w-[35%]',
+	// 	'36': 'w-[36%]',
+	// 	'37': 'w-[37%]',
+	// 	'38': 'w-[38%]',
+	// 	'39': 'w-[39%]',
+	// 	'40': 'w-[40%]',
+	// 	'41': 'w-[41%]',
+	// 	'42': 'w-[42%]',
+	// 	'43': 'w-[43%]',
+	// 	'44': 'w-[44%]',
+	// 	'45': 'w-[45%]',
+	// 	'46': 'w-[46%]',
+	// 	'47': 'w-[47%]',
+	// 	'48': 'w-[48%]',
+	// 	'49': 'w-[49%]',
+	// 	'50': 'w-[50%]',
+	// 	'51': 'w-[51%]',
+	// 	'52': 'w-[52%]',
+	// 	'53': 'w-[53%]',
+	// 	'54': 'w-[54%]',
+	// 	'55': 'w-[55%]',
+	// 	'56': 'w-[56%]',
+	// 	'57': 'w-[57%]',
+	// 	'58': 'w-[58%]',
+	// 	'59': 'w-[59%]',
+	// 	'60': 'w-[60%]',
+	// 	'61': 'w-[61%]',
+	// 	'62': 'w-[62%]',
+	// 	'63': 'w-[63%]',
+	// 	'64': 'w-[64%]',
+	// 	'65': 'w-[65%]',
+	// 	'66': 'w-[66%]',
+	// 	'67': 'w-[67%]',
+	// 	'68': 'w-[68%]',
+	// 	'69': 'w-[69%]',
+	// 	'70': 'w-[70%]',
+	// 	'71': 'w-[71%]',
+	// 	'72': 'w-[72%]',
+	// 	'73': 'w-[73%]',
+	// 	'74': 'w-[74%]',
+	// 	'75': 'w-[75%]',
+	// 	'76': 'w-[76%]',
+	// 	'77': 'w-[77%]',
+	// 	'78': 'w-[78%]',
+	// 	'79': 'w-[79%]',
+	// 	'80': 'w-[80%]',
+	// 	'81': 'w-[81%]',
+	// 	'82': 'w-[82%]',
+	// 	'83': 'w-[83%]',
+	// 	'84': 'w-[84%]',
+	// 	'85': 'w-[85%]',
+	// 	'86': 'w-[86%]',
+	// 	'87': 'w-[87%]',
+	// 	'88': 'w-[88%]',
+	// 	'89': 'w-[89%]',
+	// 	'90': 'w-[90%]',
+	// 	'91': 'w-[91%]',
+	// 	'92': 'w-[92%]',
+	// 	'93': 'w-[93%]',
+	// 	'94': 'w-[94%]',
+	// 	'95': 'w-[95%]',
+	// 	'96': 'w-[96%]',
+	// 	'97': 'w-[97%]',
+	// 	'98': 'w-[98%]',
+	// 	'99': 'w-[99%]',
+	// 	'100': 'w-[100%]'
+	// }
 
 	return (
 		<Query
 			query={query}
 			render={data => (
-				<div className='relative'>
-					{/* <Query query={query} /> */}
+				<div>
 					{/* left side container */}
 					<div className='w-[calc(100%-16rem)]'>
 						{/* Graph card */}
@@ -190,13 +309,13 @@ export function Statistic() {
 										</p>
 									</div>
 									<hr className='my-auto h-18 border border-bluishgray-fauv' />
-									{/* TODO Z1 and Z2 */}
+									{/* TODO: use z1 and z2 values */}
 									<div className='mr-auto'>
 										<p className='my-3 font-lexend text-sm  font-semibold'>
-											Z1: 5,09
+											Z1: 0
 										</p>
 										<p className='mt-3 font-lexend text-sm  font-semibold'>
-											Z2: 5,09
+											Z2: 0
 										</p>
 									</div>
 								</div>
@@ -211,9 +330,9 @@ export function Statistic() {
 								<hr className='mt-2 mb-2 border-bluishgray-fauv' />
 								{/* TODO: USE API DATA FOR PERCENTAGE. PASS CONTS TO Width */}
 								<div className='mt-auto flex'>
-									<div className='h-12 w-[75%] rounded-tl-lg rounded-bl-lg bg-green-fauv' />
-									<div className='h-12 w-[20%] border-x-2  border-white bg-yellow-fauv' />
-									<div className='h-12 w-[5%] rounded-tr-lg rounded-br-lg   bg-red-fauv' />
+									<div className='h-12 w-[34%] rounded-tl-lg rounded-bl-lg bg-green-fauv' />
+									<div className='h-12 w-[34%] border-x-2  border-white bg-yellow-fauv' />
+									<div className='h-12 w-[34%] rounded-tr-lg rounded-br-lg   bg-red-fauv' />
 								</div>
 								<div className='my-auto flex justify-between'>
 									<div className='flex flex-col'>
@@ -222,7 +341,9 @@ export function Statistic() {
 											<span className='text-xl   text-green-fauv '>IO </span>
 											<span className='text-sm'>Menor ou igual 75% </span>
 										</p>
-										<p className='mx-auto font-lexend font-bold'>27 (93%)</p>
+										<p className='mx-auto font-lexend font-bold'>
+											{`${data.totalIo} (${data.io * 100}%)`}
+										</p>
 									</div>
 									<div className='flex flex-col'>
 										<p className='font-lg text-center font-lexend '>
@@ -230,20 +351,23 @@ export function Statistic() {
 											<span className='text-xl   text-yellow-fauv '>BK </span>
 											<span className='text-sm'>Maior 75 % e menor 100%</span>
 										</p>
-										<p className='mx-auto font-lexend  font-bold'>2 (5%) </p>
+										<p className='mx-auto font-lexend  font-bold'>
+											{`${data.totalBk} (${data.bk * 100}%)`}
+										</p>
 									</div>
 									<div className='flex flex-col'>
 										<p className='font-lg text-center font-lexend'>
 											{/* TODO: Use API percentage for text */}
-											<span className='text-xl   text-red-fauv '>AK </span>
+											<span className='text-xl   text-red-fauv '>AK</span>
 											<span className='text-sm'>Maior 100%</span>
 										</p>
-										<p className='mx-auto font-lexend font-bold'>1 (2%) </p>
+										<p className='mx-auto font-lexend font-bold'>
+											{`${data.totalAk} (${data.ak * 100}%)`}
+										</p>
 									</div>
 								</div>
 							</div>
-							{/* TODO: USE GRID TO REMOVE UNNECESSARY CONDITIONAL */}
-							{/* Card Photo */}
+							{/* TODO: use grid to remove unnecessary conditional */}
 							{isFm ? (
 								<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
 									<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
@@ -329,40 +453,47 @@ export function Statistic() {
 					</div>
 
 					{/* Right Side Bar */}
-					<div className='absolute top-0 bottom-0 right-0 flex w-60 flex-col gap-4'>
-						<div className='flex h-10'>
-							<button
-								// onClick={() => onChangePmpFm('PMP')}
-								className={`h-10 flex-1 rounded-tl-lg rounded-bl-lg font-bold ${
-									isShowingFmList ? 'bg-white' : 'bg-blue-fauv text-white'
-								}`}
-								type='button'
-							>
-								PMP
-							</button>
-							<button
-								// onClick={() => onChangePmpFm('FM')}
-								className={`h-10 flex-1 rounded-tr-lg rounded-br-lg font-bold  ${
-									isShowingFmList ? 'bg-blue-fauv text-white' : 'bg-white'
-								}`}
-								type='button'
-							>
-								FM
-							</button>
+					<div className='fixed top-16 bottom-0 right-8 w-60 py-4 pdf-screen:right-4'>
+						<div className='flex h-full flex-col gap-4 '>
+							<div className='flex h-10'>
+								<button
+									onClick={() => setIsShowingFmList(false)}
+									className={`h-10 flex-1 rounded-tl-lg rounded-bl-lg font-bold  ${
+										isShowingFmList
+											? 'bg-white text-blue-fauv'
+											: 'bg-blue-fauv text-white'
+									}`}
+									type='button'
+								>
+									PMP
+								</button>
+								<button
+									onClick={() => setIsShowingFmList(true)}
+									className={`h-10 flex-1 rounded-tr-lg rounded-br-lg font-bold  ${
+										isShowingFmList
+											? 'bg-blue-fauv text-white'
+											: 'bg-white text-blue-fauv'
+									}`}
+									type='button'
+								>
+									FM
+								</button>
+							</div>
+							<Input
+								id='filter'
+								register={register}
+								placeholder='Buscar...'
+								searchIcon
+								roundedClassName='rounded-lg'
+							/>
+							<FmPmpList
+								isShowingFmList={isShowingFmList}
+								isFm={isFm}
+								filterValue={filterValue}
+								currentName={name}
+								state={isValidState ? state : null}
+							/>
 						</div>
-						<Input
-							id='filter'
-							register={register}
-							placeholder='Buscar...'
-							searchIcon
-							roundedClassName='rounded-lg'
-						/>
-						<FmPmpList
-							isShowingFmList={isShowingFmList}
-							toggleIsShowingFmList={toggleIsShowingFmList}
-							fmNamesList={isValidState ? state.defaultFmNames : []}
-							pmpNamesList={isValidState ? state.defaultPmpNames : []}
-						/>
 					</div>
 				</div>
 			)}

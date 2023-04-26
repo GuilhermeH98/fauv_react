@@ -142,7 +142,7 @@ export default function App(): ReactElement {
 														}
 													/>
 													<Route
-														path='/statistic/:isFmVersion/:modelId/:name'
+														path='/statistic/:fmOrPmp/:modelId/:name'
 														element={
 															<AuthWrapper authenticated>
 																<Statistic />

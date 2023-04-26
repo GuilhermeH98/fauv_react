@@ -52,10 +52,13 @@ const CepIndividualValuesGraphic = GraphicValues.extend({
 	negativeZoneC: z.number()
 })
 
-// TODO add Z1 and Z2
+// TODO: add z1,z2 and isProcessCapable
 export const Statistic = z.object({
 	name: z.string(),
 	catalogType: z.nativeEnum(CatalogType),
+	io: z.number(),
+	bk: z.number(),
+	ak: z.number(),
 	totalIo: z.number(),
 	totalBk: z.number(),
 	totalAk: z.number(),
@@ -63,8 +66,6 @@ export const Statistic = z.object({
 	cpk: z.number(),
 	pp: z.number(),
 	ppk: z.number(),
-	// z1: z.number(),
-	// z2: z.number(),
 	standardDeviation: z.number(),
 	sigmaLevel: z.number(),
 	average: z.number(),
@@ -78,32 +79,6 @@ export const Statistic = z.object({
 })
 export type IStatistic = z.infer<typeof Statistic>
 
-// TODO: VERIFY IF STATISTIC NEED TWO SEPARATE INTERFACE FOR PMP AND FM GRAPHIC
-export const PmpStatistic = z.object({
-	name: z.string(),
-	catalogType: z.nativeEnum(CatalogType),
-	totalIo: z.number(),
-	totalBk: z.number(),
-	totalAk: z.number(),
-	cp: z.number(),
-	cpk: z.number(),
-	pp: z.number(),
-	ppk: z.number(),
-	z1: z.number(),
-	z2: z.number(),
-	standardDeviation: z.number(),
-	sigmaLevel: z.number(),
-	average: z.number(),
-	nominalDistribution: z.number(),
-	mappedPmpList: z.array(z.string()),
-	impactList: z.array(FmImpact),
-	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
-	cepMovelAmplitudeGraphic: GraphicValues,
-	individualValuesGraphic: GraphicValues,
-	movelAmplitudeGraphic: GraphicValues
-})
-export type IPmpStatistic = z.infer<typeof PmpStatistic>
-
 export function useStatisticQuery(
 	isFm: boolean,
 	modelId: string,
@@ -113,5 +88,5 @@ export function useStatisticQuery(
 		isFm ? 'fm' : 'pmp'
 	}/${modelId}/${name}`
 
-	return makeQuery(queryWithParameters, isFm ? Statistic : PmpStatistic)
+	return makeQuery(queryWithParameters, Statistic)
 }

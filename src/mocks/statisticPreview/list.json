@@ -19,6 +19,46 @@
 				"name": "FM2",
 				"level": "CRITICAL",
 				"axis": "Y"
+			},
+			{
+				"name": "FM3",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM4",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM5",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM6",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM7",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM8",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM9",
+				"level": "MEDIUM",
+				"axis": "X"
+			},
+			{
+				"name": "FM10",
+				"level": "MEDIUM",
+				"axis": "X"
 			}
 		],
 		"defaultPmpNames": [

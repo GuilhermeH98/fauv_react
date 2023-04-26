@@ -60,6 +60,9 @@ const config = {
 			backgroundImage: {
 				'page-top':
 					'linear-gradient(180deg, #FFFFFF 76.25%, rgba(250, 250, 250, 0.18) 100%)'
+			},
+			screens: {
+				'pdf-screen': { raw: '(min-height: 941px)' }
 			}
 		}
 	},

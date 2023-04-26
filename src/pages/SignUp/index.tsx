@@ -6,33 +6,24 @@ import { AuthenticationLayout } from 'layouts/Authentication'
 import { ROLES_OPTIONS } from 'pages/Users/api'
 import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import RequestSuccess from './RequestSuccess'
 import type { IRegisterPayload } from './api'
 import { useRegisterMutation } from './api'
-import RequestSuccess from './RequestSuccess'
 
 export default function SignUp(): ReactElement {
 	const { mutate, isSuccess } = useRegisterMutation()
-	const navigate = useNavigate()
 
 	const { register, control, handleSubmit } = useForm<IRegisterPayload>()
 
 	function onSubmit(data: IRegisterPayload): void {
-		if (isSuccess) {
-			navigate('/')
-		} else {
-			mutate(
-				{ ...data },
-				{
-					onError() {
-						createSnackbar(
-							'error',
-							'Erro ao fazer login! Verifique suas informações.'
-						)
-					}
-				}
-			)
-		}
+		mutate(data, {
+			onError() {
+				createSnackbar(
+					'error',
+					'Erro ao fazer login! Verifique suas informações.'
+				)
+			}
+		})
 	}
 
 	return (

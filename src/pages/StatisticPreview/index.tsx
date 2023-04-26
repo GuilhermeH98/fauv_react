@@ -11,9 +11,16 @@ export function StatisticPreview() {
 
 	function onCardClick(statisticPreview: IStatisticPreview) {
 		if (statisticPreview.numberOfSamples > 1) {
-			navigate('/statistic/true/1/name', {
-				state: statisticPreview
-			})
+			if (statisticPreview.defaultFmNames.length > 0) {
+				navigate(
+					`/statistic/fm/${statisticPreview.modelId}/${statisticPreview.defaultFmNames[0].name}`,
+					{
+						state: statisticPreview
+					}
+				)
+			} else {
+				createSnackbar('error', 'Nenhuma FM encontrada para essa estatística.')
+			}
 		} else {
 			createSnackbar(
 				'warning',
