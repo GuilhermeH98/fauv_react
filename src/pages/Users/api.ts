@@ -12,18 +12,18 @@ export const ROLES_OPTIONS: ISelectOption[] = [
 ]
 
 export const User = z.object({
-	id: z.number(),
 	vwId: z.string(),
-	roles: z.array(Role).min(1),
+	roles: z.array(Role),
 	active: z.boolean()
 })
 export type IUser = z.infer<typeof User>
 
 export const UserPayload = z.object({
-	id: z.number().optional(),
 	vwId: z.string(),
-	roles: z.array(z.string()).min(1),
-	active: z.boolean()
+	roles: z.array(Role.pick({name: true})),
+	active: z.boolean(),
+	password: z.string(),
+	passwordConfirmation: z.string()
 })
 
 export const useUsersQuery = makeQuery(USERS_URL, z.array(User))

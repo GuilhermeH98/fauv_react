@@ -24,16 +24,13 @@ export function CreateEditUser({
 
 	function onCreateEditUser(values: IFieldValues) {
 		const payload = selectedUser
-			? {
-					...values,
-					id: selectedUser.id
-			  }
+			? values
 			: {
 					...values,
 					active: true
 			  }
 		mutate(
-			{ ...payload },
+		{...payload, roles: payload.roles.map(role => ({name: role})), password: "123", passwordConfirmation: "123"},
 			{
 				onSuccess() {
 					onClose()
@@ -57,7 +54,7 @@ export function CreateEditUser({
 
 	return (
 		<form onSubmit={handleSubmit(onCreateEditUser)}>
-			<div className='flex h-80 flex-col gap-4'>
+			<div className={`flex ${!selectedUser ? 'h-60': 'h-50'} flex-col gap-4`}>
 				<DialogHeader
 					title={selectedUser ? 'Detalhes do Usuário' : 'Novo Usuário'}
 					isFormDialog
@@ -74,8 +71,7 @@ export function CreateEditUser({
 					</div>
 				)}
 				<hr className='border-bluishgray-fauv' />
-				<Input label='VW ID' id='vwId' register={register} required />
-
+				{!selectedUser && <Input label='VW ID' id='vwId' register={register} required />}
 				<Multiselect
 					control={control}
 					label='Papeis'
