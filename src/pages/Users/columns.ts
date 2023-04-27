@@ -5,7 +5,7 @@ import { getRolesText } from './utils'
 export const columns: IColumnDefinitionType<IUser, keyof IUser>[] = [
 	{
 		key: 'vwId',
-		header: 'VW ID'
+		header: 'ID'
 	},
 	{
 		key: 'roles',

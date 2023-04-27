@@ -24,6 +24,10 @@ export function AuthWrapper({
 		return null
 	}
 
+	if (authenticated && !isSignedIn && IS_API) {
+		return <Navigate to='/' replace />
+	}
+
 	if (isSignedIn) {
 		if (!authenticated || (!isAdmin && restricted)) {
 			return <Navigate to='/home' replace />

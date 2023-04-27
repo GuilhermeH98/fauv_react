@@ -19,8 +19,8 @@ export function CreateEditUser({
 		register,
 		control,
 		handleSubmit,
-		formState: { isSubmitting, isValid }
-	} = useForm<IFieldValues>()
+		formState: { isSubmitting, isValid, errors }
+	} = useForm<IFieldValues>({ mode: 'all' })
 
 	function onCreateEditUser(values: IFieldValues) {
 		const payload = selectedUser
@@ -30,7 +30,12 @@ export function CreateEditUser({
 					active: true
 			  }
 		mutate(
-		{...payload, roles: payload.roles.map(role => ({name: role})), password: "123", passwordConfirmation: "123"},
+			{
+				...payload,
+				roles: payload.roles.map(role => ({ name: role })),
+				password: '123',
+				passwordConfirmation: '123'
+			},
 			{
 				onSuccess() {
 					onClose()
@@ -54,7 +59,7 @@ export function CreateEditUser({
 
 	return (
 		<form onSubmit={handleSubmit(onCreateEditUser)}>
-			<div className={`flex ${!selectedUser ? 'h-60': 'h-50'} flex-col gap-4`}>
+			<div className='flex h-fit flex-col gap-4'>
 				<DialogHeader
 					title={selectedUser ? 'Detalhes do Usuário' : 'Novo Usuário'}
 					isFormDialog
@@ -62,7 +67,7 @@ export function CreateEditUser({
 				/>
 				{selectedUser && (
 					<div className='flex pt-2 pb-1'>
-						<span className='font-inter text-lg   font-bold '>
+						<span className='font-inter text-lg font-bold '>
 							{selectedUser.vwId}
 						</span>
 						<div className='my-auto ml-auto'>
@@ -71,7 +76,9 @@ export function CreateEditUser({
 					</div>
 				)}
 				<hr className='border-bluishgray-fauv' />
-				{!selectedUser && <Input label='VW ID' id='vwId' register={register} required />}
+				{!selectedUser && (
+					<Input label='ID' id='vwId' register={register} required />
+				)}
 				<Multiselect
 					control={control}
 					label='Papeis'
@@ -86,6 +93,11 @@ export function CreateEditUser({
 								: true
 					}}
 				/>
+				{errors.roles && (
+					<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+						{errors.roles.message}
+					</p>
+				)}
 			</div>
 		</form>
 	)
