@@ -10,6 +10,7 @@ import { CreateEditModel } from 'pages/Models/CreateEditModel'
 import { Samples } from 'pages/Samples'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
+import RequestSuccess from 'pages/SignUp/RequestSuccess'
 import { Statistic } from 'pages/Statistic'
 import { StatisticManagement } from 'pages/StatisticManagement'
 import { StatisticPreview } from 'pages/StatisticPreview'
@@ -40,6 +41,15 @@ export default function App(): ReactElement {
 							element={
 								<AuthWrapper>
 									<SignUp />
+								</AuthWrapper>
+							}
+						/>
+
+						<Route
+							path='/signup/success'
+							element={
+								<AuthWrapper>
+									<RequestSuccess />
 								</AuthWrapper>
 							}
 						/>

@@ -330,9 +330,9 @@ export function Statistic() {
 								<hr className='mt-2 mb-2 border-bluishgray-fauv' />
 								{/* TODO: USE API DATA FOR PERCENTAGE. PASS CONTS TO Width */}
 								<div className='mt-auto flex'>
-									<div className='h-12 w-[34%] rounded-tl-lg rounded-bl-lg bg-green-fauv' />
-									<div className='h-12 w-[34%] border-x-2  border-white bg-yellow-fauv' />
-									<div className='h-12 w-[34%] rounded-tr-lg rounded-br-lg   bg-red-fauv' />
+									<div className='h-12 w-[70%] rounded-tl-lg rounded-bl-lg bg-green-fauv' />
+									<div className='h-12 w-[25%] border-x-2  border-white bg-yellow-fauv' />
+									<div className='h-12 w-[5%] rounded-tr-lg rounded-br-lg   bg-red-fauv' />
 								</div>
 								<div className='my-auto flex justify-between'>
 									<div className='flex flex-col'>
@@ -388,9 +388,13 @@ export function Statistic() {
 								</div>
 							) : (
 								<div className='w-1/2 overflow-auto rounded-lg bg-white p-4 '>
+									<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
+										Lista FM
+									</h3>
+									<hr className='mt-2 mb-4 border-bluishgray-fauv' />
 									<TableContent
 										blueHeader
-										className='max-h-[18rem]'
+										className='h-fit max-h-[16.25rem]'
 										data={[
 											{ name: 'FM_001', axis: 'X', catalog: 'GEO' },
 											{ name: 'FM_001', axis: 'Y', catalog: 'GEO' },

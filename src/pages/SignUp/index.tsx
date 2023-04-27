@@ -6,17 +6,27 @@ import { AuthenticationLayout } from 'layouts/Authentication'
 import { ROLES_OPTIONS } from 'pages/Users/api'
 import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
-import RequestSuccess from './RequestSuccess'
+import { useNavigate } from 'react-router-dom'
 import type { IRegisterPayload } from './api'
 import { useRegisterMutation } from './api'
 
 export default function SignUp(): ReactElement {
-	const { mutate, isSuccess } = useRegisterMutation()
+	const { mutate } = useRegisterMutation()
 
-	const { register, control, handleSubmit } = useForm<IRegisterPayload>()
+	const navigate = useNavigate()
+
+	const {
+		register,
+		control,
+		handleSubmit,
+		formState: { errors }
+	} = useForm<IRegisterPayload>()
 
 	function onSubmit(data: IRegisterPayload): void {
 		mutate(data, {
+			onSuccess() {
+				navigate('/signup/success')
+			},
 			onError() {
 				createSnackbar(
 					'error',
@@ -28,51 +38,50 @@ export default function SignUp(): ReactElement {
 
 	return (
 		<AuthenticationLayout
-			subtitle={!isSuccess ? 'Informe seus dados' : ''}
+			subtitle='Informe seus dados'
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			{!isSuccess ? (
-				<>
-					<SecondaryInput
-						type='text'
-						id='vwId'
-						placeholder='ID'
-						required
-						register={register}
-					/>
-					<SecondaryInput
-						type='password'
-						id='password'
-						placeholder='Senha'
-						required
-						register={register}
-					/>
-					<SecondaryInput
-						type='password'
-						id='passwordConfirmation'
-						placeholder='Repetir senha'
-						required
-						register={register}
-					/>
-					<SecondaryMultiselect
-						className=' w-72 '
-						control={control}
-						name='roles'
-						options={ROLES_OPTIONS}
-						staticMenu
-						required
-						rules={{
-							validate: (value: string[]) =>
-								value.includes('administrator') && value.includes('consultant')
-									? "Não pode ser 'Administrador' e 'Consultor' ao mesmo tempo"
-									: true
-						}}
-					/>
-					<SecondaryButton>Solicitar Cadastro</SecondaryButton>
-				</>
-			) : (
-				<RequestSuccess />
+			<SecondaryInput
+				type='text'
+				id='vwId'
+				placeholder='ID'
+				required
+				register={register}
+			/>
+			<SecondaryInput
+				type='password'
+				id='password'
+				placeholder='Senha'
+				required
+				register={register}
+			/>
+			<SecondaryInput
+				type='password'
+				id='passwordConfirmation'
+				placeholder='Repetir senha'
+				required
+				register={register}
+			/>
+			<SecondaryMultiselect
+				className=' w-72 '
+				control={control}
+				name='roles'
+				options={ROLES_OPTIONS}
+				staticMenu
+				required
+				rules={{
+					validate: (value: string[]) =>
+						value.includes('administrator') && value.includes('consultant')
+							? "Não pode ser 'Administrador' e 'Consultor' ao mesmo tempo"
+							: true
+				}}
+			/>
+			{errors.roles && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					{errors.roles.message}
+				</p>
 			)}
+			<SecondaryButton>Solicitar Cadastro</SecondaryButton>
 		</AuthenticationLayout>
 	)
 }
