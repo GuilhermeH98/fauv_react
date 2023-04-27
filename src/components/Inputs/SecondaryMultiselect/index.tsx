@@ -54,6 +54,13 @@ export function SecondaryMultiselect<
 						isLoading={false}
 						isRtl={false}
 						closeMenuOnSelect={false}
+						theme={theme => ({
+							...theme,
+							colors: {
+								...theme.colors,
+								neutral50: '#CDDDE8'
+							}
+						})}
 						placeholder={placeholder}
 						styles={{
 							control: baseStyles => ({

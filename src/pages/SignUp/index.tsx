@@ -23,6 +23,11 @@ export default function SignUp(): ReactElement {
 	} = useForm<IRegisterPayload>()
 
 	function onSubmit(data: IRegisterPayload): void {
+		if (data.password !== data.passwordConfirmation) {
+			createSnackbar('error', 'As senhas não coincidem!')
+			return
+		}
+
 		mutate(data, {
 			onSuccess() {
 				navigate('/signup/success')
@@ -65,6 +70,7 @@ export default function SignUp(): ReactElement {
 			<SecondaryMultiselect
 				className=' w-72 '
 				control={control}
+				placeholder='Selecione os papéis'
 				name='roles'
 				options={ROLES_OPTIONS}
 				staticMenu
