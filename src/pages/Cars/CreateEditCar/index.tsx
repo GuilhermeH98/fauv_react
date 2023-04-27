@@ -25,9 +25,11 @@ export function CreateEditCar({
 	function onCreateEditCar(values: IFieldValues) {
 		const payload = selectedCar
 			? { id: selectedCar.id, ...values }
-			: { ...values,active: true }
+			: { ...values, active: true }
+
+		const unitId = import.meta.env.VITE_UNIT_ID ?? 1
 		mutate(
-			{ ...payload, unitId: import.meta.env.VITE_UNIT_ID ?? 1 },
+			{ ...payload, unitId: Number(unitId) },
 			{
 				onSuccess() {
 					onClose()
@@ -40,10 +42,11 @@ export function CreateEditCar({
 		)
 	}
 	useEffect(() => {
-		if (selectedCar) reset({ ...selectedCar, 
-			// unit: selectedCar.unit.id
-		 }
-			)
+		if (selectedCar)
+			reset({
+				...selectedCar
+				// unit: selectedCar.unit.id
+			})
 	}, [selectedCar, reset])
 
 	return (

@@ -32,8 +32,10 @@ export function CreateEditEquipment({
 					...values,
 					active: true
 			  }
+		const unitId = import.meta.env.VITE_UNIT_ID ?? 1
+
 		mutate(
-			{ ...payload ,unitId: import.meta.env.VITE_UNIT_ID ?? 1 },
+			{ ...payload, unitId: Number(unitId) },
 			{
 				onSuccess() {
 					onClose()
@@ -47,8 +49,9 @@ export function CreateEditEquipment({
 	}
 	useEffect(() => {
 		if (selectedEquipment)
-			reset({ ...selectedEquipment, 
-				// unit: selectedEquipment.unit.id 
+			reset({
+				...selectedEquipment
+				// unit: selectedEquipment.unit.id
 			})
 	}, [selectedEquipment, reset])
 
