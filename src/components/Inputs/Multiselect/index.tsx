@@ -62,7 +62,7 @@ export function Multiselect<TFieldValues extends FieldValues, TContext>({
 								position: staticMenu ? 'static' : 'absolute'
 							})
 						}}
-						className={`${className}`}
+						className={`${className} dark:text-black`}
 					/>
 				)}
 			/>

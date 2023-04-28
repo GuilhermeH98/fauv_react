@@ -69,7 +69,7 @@ export function Select<TFieldValues extends FieldValues, TContext>({
 								}
 							})
 						}}
-						className={`${className}`}
+						className={`${className} dark:text-black`}
 					/>
 				)}
 			/>

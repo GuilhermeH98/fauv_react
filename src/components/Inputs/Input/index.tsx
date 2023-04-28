@@ -36,7 +36,7 @@ export default function Input<TFieldValues extends FieldValues>({
 					required,
 					...rules
 				})}
-				className={`h-10  border border-bluishgray-fauv  focus:border-blue-fauv 
+				className={`h-10  border border-bluishgray-fauv  focus:border-blue-fauv dark:text-black 
 				${roundedClassName} ${widthClassName} ${searchIcon ? 'pr-10' : ''} ${
 					disabled ? 'bg-[#F2F2F2]' : ''
 				}`}

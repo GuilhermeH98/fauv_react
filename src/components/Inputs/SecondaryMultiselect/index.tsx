@@ -74,7 +74,7 @@ export function SecondaryMultiselect<
 								position: staticMenu ? 'static' : 'absolute'
 							})
 						}}
-						className={`${className}`}
+						className={`${className} dark:text-black`}
 					/>
 				)}
 			/>
