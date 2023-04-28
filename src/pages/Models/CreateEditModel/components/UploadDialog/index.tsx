@@ -99,7 +99,7 @@ export function UploadDialog({
 							size={60}
 							className='mx-auto mt-auto text-blue-fauv'
 						/>
-						<p className='mx-auto mt-8 font-inter  font-semibold'>
+						<p className='mx-auto mt-8 font-inter  font-semibold dark:text-black'>
 							Faça o upload de um arquivo DMO
 						</p>
 						<input
@@ -130,7 +130,7 @@ export function UploadDialog({
 							size={60}
 							className='mx-auto mt-auto text-blue-fauv'
 						/>
-						<p className='mx-auto mt-8 font-inter  font-semibold'>
+						<p className='mx-auto mt-8 font-inter  font-semibold dark:text-black'>
 							Faça o upload de um arquivo CSV
 						</p>
 
