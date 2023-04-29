@@ -116,6 +116,7 @@ export function makeMutation<
 				return response
 			},
 			{
+				networkMode: 'always',
 				onSuccess() {
 					void queryClient.invalidateQueries([queryKey ?? url])
 				}
@@ -149,7 +150,8 @@ export function makeQuery<
 			async () =>
 				schema.parse(await get(appendURLParameters(url, parameters))) as TData,
 			{
-				enabled
+				enabled,
+				networkMode: 'always'
 			}
 		)
 }

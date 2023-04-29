@@ -59,7 +59,7 @@ export function CreateEditPmp({
 				/>
 				{selectedPmp && (
 					<div className='flex pt-2 pb-1'>
-						<span className='font-inter text-lg font-bold '>
+						<span className='font-inter text-lg font-bold dark:text-black'>
 							{selectedPmp.name}
 						</span>
 						<div className='my-auto ml-auto'>
@@ -78,7 +78,7 @@ export function CreateEditPmp({
 				</div>
 				<Division />
 				<div className='flex'>
-					<p className='pt-2 font-inter text-base font-semibold  leading-[160%] text-black-fauv-3'>
+					<p className='pt-2 font-inter text-base font-semibold leading-[160%] text-black-fauv-3'>
 						Coordenadas Eixo Nominal
 					</p>
 					<OutlinedButton

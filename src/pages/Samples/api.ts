@@ -52,24 +52,30 @@ export type ISample = z.infer<typeof Sample>
 export const useSamplesQuery = makeQuery(SAMPLES_URL, z.array(Sample))
 
 export const useSendFileMutation = () =>
-	useMutation(async (files: IFileUpload) => {
-		const headers: Record<string, string> = {
-			'Content-Type': 'multipart/form-data'
-		}
+	useMutation(
+		async (files: IFileUpload) => {
+			const headers: Record<string, string> = {
+				'Content-Type': 'multipart/form-data'
+			}
 
-		const formData = new FormData()
-		formData.append('dmoFile', new Blob([files.dmoFile]))
+			const formData = new FormData()
+			formData.append('dmoFile', new Blob([files.dmoFile]))
 
-		const token = localStorage.getItem('token')
-		if (token) {
-			headers.Authorization = `${token}`
-		}
+			const token = localStorage.getItem('token')
+			if (token) {
+				headers.Authorization = `${token}`
+			}
 
-		const response = await fetch(`/${SAMPLES_URL}`, {
-			method: 'POST',
-			body: formData,
-			headers
-		})
+			const response = await fetch(
+				`${import.meta.env.VITE_MSW ? '/' : ''}${SAMPLES_URL}`,
+				{
+					method: 'POST',
+					body: formData,
+					headers
+				}
+			)
 
-		return response.json()
-	})
+			return response.json()
+		},
+		{ networkMode: 'always' }
+	)

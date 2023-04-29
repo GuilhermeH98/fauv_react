@@ -1,5 +1,5 @@
 import type { IGraphicDetail } from 'pages/Statistic/api'
-import { formatDateMonth, truncate } from 'utils/format'
+import { formatDateMonth, formatNumber } from 'utils/format'
 import {
 	VictoryAxis,
 	VictoryChart,
@@ -10,11 +10,14 @@ import {
 	VictoryVoronoiContainer
 } from 'victory'
 import type { IGraphProperties } from './types'
-import { getCriteriaLabelList, getGraphSmallestValue } from './utils'
+import {
+	getCriteriaLabelList,
+	getGraphSmallestValue,
+	removeZeros,
+	smallestValue
+} from './utils'
 
 export function Graph({ data }: IGraphProperties) {
-	// TODO FIX NUMBER DECIMALS
-	// TODO TOOLTIP TEXT WRAP
 	const {
 		positiveZoneA,
 		positiveZoneB,
@@ -28,10 +31,32 @@ export function Graph({ data }: IGraphProperties) {
 		mediumLine
 	} = data
 
+	// when value is exact 0 victory chart throws error on VictoryLine component
+	const [
+		positiveZoneAValue,
+		positiveZoneBValue,
+		posttiveZoneCValue,
+		negativeZoneAValue,
+		negativeZoneBValue,
+		negativeZoneCValue,
+		higherToleranceValue,
+		lowerToleranceValue,
+		mediumLineValue
+	] = removeZeros([
+		positiveZoneA,
+		positiveZoneB,
+		posttiveZoneC,
+		negativeZoneA,
+		negativeZoneB,
+		negativeZoneC,
+		higherTolerance,
+		lowerTolerance,
+		mediumLine
+	])
+
 	const detailsList = detailedFmGraphicsList.map(detail => ({
 		...detail,
-		updatedDate: formatDateMonth(detail.updatedDate),
-		value: truncate(detail.value)
+		updatedDate: formatDateMonth(detail.updatedDate)
 	}))
 
 	return (
@@ -48,7 +73,7 @@ export function Graph({ data }: IGraphProperties) {
 					tickLabels: { fill: '#615E83', fontSize: 12 },
 					axis: { stroke: 'transparent' }
 				}}
-				axisValue={getGraphSmallestValue(detailsList, lowerTolerance)}
+				axisValue={getGraphSmallestValue(detailsList, lowerToleranceValue)}
 			/>
 			{/* Y AXIS - VALUE */}
 			<VictoryAxis
@@ -76,10 +101,10 @@ export function Graph({ data }: IGraphProperties) {
 						strokeWidth: 1
 					}
 				}}
-				y={() => mediumLine}
+				y={() => mediumLineValue}
 			/>
 			{/* ZONES */}
-			{positiveZoneA && (
+			{positiveZoneAValue && positiveZoneAValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -87,11 +112,11 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => positiveZoneA}
+					y={() => positiveZoneAValue}
 				/>
 			)}
 
-			{positiveZoneB && (
+			{positiveZoneBValue && positiveZoneBValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -99,11 +124,11 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => positiveZoneB}
+					y={() => positiveZoneBValue}
 				/>
 			)}
 
-			{posttiveZoneC && (
+			{posttiveZoneCValue && posttiveZoneCValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -111,11 +136,11 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => posttiveZoneC}
+					y={() => posttiveZoneCValue}
 				/>
 			)}
 
-			{negativeZoneA && (
+			{negativeZoneAValue && negativeZoneAValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -123,11 +148,11 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => negativeZoneA}
+					y={() => negativeZoneAValue}
 				/>
 			)}
 
-			{negativeZoneB && (
+			{negativeZoneBValue && negativeZoneBValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -135,11 +160,11 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => negativeZoneB}
+					y={() => negativeZoneBValue}
 				/>
 			)}
 
-			{negativeZoneC && (
+			{negativeZoneCValue && negativeZoneCValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -147,7 +172,7 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => negativeZoneC}
+					y={() => negativeZoneCValue}
 				/>
 			)}
 
@@ -159,7 +184,7 @@ export function Graph({ data }: IGraphProperties) {
 						strokeWidth: 1.2
 					}
 				}}
-				y={() => higherTolerance}
+				y={() => higherToleranceValue}
 			/>
 			<VictoryLine
 				style={{
@@ -168,7 +193,7 @@ export function Graph({ data }: IGraphProperties) {
 						strokeWidth: 1.2
 					}
 				}}
-				y={() => lowerTolerance}
+				y={() => lowerToleranceValue}
 			/>
 
 			{/* GRAPH DATA */}
@@ -184,9 +209,9 @@ export function Graph({ data }: IGraphProperties) {
 			<VictoryScatter
 				data={detailsList}
 				labels={({ datum }) =>
-					`\u00A0Valor do Scan: ${
+					`\u00A0Valor do Scan: ${formatNumber(
 						(datum as IGraphicDetail).value
-					} \n\u00A0Data: ${
+					)} \n\u00A0Data: ${
 						(datum as IGraphicDetail).updatedDate
 					} \n\u00A0Status: ${
 						(datum as IGraphicDetail).statisticCriteriaList.length === 0

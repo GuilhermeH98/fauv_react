@@ -5,17 +5,25 @@
 	"totalBk": 4,
 	"totalAk": 1,
 	"io": 0.7,
-	"bk": 0.25,
-	"ak": 0.05,
-	"cp": 11.196067415730509,
-	"cpk": 1.2589472590242383,
-	"pp": 2.1111175757205145,
-	"ppk": 1.924107743804608,
-	"standardDeviation": 0.2368413800114152,
-	"sigmaLevel": 3.7768417770727147,
-	"average": -0.13287499999999852,
+	"bk": 0.2,
+	"ak": 0.1,
+	"z1": 0.5,
+	"z2": 0.8,
+	"cp": 11.19,
+	"cpk": 1.25,
+	"pp": 2.15,
+	"ppk": 1.92,
+	"standardDeviation": 0.23,
+	"sigmaLevel": 3.77,
+	"average": -0.13,
 	"nominalDistribution": 0,
-	"mappedPmpList": ["PMP_01", "PMP_02", "PMP_03", "PMP_04"],
+	"mappedPmpList": ["PMP1", "PMP2", "PMP3", "PMP4"],
+	"mappedFmList": [
+		{ "name": "FM1", "axis": "X", "catalogType": "GRUNDGEOMETRIE" },
+		{ "name": "FM2", "axis": "Y", "catalogType": "GRUNDGEOMETRIE" },
+		{ "name": "FM3", "axis": "X", "catalogType": "GRUNDGEOMETRIE" },
+		{ "name": "FM4", "axis": "X", "catalogType": "GRUNDGEOMETRIE" }
+	],
 	"impactList": [
 		{ "info": "Falha no carro" },
 		{ "info": "Falha na lateral" },
@@ -23,57 +31,57 @@
 	],
 	"cepIndividualValuesGraphic": {
 		"graphicType": "CEP_INDIVIDUAL_VALUES",
-		"higherTolerance": 0.0011006134276676516,
-		"lowerTolerance": -0.2668506134276647,
-		"mediumLine": -0.13287499999999852,
+		"higherTolerance": 0.01,
+		"lowerTolerance": -0.26,
+		"mediumLine": -0.13,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
 				"pin": "70344264",
 				"updatedDate": "2023-04-05T20:26:52.766",
-				"value": -0.6599999999999682,
+				"value": -0.65,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 31,
 				"pin": "70347074",
 				"updatedDate": "2023-04-06T20:26:37.07",
-				"value": -0.22000000000002728,
+				"value": -0.22,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 30,
 				"pin": "70403299",
 				"updatedDate": "2023-04-07T20:26:06.881",
-				"value": -0.18700000000001182,
+				"value": -0.19,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 29,
 				"pin": "70428407",
 				"updatedDate": "2023-04-08T20:25:54.864",
-				"value": 0.047000000000025466,
+				"value": 0.05,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 28,
 				"pin": "70517323",
 				"updatedDate": "2023-04-09T20:25:36.149",
-				"value": 0.07600000000002183,
+				"value": 0.076,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 27,
 				"pin": "70545562",
 				"updatedDate": "2023-04-10T20:25:22.073",
-				"value": -0.01700000000005275,
+				"value": -0.01,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 26,
 				"pin": "70616385",
 				"updatedDate": "2023-04-11T20:25:04.485",
-				"value": -0.02400000000000091,
+				"value": -0.02,
 				"statisticCriteriaList": [
 					"TWO_OUT_OF_THREE_CONSECUTIVE_POINTS_IN_ZONE_A"
 				]
@@ -82,22 +90,22 @@
 				"sampleId": 25,
 				"pin": "70631326",
 				"updatedDate": "2023-04-12T20:22:49.289",
-				"value": -0.07799999999997453,
+				"value": -0.0,
 				"statisticCriteriaList": []
 			}
 		],
-		"positiveZoneA": 0.0011006134276676516,
-		"positiveZoneB": -0.04355792438155441,
-		"posttiveZoneC": -0.08821646219077647,
-		"negativeZoneA": -0.2668506134276647,
-		"negativeZoneB": -0.22219207561844262,
-		"negativeZoneC": -0.17753353780922057
+		"positiveZoneA": 0.0,
+		"positiveZoneB": -0.041,
+		"posttiveZoneC": -0.087,
+		"negativeZoneA": -0.26,
+		"negativeZoneB": -0.222,
+		"negativeZoneC": -0.177
 	},
 	"cepMovelAmplitudeGraphic": {
 		"graphicType": "CEP_MOVEL_AMPLITUDE",
-		"higherTolerance": 0.2369942857142821,
-		"lowerTolerance": 0.01729142857142831,
-		"mediumLine": 0.1271428571428552,
+		"higherTolerance": 0.23,
+		"lowerTolerance": 0.01,
+		"mediumLine": 0.0,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
@@ -110,49 +118,49 @@
 				"sampleId": 31,
 				"pin": "70347074",
 				"updatedDate": "2023-04-06T20:26:37.07",
-				"value": 0.4399999999999409,
+				"value": 0.43,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 30,
 				"pin": "70403299",
 				"updatedDate": "2023-04-07T20:26:06.881",
-				"value": 0.03300000000001546,
+				"value": 0.03,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 29,
 				"pin": "70428407",
 				"updatedDate": "2023-04-08T20:25:54.864",
-				"value": 0.2340000000000373,
+				"value": 0.23,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 28,
 				"pin": "70517323",
 				"updatedDate": "2023-04-09T20:25:36.149",
-				"value": 0.028999999999996362,
+				"value": 0.02,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 27,
 				"pin": "70545562",
 				"updatedDate": "2023-04-11T20:25:22.073",
-				"value": 0.09300000000007458,
+				"value": 0.09,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 26,
 				"pin": "70616385",
 				"updatedDate": "2023-04-15T20:25:04.485",
-				"value": 0.006999999999948159,
+				"value": 0.0,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 25,
 				"pin": "70631326",
 				"updatedDate": "2023-04-17T20:22:49.289",
-				"value": 0.053999999999973625,
+				"value": 0.05,
 				"statisticCriteriaList": []
 			}
 		]
@@ -161,62 +169,62 @@
 		"graphicType": "INDIVIDUAL_VALUES",
 		"higherTolerance": 1.5,
 		"lowerTolerance": -1.5,
-		"mediumLine": -0.13287499999999852,
+		"mediumLine": -0.13,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
 				"pin": "70344264",
 				"updatedDate": "2023-04-05T20:26:52.766",
-				"value": -0.6599999999999682,
+				"value": -0.65,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 31,
 				"pin": "70347074",
 				"updatedDate": "2023-04-05T20:26:37.07",
-				"value": -0.22000000000002728,
+				"value": -0.22,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 30,
 				"pin": "70403299",
 				"updatedDate": "2023-04-05T20:26:06.881",
-				"value": -0.18700000000001182,
+				"value": -0.18,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 29,
 				"pin": "70428407",
 				"updatedDate": "2023-04-05T20:25:54.864",
-				"value": 0.047000000000025466,
+				"value": 0.047,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 28,
 				"pin": "70517323",
 				"updatedDate": "2023-04-05T20:25:36.149",
-				"value": 0.07600000000002183,
+				"value": 0.07,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 27,
 				"pin": "70545562",
 				"updatedDate": "2023-04-05T20:25:22.073",
-				"value": -0.01700000000005275,
+				"value": -0.01,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 26,
 				"pin": "70616385",
 				"updatedDate": "2023-04-05T20:25:04.485",
-				"value": -0.02400000000000091,
+				"value": -0.024,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 25,
 				"pin": "70631326",
 				"updatedDate": "2023-04-05T20:22:49.289",
-				"value": -0.07799999999997453,
+				"value": -0.07,
 				"statisticCriteriaList": []
 			}
 		]
@@ -225,7 +233,7 @@
 		"graphicType": "MOVEL_AMPLITUDE",
 		"higherTolerance": 1,
 		"lowerTolerance": 0,
-		"mediumLine": 0.1271428571428552,
+		"mediumLine": 0.12,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
@@ -238,49 +246,49 @@
 				"sampleId": 31,
 				"pin": "70347074",
 				"updatedDate": "2023-04-05T20:26:37.07",
-				"value": 0.4399999999999409,
+				"value": 0.44,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 30,
 				"pin": "70403299",
 				"updatedDate": "2023-04-05T20:26:06.881",
-				"value": 0.03300000000001546,
+				"value": 0.03,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 29,
 				"pin": "70428407",
 				"updatedDate": "2023-04-05T20:25:54.864",
-				"value": 0.2340000000000373,
+				"value": 0.23,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 28,
 				"pin": "70517323",
 				"updatedDate": "2023-04-05T20:25:36.149",
-				"value": 0.028999999999996362,
+				"value": 0.02,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 27,
 				"pin": "70545562",
 				"updatedDate": "2023-04-05T20:25:22.073",
-				"value": 0.09300000000007458,
+				"value": 0.09,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 26,
 				"pin": "70616385",
 				"updatedDate": "2023-04-05T20:25:04.485",
-				"value": 0.006999999999948159,
+				"value": 0.01,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 25,
 				"pin": "70631326",
 				"updatedDate": "2023-04-05T20:22:49.289",
-				"value": 0.053999999999973625,
+				"value": 0.05,
 				"statisticCriteriaList": []
 			}
 		]

@@ -28,3 +28,7 @@ export function formatDateMonth(dateString: string): string {
 export function truncate(number: number) {
 	return Math.trunc(number * 100) / 100
 }
+
+export function formatNumber(number: number): string {
+	return number.toString().replace('.', ',')
+}

@@ -112,7 +112,7 @@ export function UploadDialog({
 							className='hidden'
 						/>
 						{dmoFile && (
-							<p className='mx-auto mt-2 font-inter '>
+							<p className='mx-auto mt-2 font-inter dark:text-black'>
 								Arquivo: {dmoFile.name}
 							</p>
 						)}
@@ -135,7 +135,7 @@ export function UploadDialog({
 						</p>
 
 						{csvFile && (
-							<p className='mx-auto mt-2 font-inter '>
+							<p className='mx-auto mt-2 font-inter dark:text-black'>
 								Arquivo: {csvFile.name}
 							</p>
 						)}

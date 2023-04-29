@@ -62,3 +62,12 @@ export function getGraphSmallestValue(
 	}
 	return smallestValue > lowerTolerance ? lowerTolerance : smallestValue
 }
+
+export const smallestValue = 0.000_000_000_000_000_000_000_000_000_000_000_000_1
+export function removeZeros(numberList: (number | null | undefined)[]) {
+	const newNumberList: number[] = []
+	for (const number of numberList) {
+		newNumberList.push(number || smallestValue)
+	}
+	return newNumberList
+}

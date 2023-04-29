@@ -74,7 +74,7 @@ export function CreateEditFm({
 				/>
 				{selectedFm && (
 					<div className='flex pt-2 pb-1'>
-						<span className='font-inter text-lg font-bold '>
+						<span className='font-inter text-lg font-bold dark:text-black'>
 							{selectedFm.name}
 						</span>
 						<div className='my-auto ml-auto'>

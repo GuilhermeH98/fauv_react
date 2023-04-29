@@ -191,27 +191,33 @@ export const useModelsQuery = makeQuery(MODELS_URL, z.array(Model))
 export const useModelMutation = makeMutation(MODELS_URL, ModelPayload)
 
 export const useSendFilesMutation = () =>
-	useMutation(async (files: IFilesUpload) => {
-		const headers: Record<string, string> = {
-			'Content-Type': 'multipart/form-data'
-		}
+	useMutation(
+		async (files: IFilesUpload) => {
+			const headers: Record<string, string> = {
+				'Content-Type': 'multipart/form-data'
+			}
 
-		const formData = new FormData()
-		formData.append('dmoFile', new Blob([files.dmoFile]))
-		if (files.csvFile) {
-			formData.append('csvFile', new Blob([files.csvFile]))
-		}
+			const formData = new FormData()
+			formData.append('dmoFile', new Blob([files.dmoFile]))
+			if (files.csvFile) {
+				formData.append('csvFile', new Blob([files.csvFile]))
+			}
 
-		const token = localStorage.getItem('token')
-		if (token) {
-			headers.Authorization = `${token}`
-		}
+			const token = localStorage.getItem('token')
+			if (token) {
+				headers.Authorization = `${token}`
+			}
 
-		const response = await fetch(`/${MODEL_PREVIEW_URL}`, {
-			method: 'POST',
-			body: formData,
-			headers
-		})
+			const response = await fetch(
+				`${import.meta.env.VITE_MSW ? '/' : ''}${MODEL_PREVIEW_URL}`,
+				{
+					method: 'POST',
+					body: formData,
+					headers
+				}
+			)
 
-		return response.json()
-	})
+			return response.json()
+		},
+		{ networkMode: 'always' }
+	)
