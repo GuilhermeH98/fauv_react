@@ -16,36 +16,16 @@ export interface IFileUpload {
 	dmoFile: File
 }
 
-const UserWithCredentials = z.object({
-	vwId: z.string(),
-	active: z.boolean(),
-	roles: z
-		.array(
-			z.object({
-				name: z.string().nullish(),
-				admin: z.boolean().nullish()
-			})
-		)
-		.nullish()
-})
-
 const Sample = z.object({
 	id: z.number(),
 	uploadDate: z.string(),
 	model: Model.pick({ partNumber: true, car: true, stepDescription: true }),
 	equipment: Equipment,
 	status: z.nativeEnum(Status),
-	uploadUser: UserWithCredentials,
+	uploadUser: z.string(),
 	ak: z.number(),
 	bk: z.number(),
 	io: z.number()
-	//  TODO: Verify if this is needed
-	// scan_init_date: z.string().nullish(),
-	// scan_end_date: z.string().nullish(),
-	// pin: z.string().nullish()
-	//  TODO: Diferent type from default Pmp and Fm. Need confirmation
-	// pmpSampleList: z.array(Pmp).nullish(),
-	// fmSampleList: z.array(Fm).nullish()
 })
 export type ISample = z.infer<typeof Sample>
 

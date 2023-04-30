@@ -2,16 +2,7 @@
 	{
 		"id": 0,
 		"uploadDate": "2020-07-10 15:00:00",
-		"uploadUser": {
-			"vwId": "ABC123",
-			"active": true,
-			"roles": [
-				{
-					"name": "adminstrator | inspector | consultant",
-					"admin": true
-				}
-			]
-		},
+		"uploadUser": "João Silva",
 		"ak": 15,
 		"bk": 12,
 		"io": 8,
@@ -138,16 +129,7 @@
 	{
 		"id": 0,
 		"uploadDate": "2020-07-10 15:00:00",
-		"uploadUser": {
-			"vwId": "ABC123",
-			"active": true,
-			"roles": [
-				{
-					"name": "adminstrator | inspector | consultant",
-					"admin": true
-				}
-			]
-		},
+		"uploadUser": "João Silva",
 		"ak": 10,
 		"bk": 8,
 		"io": 5,
@@ -274,16 +256,7 @@
 	{
 		"id": 0,
 		"uploadDate": "2020-07-10 15:00:00",
-		"uploadUser": {
-			"vwId": "ABC123",
-			"active": true,
-			"roles": [
-				{
-					"name": "adminstrator | inspector | consultant",
-					"admin": true
-				}
-			]
-		},
+		"uploadUser": "João Silva",
 		"ak": 20,
 		"bk": 10,
 		"io": 4,
