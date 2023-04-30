@@ -54,7 +54,18 @@ export default function SignUp(): ReactElement {
 				placeholder='ID'
 				required
 				register={register}
+				rules={{ maxLength: 10, minLength: 7 }}
 			/>
+			{errors.vwId && errors.vwId.type === 'minLength' && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					O ID deve ter no mínimo 7 caracteres
+				</p>
+			)}
+			{errors.vwId && errors.vwId.type === 'maxLength' && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					O ID deve ter no máximo 10 caracteres
+				</p>
+			)}
 			<SecondaryInput
 				type='password'
 				id='password'
