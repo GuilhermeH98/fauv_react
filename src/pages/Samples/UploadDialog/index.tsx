@@ -5,6 +5,7 @@ import type { ReactElement } from 'react'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { RiUploadCloud2Line } from 'react-icons/ri'
+import { getErrorMessage } from 'utils/error'
 import type { ISample } from '../api'
 import { useSendFileMutation } from '../api'
 import type { IUploadDialogProperties, IUploadValues } from './types'
@@ -50,8 +51,12 @@ export function UploadDialog({
 						onCloseDialog()
 						createSnackbar('success', 'Upload com sucesso!')
 					},
-					onError() {
-						createSnackbar('error', 'Erro ao fazer upload!')
+					onError(error) {
+						createSnackbar(
+							'error',
+							getErrorMessage((error as Error).message) ||
+								'Erro ao fazer upload!'
+						)
 					}
 				}
 			)

@@ -4,6 +4,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useEquipmentMutation } from '../api'
 import type { ICreateEditEquipmentProperties, IFieldValues } from './types'
 
@@ -41,8 +42,11 @@ export function CreateEditEquipment({
 					onClose()
 					createSnackbar('success', 'Equipamento salvo com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar equipamento!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar equipamento!'
+					)
 				}
 			}
 		)

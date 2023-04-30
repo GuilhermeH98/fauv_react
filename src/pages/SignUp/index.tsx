@@ -7,6 +7,7 @@ import { ROLES_OPTIONS } from 'pages/Users/api'
 import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { getErrorMessage } from 'utils/error'
 import type { IRegisterPayload } from './api'
 import { useRegisterMutation } from './api'
 
@@ -32,10 +33,11 @@ export default function SignUp(): ReactElement {
 			onSuccess() {
 				navigate('/signup/success')
 			},
-			onError() {
+			onError(error) {
 				createSnackbar(
 					'error',
-					'Erro ao fazer login! Verifique suas informações.'
+					getErrorMessage(error.message) ||
+						'Erro ao fazer login! Verifique suas informações.'
 				)
 			}
 		})

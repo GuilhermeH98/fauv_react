@@ -4,6 +4,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useEmployeeMutation } from '../api'
 import type { ICreateEditEmployeeProperties, IFieldValues } from './types'
 
@@ -37,8 +38,12 @@ export function CreateEditEmployee({
 					onClose()
 					createSnackbar('success', 'Dados do funcionário salvo com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar dados do funcionário!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) ||
+							'Erro ao salvar dados do funcionário!'
+					)
 				}
 			}
 		)

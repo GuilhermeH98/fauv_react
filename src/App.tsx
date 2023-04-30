@@ -167,7 +167,14 @@ export default function App(): ReactElement {
 															</AuthWrapper>
 														}
 													/>
-													<Route path='/*' element={<div />} />
+													<Route
+														path='/*'
+														element={
+															<AuthWrapper authenticated>
+																<div />
+															</AuthWrapper>
+														}
+													/>
 												</Routes>
 											</NavigationLayout>
 										}

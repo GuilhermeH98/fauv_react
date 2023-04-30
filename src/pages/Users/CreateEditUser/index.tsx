@@ -5,6 +5,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { ROLES_OPTIONS, useUserMutation } from '../api'
 import type { ICreateEditUserProperties, IFieldValues } from './types'
 
@@ -41,8 +42,11 @@ export function CreateEditUser({
 					onClose()
 					createSnackbar('success', 'Usuário salvo com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar usuário!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar usuário!'
+					)
 				}
 			}
 		)

@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { RiArrowGoBackLine, RiUploadCloud2Line } from 'react-icons/ri'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { getErrorMessage } from 'utils/error'
 import { mapSelectOptions, useToggle } from 'utils/miscellaneous'
 import type { IFieldValues, IFm, IModel, IModelPreview, IPmp } from '../api'
 import { useModelMutation } from '../api'
@@ -248,8 +249,11 @@ export function CreateEditModel() {
 						createSnackbar('success', 'Modelo salvo com sucesso!')
 						navigate('/models', { replace: true })
 					},
-					onError() {
-						createSnackbar('error', 'Erro ao salvar Modelo!')
+					onError(error) {
+						createSnackbar(
+							'error',
+							getErrorMessage(error.message) || 'Erro ao salvar Modelo!'
+						)
 					}
 				}
 			)

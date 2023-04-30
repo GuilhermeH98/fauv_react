@@ -4,6 +4,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useCatalogMutation } from '../api'
 import type { ICreateEditCatalogProperties, IFieldValues } from './types'
 
@@ -31,8 +32,11 @@ export function CreateEditCatalog({
 					onClose()
 					createSnackbar('success', 'Catálogo salvo com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar catálogo!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar catálogo!'
+					)
 				}
 			}
 		)

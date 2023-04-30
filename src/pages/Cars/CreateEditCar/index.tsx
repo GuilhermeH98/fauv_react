@@ -4,6 +4,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useCarMutation } from '../api'
 import type { ICreateEditCarProperties, IFieldValues } from './types'
 
@@ -35,8 +36,11 @@ export function CreateEditCar({
 					onClose()
 					createSnackbar('success', 'Carro salvo com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar carro!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar carro!'
+					)
 				}
 			}
 		)

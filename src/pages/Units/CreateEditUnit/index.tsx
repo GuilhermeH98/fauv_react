@@ -4,6 +4,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useUnitMutation } from '../api'
 import type { ICreateEditUnitProperties, IFieldValues } from './types'
 
@@ -31,8 +32,11 @@ export function CreateEditUnit({
 					onClose()
 					createSnackbar('success', 'Planta salva com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar planta!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar planta!'
+					)
 				}
 			}
 		)

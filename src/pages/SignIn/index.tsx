@@ -5,6 +5,7 @@ import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
+import { getErrorMessage } from 'utils/error'
 import type { ICredentials, ISignInPayload } from './api'
 import { useSignInMutation } from './api'
 import { setCredentialsLocalStorage } from './utils'
@@ -21,10 +22,11 @@ export default function SignIn(): ReactElement {
 				setCredentialsLocalStorage(response)
 				navigate('/home')
 			},
-			onError() {
+			onError(error) {
 				createSnackbar(
 					'error',
-					'Erro ao fazer login! Verifique suas informações.'
+					getErrorMessage(error.message) ||
+						'Erro ao fazer login! Verifique suas informações.'
 				)
 			}
 		})

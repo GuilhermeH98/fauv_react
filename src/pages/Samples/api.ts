@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { Equipment } from 'pages/Equipments/api'
 import { Model } from 'pages/Models/api'
-import { makeQuery } from 'utils/api'
+import { APIError, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
 export const SAMPLES_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}sample`
@@ -74,6 +74,21 @@ export const useSendFileMutation = () =>
 					headers
 				}
 			)
+
+			if (!response.ok) {
+				let payload: unknown
+				try {
+					payload = await response.json()
+				} catch {
+					// No response body.
+				}
+				throw new APIError(
+					response.status,
+					// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+					(payload as Error)?.message || response.statusText,
+					payload
+				)
+			}
 
 			return response.json()
 		},

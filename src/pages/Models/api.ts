@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { Car } from 'pages/Cars/api'
-import { makeMutation, makeQuery } from 'utils/api'
+import { APIError, makeMutation, makeQuery } from 'utils/api'
 import { z } from 'zod'
 
 export const MODELS_URL = `${import.meta.env.VITE_ANALYZER_URL ?? ''}model`
@@ -215,6 +215,21 @@ export const useSendFilesMutation = () =>
 					headers
 				}
 			)
+
+			if (!response.ok) {
+				let payload: unknown
+				try {
+					payload = await response.json()
+				} catch {
+					// No response body.
+				}
+				throw new APIError(
+					response.status,
+					// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+					(payload as Error)?.message || response.statusText,
+					payload
+				)
+			}
 
 			return response.json()
 		},

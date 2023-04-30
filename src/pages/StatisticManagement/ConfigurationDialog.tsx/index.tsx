@@ -6,6 +6,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { getErrorMessage } from 'utils/error'
 import { useStatisticConfigurationMutation } from '../api'
 import type { IConfigurationDialogProperties, IFieldValues } from './types'
 
@@ -54,8 +55,11 @@ export function ConfigurationDialog({
 					onClose()
 					createSnackbar('success', 'Configurações salvas com sucesso!')
 				},
-				onError() {
-					createSnackbar('error', 'Erro ao salvar configurações!')
+				onError(error) {
+					createSnackbar(
+						'error',
+						getErrorMessage(error.message) || 'Erro ao salvar configurações!'
+					)
 				}
 			}
 		)
