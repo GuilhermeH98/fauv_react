@@ -91,8 +91,7 @@ export const Model = z.object({
 	stepDescription: z.string(),
 	car: Car,
 	pmpList: z.array(Pmp),
-	fmList: z.array(Fm),
-	active: z.boolean()
+	fmList: z.array(Fm)
 })
 export type IModel = z.infer<typeof Model>
 

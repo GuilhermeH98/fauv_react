@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { createSnackbar } from 'components/Snackbar/utils'
 import { assertLocationState } from 'pages/Statistic/utils'
 import { RiEye2Line } from 'react-icons/ri'
@@ -15,6 +16,8 @@ export function FmPmpList({
 	const navigate = useNavigate()
 	const isValidState = assertLocationState(state)
 
+	const queryClient = useQueryClient()
+
 	function onCardClick(pmpOrFm: 'fm' | 'pmp', name: string) {
 		if (name === currentName) return
 
@@ -22,6 +25,7 @@ export function FmPmpList({
 			navigate(`/statistic/${pmpOrFm}/${state.modelId}/${name}`, {
 				state
 			})
+			void queryClient.invalidateQueries()
 		} else {
 			createSnackbar('error', 'Falha ao acessar estatística')
 		}

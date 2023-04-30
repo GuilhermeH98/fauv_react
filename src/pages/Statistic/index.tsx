@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { useQueryClient } from '@tanstack/react-query'
 import FlatButton from 'components/Buttons/FlatButton'
 import OutlinedButton from 'components/Buttons/OutlinedButton'
 import Input from 'components/Inputs/Input'
@@ -7,6 +7,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import TableContent from 'components/Table/components/TableContent'
 import { useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
+import { BsFilePdf } from 'react-icons/bs'
 import {
 	RiArrowDownSLine,
 	RiArrowGoBackLine,
@@ -19,118 +20,13 @@ import { useToggle } from 'utils/miscellaneous'
 import { GraphicType, useStatisticQuery } from './api'
 import { FmPmpList } from './components/FmPmpList'
 import { Graph } from './components/Graph'
+import { PercentageCard } from './components/PercentageBar'
 import {
 	assertLocationState,
+	exportPdf,
 	getGraphicDataByType,
 	getGraphicTypeLabel
 } from './utils'
-
-type IWidthVariants = Record<string, string>
-
-// TODO: Tailwindcss doesnt support dynamic classes, so we need to create this object
-export const widthVariants: IWidthVariants = {
-	'0': 'w-[0%]',
-	'1': 'w-[1%]',
-	'2': 'w-[2%]',
-	'3': 'w-[3%]',
-	'4': 'w-[4%]',
-	'5': 'w-[5%]',
-	'6': 'w-[6%]',
-	'7': 'w-[7%]',
-	'8': 'w-[8%]',
-	'9': 'w-[9%]',
-	'10': 'w-[10%]',
-	'11': 'w-[11%]',
-	'12': 'w-[12%]',
-	'13': 'w-[13%]',
-	'14': 'w-[14%]',
-	'15': 'w-[15%]',
-	'16': 'w-[16%]',
-	'17': 'w-[17%]',
-	'18': 'w-[18%]',
-	'19': 'w-[19%]',
-	'20': 'w-[20%]',
-	'21': 'w-[21%]',
-	'22': 'w-[22%]',
-	'23': 'w-[23%]',
-	'24': 'w-[24%]',
-	'25': 'w-[25%]',
-	'26': 'w-[26%]',
-	'27': 'w-[27%]',
-	'28': 'w-[28%]',
-	'29': 'w-[29%]',
-	'30': 'w-[30%]',
-	'31': 'w-[31%]',
-	'32': 'w-[32%]',
-	'33': 'w-[33%]',
-	'34': 'w-[34%]',
-	'35': 'w-[35%]',
-	'36': 'w-[36%]',
-	'37': 'w-[37%]',
-	'38': 'w-[38%]',
-	'39': 'w-[39%]',
-	'40': 'w-[40%]',
-	'41': 'w-[41%]',
-	'42': 'w-[42%]',
-	'43': 'w-[43%]',
-	'44': 'w-[44%]',
-	'45': 'w-[45%]',
-	'46': 'w-[46%]',
-	'47': 'w-[47%]',
-	'48': 'w-[48%]',
-	'49': 'w-[49%]',
-	'50': 'w-[50%]',
-	'51': 'w-[51%]',
-	'52': 'w-[52%]',
-	'53': 'w-[53%]',
-	'54': 'w-[54%]',
-	'55': 'w-[55%]',
-	'56': 'w-[56%]',
-	'57': 'w-[57%]',
-	'58': 'w-[58%]',
-	'59': 'w-[59%]',
-	'60': 'w-[60%]',
-	'61': 'w-[61%]',
-	'62': 'w-[62%]',
-	'63': 'w-[63%]',
-	'64': 'w-[64%]',
-	'65': 'w-[65%]',
-	'66': 'w-[66%]',
-	'67': 'w-[67%]',
-	'68': 'w-[68%]',
-	'69': 'w-[69%]',
-	'70': 'w-[70%]',
-	'71': 'w-[71%]',
-	'72': 'w-[72%]',
-	'73': 'w-[73%]',
-	'74': 'w-[74%]',
-	'75': 'w-[75%]',
-	'76': 'w-[76%]',
-	'77': 'w-[77%]',
-	'78': 'w-[78%]',
-	'79': 'w-[79%]',
-	'80': 'w-[80%]',
-	'81': 'w-[81%]',
-	'82': 'w-[82%]',
-	'83': 'w-[83%]',
-	'84': 'w-[84%]',
-	'85': 'w-[85%]',
-	'86': 'w-[86%]',
-	'87': 'w-[87%]',
-	'88': 'w-[88%]',
-	'89': 'w-[89%]',
-	'90': 'w-[90%]',
-	'91': 'w-[91%]',
-	'92': 'w-[92%]',
-	'93': 'w-[93%]',
-	'94': 'w-[94%]',
-	'95': 'w-[95%]',
-	'96': 'w-[96%]',
-	'97': 'w-[97%]',
-	'98': 'w-[98%]',
-	'99': 'w-[99%]',
-	'100': 'w-[100%]'
-}
 
 export function Statistic() {
 	const [isShowingFmList, setIsShowingFmList] = useState(true)
@@ -156,6 +52,7 @@ export function Statistic() {
 	})
 
 	const query = useStatisticQuery(isFm, modelId, name)()
+	const queryClient = useQueryClient()
 
 	const filterValue = useWatch({ control, name: 'filter' })
 
@@ -169,20 +66,11 @@ export function Statistic() {
 			navigate(`/statistic/${pmpOrFm}/${state.modelId}/${nameUrl}`, {
 				state
 			})
+			void queryClient.invalidateQueries()
 		} else {
 			createSnackbar('error', 'Falha ao acessar estatística')
 		}
 	}
-
-	const statisticData = query.data
-
-	const [ioWidth, bkWidth, akWidth] = statisticData
-		? [
-				(statisticData.io * 100).toString(),
-				(statisticData.bk * 100).toString(),
-				(statisticData.ak * 100).toString()
-		  ]
-		: ['0', '0', '0']
 
 	useEffect(() => {
 		setIsShowingFmList(isFm)
@@ -194,7 +82,7 @@ export function Statistic() {
 			render={data => (
 				<div>
 					{/* left side container */}
-					<div className='w-[calc(100%-16rem)] '>
+					<div className='w-[calc(100%-16rem)] bg-gray-fauv' id='statistic'>
 						{/* Graph card */}
 						<div className='h-fit  rounded-lg bg-white'>
 							<div className='flex px-8 pt-5 align-middle'>
@@ -217,18 +105,26 @@ export function Statistic() {
 										</span>
 									)}
 								</div>
-								{/* TODO: HIDDEN DROPDOWN on CLICK */}
+								{/* TODO: hidden dropdown on screen click */}
 								<div className='relative my-auto ml-auto'>
-									<OutlinedButton onClick={toggleIsMenuOpen} className='flex '>
-										<div className='m-auto flex'>
-											<span> {getGraphicTypeLabel(selectedGraphicType)}</span>
-											{isMenuOpen ? (
-												<RiArrowUpSLine className='ml-2 text-icon' />
-											) : (
-												<RiArrowDownSLine className='ml-2 text-icon' />
-											)}
-										</div>
-									</OutlinedButton>
+									<div className='flex gap-4'>
+										<OutlinedButton onClick={exportPdf}>
+											<BsFilePdf className=' text-icon' />
+										</OutlinedButton>
+										<OutlinedButton
+											onClick={toggleIsMenuOpen}
+											className='flex '
+										>
+											<div className='m-auto flex'>
+												{getGraphicTypeLabel(selectedGraphicType)}
+												{isMenuOpen ? (
+													<RiArrowUpSLine className='ml-2 text-icon' />
+												) : (
+													<RiArrowDownSLine className='ml-2 text-icon' />
+												)}
+											</div>
+										</OutlinedButton>
+									</div>
 
 									{isMenuOpen && (
 										<div className='absolute z-10 rounded-b border border-gray-200 bg-white py-1  shadow-md'>
@@ -286,7 +182,6 @@ export function Statistic() {
 								</div>
 
 								<hr className='mt-2 mb-4 border-bluishgray-fauv' />
-								{/* TODO: USE API DATA ON Indicators */}
 								<div className='flex  gap-2'>
 									<div className='mr-auto'>
 										<p className='my-3 font-lexend text-sm  font-semibold'>
@@ -328,68 +223,27 @@ export function Statistic() {
 										</p>
 									</div>
 									<hr className='my-auto h-18 border border-bluishgray-fauv' />
-									{/* TODO: use z1 and z2 values */}
 									<div className='mr-auto'>
 										<p className='my-3 font-lexend text-sm  font-semibold'>
-											Z1: 0
+											Z1: {data.z1}
 										</p>
 										<p className='mt-3 font-lexend text-sm  font-semibold'>
-											Z2: 0
+											Z2: {data.z2}
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div className='mt-4 flex h-fit max-h-[22rem] min-h-[17.5rem] gap-4'>
-							{/* Card Status Percentage  */}
-							<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
-								<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
-									{isFm ? 'FM' : 'PMP'} status porcentagem (%)
-								</h3>
-								<hr className='mt-2 mb-2 border-bluishgray-fauv' />
-								<div className='mt-auto flex'>
-									<div
-										className={`h-12 ${widthVariants[ioWidth]} rounded-tl-lg rounded-bl-lg bg-green-fauv`}
-									/>
-									<div
-										className={`h-12 ${widthVariants[bkWidth]} border-x-2  border-white bg-yellow-fauv`}
-									/>
-									<div
-										className={`h-12  ${widthVariants[akWidth]} rounded-tr-lg rounded-br-lg bg-red-fauv`}
-									/>
-								</div>
-								<div className='my-auto flex justify-between'>
-									<div className='flex flex-col'>
-										<p className='font-lg text-center font-lexend'>
-											<span className='text-xl   text-green-fauv '>IO </span>
-											<span className='text-sm'>Menor ou igual 75% </span>
-										</p>
-										<p className='mx-auto font-lexend font-bold'>
-											{`${data.totalIo} (${data.io * 100}%)`}
-										</p>
-									</div>
-									<div className='flex flex-col'>
-										<p className='font-lg text-center font-lexend '>
-											{/* TODO: Use API percentage for text */}
-											<span className='text-xl   text-yellow-fauv '>BK </span>
-											<span className='text-sm'>Maior 75 % e menor 100%</span>
-										</p>
-										<p className='mx-auto font-lexend  font-bold'>
-											{`${data.totalBk} (${data.bk * 100}%)`}
-										</p>
-									</div>
-									<div className='flex flex-col'>
-										<p className='font-lg text-center font-lexend'>
-											{/* TODO: Use API percentage for text */}
-											<span className='text-xl   text-red-fauv '>AK</span>
-											<span className='text-sm'>Maior 100%</span>
-										</p>
-										<p className='mx-auto font-lexend font-bold'>
-											{`${data.totalAk} (${data.ak * 100}%)`}
-										</p>
-									</div>
-								</div>
-							</div>
+							<PercentageCard
+								io={data.io}
+								ak={data.ak}
+								bk={data.bk}
+								totalAk={data.totalAk}
+								totalBk={data.totalBk}
+								totalIo={data.totalIo}
+								isFm={isFm}
+							/>
 							{/* TODO: use grid to remove unnecessary conditional */}
 							{isFm ? (
 								<div className='flex w-1/2 flex-col overflow-auto rounded-lg bg-white p-4 '>
@@ -398,7 +252,7 @@ export function Statistic() {
 									</h3>
 
 									<hr className='mt-2 mb-4 border-bluishgray-fauv' />
-									{/* TODO: USE API PHOTO - REMOVE TEXT */}
+									{/* TODO: use api photo */}
 									<div className='m-auto'>
 										<RiCarLine
 											className='mx-auto text-gray-fauv-3 opacity-50'
