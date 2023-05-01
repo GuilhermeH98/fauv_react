@@ -225,10 +225,10 @@ export function Statistic() {
 									<hr className='my-auto h-18 border border-bluishgray-fauv' />
 									<div className='mr-auto'>
 										<p className='my-3 font-lexend text-sm  font-semibold'>
-											Z1: {data.z1}
+											Z1: {data.z1 || ''}
 										</p>
 										<p className='mt-3 font-lexend text-sm  font-semibold'>
-											Z2: {data.z2}
+											Z2: {data.z2 || ''}
 										</p>
 									</div>
 								</div>
@@ -236,9 +236,9 @@ export function Statistic() {
 						</div>
 						<div className='mt-4 flex h-fit max-h-[22rem] min-h-[17.5rem] gap-4'>
 							<PercentageCard
-								io={data.io}
-								ak={data.ak}
-								bk={data.bk}
+								io={data.percentageIo}
+								ak={data.percentageAk}
+								bk={data.percentageBk}
 								totalAk={data.totalAk}
 								totalBk={data.totalBk}
 								totalIo={data.totalIo}

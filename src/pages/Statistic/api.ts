@@ -52,13 +52,12 @@ const CepIndividualValuesGraphic = GraphicValues.extend({
 	negativeZoneC: z.number()
 })
 
-// TODO: add z1,z2 and isProcessCapable
 export const Statistic = z.object({
 	name: z.string(),
 	catalogType: z.nativeEnum(CatalogType),
-	io: z.number(),
-	bk: z.number(),
-	ak: z.number(),
+	percentageIo: z.number(),
+	percentageBk: z.number(),
+	percentageAk: z.number(),
 	totalIo: z.number(),
 	totalBk: z.number(),
 	totalAk: z.number(),
@@ -66,8 +65,8 @@ export const Statistic = z.object({
 	cpk: z.number(),
 	pp: z.number(),
 	ppk: z.number(),
-	z1: z.number(),
-	z2: z.number(),
+	z1: z.number().nullish(),
+	z2: z.number().nullish(),
 	standardDeviation: z.number(),
 	sigmaLevel: z.number(),
 	average: z.number(),
