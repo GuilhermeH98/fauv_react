@@ -71,8 +71,10 @@ export const Statistic = z.object({
 	sigmaLevel: z.number(),
 	average: z.number(),
 	nominalDistribution: z.number(),
-	mappedPmpList: z.array(z.string()),
-	mappedFmList: z.array(Fm.pick({ name: true, axis: true, catalogType: true })),
+	mappedPmpList: z.array(z.string()).nullish(),
+	mappedFmList: z
+		.array(Fm.pick({ name: true, axis: true, catalogType: true }))
+		.nullish(),
 	impactList: z.array(FmImpact.pick({ info: true })),
 	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
 	cepMovelAmplitudeGraphic: GraphicValues,

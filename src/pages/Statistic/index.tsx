@@ -275,7 +275,7 @@ export function Statistic() {
 										onRowClick={row => {
 											onStatisticNavigation('fm', row.name)
 										}}
-										data={data.mappedFmList}
+										data={data.mappedFmList ?? []}
 										columns={[
 											{ key: 'name', header: 'Nome' },
 											{ key: 'axis', header: 'Eixo' },
@@ -299,7 +299,13 @@ export function Statistic() {
 										onRowClick={row => {
 											onStatisticNavigation('pmp', row.name)
 										}}
-										data={data.mappedPmpList.map(pmp => ({ name: pmp }))}
+										data={
+											data.mappedPmpList
+												? data.mappedPmpList.map(pmp => ({
+														name: pmp
+												  }))
+												: []
+										}
 										columns={[{ key: 'name', header: 'Nome' }]}
 									/>
 								</div>
