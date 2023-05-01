@@ -38,7 +38,7 @@ const GraphicValues = z.object({
 	graphicType: z.string(),
 	higherTolerance: z.number(),
 	lowerTolerance: z.number(),
-	mediumLine: z.number(),
+	midline: z.number(),
 	detailedFmGraphicsList: z.array(GraphicDetail)
 })
 export type IGraphicValues = z.infer<typeof GraphicValues>

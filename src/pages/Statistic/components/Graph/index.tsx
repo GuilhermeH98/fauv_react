@@ -28,7 +28,7 @@ export function Graph({ data }: IGraphProperties) {
 		higherTolerance,
 		lowerTolerance,
 		detailedFmGraphicsList,
-		mediumLine
+		midline: mediumLine
 	} = data
 
 	// when value is exact 0 victory chart throws error on VictoryLine component
