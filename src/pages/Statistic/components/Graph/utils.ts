@@ -29,6 +29,12 @@ export function getStatisticCriteriaLabel(
 		case StatisticCriteria.NINE_CONSECUTIVE_POINTS_ON_THE_SAME_SIDE_OF_THE_MIDDLE_LINE: {
 			return '9 pontos consecutivos no mesmo lado da linha central'
 		}
+		case StatisticCriteria.SIX_CONSECUTIVE_POINTS_ASCENDING: {
+			return '6 pontos ascendentes consecutivos'
+		}
+		case StatisticCriteria.SIX_CONSECUTIVE_POINTS_DESCENDING: {
+			return '6 pontos descendentes consecutivos'
+		}
 		case StatisticCriteria.OUT_OF_TOLERANCE: {
 			return 'Fora da tolerância'
 		}
