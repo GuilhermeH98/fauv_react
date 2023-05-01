@@ -80,9 +80,9 @@ export function Statistic() {
 		<Query
 			query={query}
 			render={data => (
-				<div>
+				<div className='flex'>
 					{/* left side container */}
-					<div className='w-[calc(100%-16rem)] bg-gray-fauv' id='statistic'>
+					<div className='w-[calc(100%-15.5rem)] bg-gray-fauv' id='statistic'>
 						{/* Graph card */}
 						<div className='h-fit  rounded-lg bg-white'>
 							<div className='flex px-8 pt-5 align-middle'>
@@ -327,46 +327,48 @@ export function Statistic() {
 					</div>
 
 					{/* Right Side Bar */}
-					<div className='fixed top-16 bottom-0 right-8 w-60 py-4 pdf-screen:right-4'>
-						<div className='flex h-full flex-col gap-4 '>
-							<div className='flex h-10'>
-								<button
-									onClick={() => setIsShowingFmList(false)}
-									className={`h-10 flex-1 rounded-tl-lg rounded-bl-lg font-bold  ${
-										isShowingFmList
-											? 'bg-white text-blue-fauv'
-											: 'bg-blue-fauv text-white'
-									}`}
-									type='button'
-								>
-									PMP
-								</button>
-								<button
-									onClick={() => setIsShowingFmList(true)}
-									className={`h-10 flex-1 rounded-tr-lg rounded-br-lg font-bold  ${
-										isShowingFmList
-											? 'bg-blue-fauv text-white'
-											: 'bg-white text-blue-fauv'
-									}`}
-									type='button'
-								>
-									FM
-								</button>
+					<div className=' w-60 '>
+						<div className='fixed  top-16 bottom-0 p-4'>
+							<div className='flex h-full flex-col gap-4 '>
+								<div className='flex h-10'>
+									<button
+										onClick={() => setIsShowingFmList(false)}
+										className={`h-10 flex-1 rounded-tl-lg rounded-bl-lg font-bold  ${
+											isShowingFmList
+												? 'bg-white text-blue-fauv'
+												: 'bg-blue-fauv text-white'
+										}`}
+										type='button'
+									>
+										PMP
+									</button>
+									<button
+										onClick={() => setIsShowingFmList(true)}
+										className={`h-10 flex-1 rounded-tr-lg rounded-br-lg font-bold  ${
+											isShowingFmList
+												? 'bg-blue-fauv text-white'
+												: 'bg-white text-blue-fauv'
+										}`}
+										type='button'
+									>
+										FM
+									</button>
+								</div>
+								<Input
+									id='filter'
+									register={register}
+									placeholder='Buscar...'
+									searchIcon
+									roundedClassName='rounded-lg'
+								/>
+								<FmPmpList
+									isShowingFmList={isShowingFmList}
+									isFm={isFm}
+									filterValue={filterValue}
+									currentName={name}
+									state={isValidState ? state : null}
+								/>
 							</div>
-							<Input
-								id='filter'
-								register={register}
-								placeholder='Buscar...'
-								searchIcon
-								roundedClassName='rounded-lg'
-							/>
-							<FmPmpList
-								isShowingFmList={isShowingFmList}
-								isFm={isFm}
-								filterValue={filterValue}
-								currentName={name}
-								state={isValidState ? state : null}
-							/>
 						</div>
 					</div>
 				</div>

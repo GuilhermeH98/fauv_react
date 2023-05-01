@@ -4,9 +4,9 @@
 	"totalIo": 25,
 	"totalBk": 4,
 	"totalAk": 1,
-	"io": 0.7,
-	"bk": 0.2,
-	"ak": 0.1,
+	"percentageIo": 0.7,
+	"percentageBk": 0.2,
+	"percentageAk": 0.1,
 	"z1": 0.5,
 	"z2": 0.8,
 	"cp": 11.19,
@@ -33,7 +33,7 @@
 		"graphicType": "CEP_INDIVIDUAL_VALUES",
 		"higherTolerance": 0.01,
 		"lowerTolerance": -0.26,
-		"mediumLine": -0.13,
+		"midline": -0.13,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
@@ -105,7 +105,7 @@
 		"graphicType": "CEP_MOVEL_AMPLITUDE",
 		"higherTolerance": 0.23,
 		"lowerTolerance": 0.01,
-		"mediumLine": 0.0,
+		"midline": 0.0,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
@@ -169,7 +169,7 @@
 		"graphicType": "INDIVIDUAL_VALUES",
 		"higherTolerance": 1.5,
 		"lowerTolerance": -1.5,
-		"mediumLine": -0.13,
+		"midline": -0.13,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
@@ -233,7 +233,7 @@
 		"graphicType": "MOVEL_AMPLITUDE",
 		"higherTolerance": 1,
 		"lowerTolerance": 0,
-		"mediumLine": 0.12,
+		"midline": 0.12,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 32,
