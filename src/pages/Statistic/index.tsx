@@ -317,8 +317,15 @@ export function Statistic() {
 									<hr className='mt-2 mb-4 border-bluishgray-fauv' />
 									<TableContent
 										blueHeader
-										data={data.impactList}
-										columns={[{ key: 'info', header: 'Informação' }]}
+										data={[
+											...data.impactList.map(impact => ({ info: impact }))
+										]}
+										columns={[
+											{
+												key: 'info',
+												header: 'Informação'
+											}
+										]}
 										className='max-h-[16.25rem] min-h-fit '
 									/>
 								</div>

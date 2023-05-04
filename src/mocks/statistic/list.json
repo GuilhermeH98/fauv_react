@@ -24,11 +24,7 @@
 		{ "name": "FM3", "axis": "X", "catalogType": "GRUNDGEOMETRIE" },
 		{ "name": "FM4", "axis": "X", "catalogType": "GRUNDGEOMETRIE" }
 	],
-	"impactList": [
-		{ "info": "Falha no carro" },
-		{ "info": "Falha na lateral" },
-		{ "info": "Vazamento" }
-	],
+	"impactList": ["Falha no carro", "Falha na lateral", "Vazamento"],
 	"cepIndividualValuesGraphic": {
 		"graphicType": "CEP_INDIVIDUAL_VALUES",
 		"higherTolerance": 0.01,

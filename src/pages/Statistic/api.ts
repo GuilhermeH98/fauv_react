@@ -1,4 +1,4 @@
-import { CatalogType, Fm, FmImpact } from 'pages/Models/api'
+import { CatalogType, Fm } from 'pages/Models/api'
 import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
@@ -77,7 +77,7 @@ export const Statistic = z.object({
 	mappedFmList: z
 		.array(Fm.pick({ name: true, axis: true, catalogType: true }))
 		.nullish(),
-	impactList: z.array(FmImpact.pick({ info: true })),
+	impactList: z.array(z.string()),
 	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
 	cepMovelAmplitudeGraphic: GraphicValues,
 	individualValuesGraphic: GraphicValues,
