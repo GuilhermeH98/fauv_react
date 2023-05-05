@@ -7,5 +7,6 @@ export const handlers = [
 	mock('get', MODELS_URL, models),
 	mock('post', MODELS_URL),
 	mock('put', MODELS_URL),
-	mock('post', MODEL_PREVIEW_URL, preview)
+	mock('post', MODEL_PREVIEW_URL, preview),
+	mock('delete', `${MODELS_URL}/*`)
 ]

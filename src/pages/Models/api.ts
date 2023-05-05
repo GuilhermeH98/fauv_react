@@ -189,6 +189,41 @@ export const useModelsQuery = makeQuery(MODELS_URL, z.array(Model))
 
 export const useModelMutation = makeMutation(MODELS_URL, ModelPayload)
 
+export function useDeleteModelMutation() {
+	return useMutation(
+		async (id: number) => {
+			const headers: Record<string, string> = {}
+
+			const token = localStorage.getItem('token')
+			if (token) {
+				headers.Authorization = `${token}`
+			}
+
+			const response = await fetch(`${MODELS_URL}/${id}`, {
+				method: 'DELETE',
+				headers
+			})
+
+			if (!response.ok) {
+				let payload: unknown
+				try {
+					payload = await response.json()
+				} catch {
+					// No response body.
+				}
+
+				throw new APIError(
+					response.status,
+					// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+					(payload as Error)?.message || response.statusText,
+					payload
+				)
+			}
+		},
+		{ networkMode: 'always' }
+	)
+}
+
 export const useSendFilesMutation = () =>
 	useMutation(
 		async (files: IFilesUpload) => {

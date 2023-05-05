@@ -1,10 +1,17 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
-import { RiAlertLine, RiCheckLine, RiCloseLine } from 'react-icons/ri'
+import {
+	RiAlertLine,
+	RiCheckLine,
+	RiCloseLine,
+	RiDeleteBin6Line
+} from 'react-icons/ri'
 import { formatDateWithHours } from 'utils/format'
 import type { ISample } from './api'
 import { Status } from './api'
 
-export function getColumns(): IColumnDefinitionType<ISample, keyof ISample>[] {
+export function getColumns(
+	onRowClick: (id: number) => void
+): IColumnDefinitionType<ISample, keyof ISample>[] {
 	return [
 		{
 			key: 'status',
@@ -52,6 +59,20 @@ export function getColumns(): IColumnDefinitionType<ISample, keyof ISample>[] {
 			key: 'uploadDate',
 			header: 'Data',
 			valueGetter: row => formatDateWithHours(row.uploadDate)
+		},
+		{
+			key: 'pin',
+			header: 'PIN'
+		},
+		{
+			key: 'actions',
+			header: '',
+			render: row => (
+				<RiDeleteBin6Line
+					className='cursor-pointer text-icon text-gray-fauv-2'
+					onClick={() => onRowClick(row.id)}
+				/>
+			)
 		}
 	]
 }
