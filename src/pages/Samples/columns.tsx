@@ -3,7 +3,7 @@ import {
 	RiAlertLine,
 	RiCheckLine,
 	RiCloseLine,
-	RiDeleteBin6Line
+	RiDeleteBinLine
 } from 'react-icons/ri'
 import { formatDateWithHours } from 'utils/format'
 import type { ISample } from './api'
@@ -68,7 +68,7 @@ export function getColumns(
 			key: 'actions',
 			header: '',
 			render: row => (
-				<RiDeleteBin6Line
+				<RiDeleteBinLine
 					className='cursor-pointer text-icon text-gray-fauv-2'
 					onClick={() => onRowClick(row.id)}
 				/>

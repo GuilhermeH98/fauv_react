@@ -1,5 +1,5 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import { RiDeleteBinLine } from 'react-icons/ri'
 import type { IModel } from './api'
 
 export function getColumns(
@@ -23,10 +23,9 @@ export function getColumns(
 			key: 'actions',
 			header: '',
 			render: row => (
-				<RiDeleteBin6Line
+				<RiDeleteBinLine
 					className='cursor-pointer text-icon text-gray-fauv-2'
 					onClick={event_ => {
-						console.log(event_)
 						event_.stopPropagation()
 						onRowClick(row)
 					}}
