@@ -5,14 +5,13 @@ import PageTop from 'components/PageTop'
 import { Query } from 'components/Query'
 import { createSnackbar } from 'components/Snackbar/utils'
 import Table from 'components/Table'
-import { SAMPLES_URL } from 'pages/Samples/api'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
 import { useToggle } from 'utils/miscellaneous'
 import type { IModel } from './api'
-import { useDeleteModelMutation, useModelsQuery } from './api'
+import { MODELS_URL, useDeleteModelMutation, useModelsQuery } from './api'
 import { getColumns } from './columns'
 
 export function Models(): ReactElement {
@@ -44,7 +43,7 @@ export function Models(): ReactElement {
 		if (selectedModel) {
 			mutate(selectedModel.id, {
 				onSuccess: async () => {
-					await queryClient.invalidateQueries([SAMPLES_URL])
+					await queryClient.invalidateQueries([MODELS_URL])
 					toggleIsConfirmDialogOpen()
 					createSnackbar('success', 'Modelo deletado com sucesso!')
 				},
