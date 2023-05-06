@@ -1,6 +1,7 @@
 import { Level } from 'pages/Models/api'
 
-export function getFmLevelLabel(level: Level) {
+// TODO: use Level Type on parameter type
+export function getFmLevelLabel(level: number | string) {
 	switch (level) {
 		case Level.LOW: {
 			return 'Baixo'

@@ -1,5 +1,5 @@
 import type { IGraphicDetail } from 'pages/Statistic/api'
-import { formatDateMonth, formatNumber } from 'utils/format'
+import { formatDateMonth } from 'utils/format'
 import {
 	VictoryAxis,
 	VictoryChart,
@@ -200,7 +200,7 @@ export function Graph({ data }: IGraphProperties) {
 			<VictoryLine
 				interpolation='linear'
 				data={detailsList}
-				x='updatedDate'
+				x='pin'
 				y='value'
 				style={{
 					data: { stroke: '#2274AC', strokeWidth: 1.6 }
@@ -209,9 +209,9 @@ export function Graph({ data }: IGraphProperties) {
 			<VictoryScatter
 				data={detailsList}
 				labels={({ datum }) =>
-					`\u00A0Valor do Scan: ${formatNumber(
+					`\u00A0Valor do Scan: ${
 						(datum as IGraphicDetail).value
-					)} \n\u00A0Data: ${
+					} \n\u00A0Data: ${
 						(datum as IGraphicDetail).updatedDate
 					} \n\u00A0Status: ${
 						(datum as IGraphicDetail).statisticCriteriaList.length === 0
@@ -221,7 +221,7 @@ export function Graph({ data }: IGraphProperties) {
 						(datum as IGraphicDetail).statisticCriteriaList
 					)}`
 				}
-				x='updatedDate'
+				x='pin'
 				y='value'
 				size={5}
 				style={{

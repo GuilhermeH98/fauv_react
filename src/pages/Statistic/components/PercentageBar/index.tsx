@@ -137,17 +137,15 @@ export function PercentageCard({
 				/>
 				<div
 					className={`h-12 ${widthVariants[bkWidth]} ${
-						ioWidth === '0' && akWidth === '0'
-							? 'rounded-lg'
-							: 'rounded-tl-lg rounded-bl-lg'
+						ioWidth === '0' && akWidth === '0' ? 'rounded-lg' : ''
 					} border-x-2  border-white bg-yellow-fauv`}
 				/>
 				<div
 					className={`h-12  ${widthVariants[akWidth]} ${
 						ioWidth === '0' && bkWidth === '0'
 							? 'rounded-lg'
-							: 'rounded-tl-lg rounded-bl-lg'
-					} rounded-tr-lg rounded-br-lg bg-red-fauv`}
+							: 'rounded-tr-lg rounded-br-lg'
+					}  bg-red-fauv`}
 				/>
 			</div>
 			<div className='my-auto flex justify-between'>

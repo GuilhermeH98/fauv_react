@@ -9,6 +9,7 @@ import TableContent from 'components/Table/components/TableContent'
 import type { IFmCreateEdit, IPmp } from 'pages/Models/api'
 import { CatalogType, Level, PointAxis } from 'pages/Models/api'
 
+import { getFmLevelLabel } from 'pages/Statistic/components/FmPmpList/utils'
 import { useEffect } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { mapEnumOptions } from 'utils/miscellaneous'
@@ -120,7 +121,7 @@ export function CreateEditFm({
 					<Select
 						label='Level'
 						name='level'
-						options={mapEnumOptions(Level)}
+						options={mapEnumOptions(Level, getFmLevelLabel)}
 						control={control}
 						required
 					/>

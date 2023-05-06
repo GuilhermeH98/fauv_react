@@ -54,6 +54,19 @@ export function getCriteriaLabelList(
 				.join('\n\u00A0\u00A0\u2022 ')}`
 }
 
+function roundSmallestValue(smallestValue: number) {
+	const numberLength = (smallestValue.toString().split('.')[1] || '').length
+	let valueToRound = 0
+	if (numberLength === 1) {
+		valueToRound = 0.01
+	}
+	if (numberLength > 1) {
+		valueToRound = 1 / 10 ** (numberLength - (numberLength - 3))
+	}
+
+	return smallestValue - valueToRound
+}
+
 export function getGraphSmallestValue(
 	graphicValues: IGraphicDetail[],
 	lowerTolerance: number
@@ -66,7 +79,9 @@ export function getGraphSmallestValue(
 			smallestValue = value
 		}
 	}
-	return smallestValue > lowerTolerance ? lowerTolerance : smallestValue
+	return smallestValue > lowerTolerance
+		? lowerTolerance
+		: roundSmallestValue(smallestValue)
 }
 
 export const smallestValue = 0.000_000_000_000_000_000_000_000_000_000_000_000_1
