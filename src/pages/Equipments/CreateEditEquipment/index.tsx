@@ -5,6 +5,7 @@ import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import { useEquipmentMutation } from '../api'
 import type { ICreateEditEquipmentProperties, IFieldValues } from './types'
 
@@ -20,7 +21,7 @@ export function CreateEditEquipment({
 		reset,
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isValid }
+		formState: { isSubmitted, isValid }
 	} = useForm<IFieldValues>()
 
 	function onCreateEditEquipment(values: IFieldValues) {
@@ -38,6 +39,9 @@ export function CreateEditEquipment({
 		mutate(
 			{ ...payload, unitId: Number(unitId) },
 			{
+				onSettled() {
+					reset(undefined, resetIsSubmittedOptions)
+				},
 				onSuccess() {
 					onClose()
 					createSnackbar('success', 'Equipamento salvo com sucesso!')
@@ -67,7 +71,8 @@ export function CreateEditEquipment({
 						selectedEquipment ? 'Detalhes do Equipamento' : 'Novo Equipamento'
 					}
 					isFormDialog
-					disabled={!isValid || isSubmitting}
+					disabled={!isValid}
+					isSubmitting={isSubmitted}
 				/>
 				{selectedEquipment && (
 					<div className='flex pt-2 pb-1'>

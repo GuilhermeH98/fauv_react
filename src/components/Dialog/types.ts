@@ -6,6 +6,7 @@ export interface IDialogProperties {
 	onClose?: () => void
 	widthClass?: string
 	heightClass?: string
+	isSubmitting?: boolean
 }
 
 export interface IConfirmDialogProperties extends IDialogProperties {

@@ -6,6 +6,7 @@ import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import type { ICredentials, ISignInPayload } from './api'
 import { useSignInMutation } from './api'
 import { setCredentialsLocalStorage } from './utils'
@@ -13,11 +14,19 @@ import { setCredentialsLocalStorage } from './utils'
 export default function SignIn(): ReactElement {
 	const navigate = useNavigate()
 
-	const { register, handleSubmit } = useForm<ISignInPayload>()
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { isSubmitted }
+	} = useForm<ISignInPayload>()
 	const { mutate } = useSignInMutation()
 
 	function onSubmit(data: ISignInPayload): void {
 		mutate(data, {
+			onSettled() {
+				reset(undefined, resetIsSubmittedOptions)
+			},
 			onSuccess(response: ICredentials) {
 				setCredentialsLocalStorage(response)
 				navigate('/home')
@@ -59,7 +68,7 @@ export default function SignIn(): ReactElement {
 					Novo usuário?
 				</Link>
 			</div>
-			<SecondaryButton>Login</SecondaryButton>
+			<SecondaryButton isSubmitting={isSubmitted}>Login</SecondaryButton>
 		</AuthenticationLayout>
 	)
 }

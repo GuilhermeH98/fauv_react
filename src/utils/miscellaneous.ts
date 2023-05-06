@@ -1,4 +1,5 @@
 import { useLayoutEffect, useReducer, useState } from 'react'
+import type { KeepStateOptions } from 'react-hook-form'
 
 export type Nullable<T> = {
 	[P in keyof T]?: T[P] extends object ? Nullable<T[P]> | null : T[P] | null
@@ -62,4 +63,15 @@ export function useToggle(
 	initial = false
 ): [boolean, React.DispatchWithoutAction] {
 	return useReducer(old => !old, initial)
+}
+
+export const resetIsSubmittedOptions: KeepStateOptions = {
+	keepDefaultValues: true,
+	keepDirty: true,
+	keepErrors: true,
+	keepIsSubmitted: false,
+	keepIsValid: true,
+	keepSubmitCount: false,
+	keepTouched: true,
+	keepValues: true
 }

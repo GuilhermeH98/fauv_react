@@ -6,6 +6,7 @@ import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import { ROLES_OPTIONS, useUserMutation } from '../api'
 import type { ICreateEditUserProperties, IFieldValues } from './types'
 
@@ -20,7 +21,7 @@ export function CreateEditUser({
 		register,
 		control,
 		handleSubmit,
-		formState: { isSubmitting, isValid, errors }
+		formState: { isSubmitted, isValid, errors }
 	} = useForm<IFieldValues>({ mode: 'all' })
 
 	function onCreateEditUser(values: IFieldValues) {
@@ -38,6 +39,9 @@ export function CreateEditUser({
 				passwordConfirmation: '123'
 			},
 			{
+				onSettled() {
+					reset(undefined, resetIsSubmittedOptions)
+				},
 				onSuccess() {
 					onClose()
 					createSnackbar('success', 'Usuário salvo com sucesso!')
@@ -67,7 +71,8 @@ export function CreateEditUser({
 				<DialogHeader
 					title={selectedUser ? 'Detalhes do Usuário' : 'Novo Usuário'}
 					isFormDialog
-					disabled={!isValid || isSubmitting}
+					disabled={!isValid}
+					isSubmitting={isSubmitted}
 				/>
 				{selectedUser && (
 					<div className='flex pt-2 pb-1'>

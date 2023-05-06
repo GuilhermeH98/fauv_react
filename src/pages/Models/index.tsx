@@ -16,6 +16,7 @@ import { getColumns } from './columns'
 
 export function Models(): ReactElement {
 	const [isConfirmDialogOpen, toggleIsConfirmDialogOpen] = useToggle()
+	const [isSubmitting, toggleIsSubmitting] = useToggle()
 
 	const [selectedModel, setSelectedModel] = useState<IModel | null>(null)
 
@@ -41,7 +42,11 @@ export function Models(): ReactElement {
 
 	function onDelete() {
 		if (selectedModel) {
+			toggleIsSubmitting()
 			mutate(selectedModel.id, {
+				onSettled() {
+					toggleIsSubmitting()
+				},
 				onSuccess: async () => {
 					await queryClient.invalidateQueries([MODELS_URL])
 					toggleIsConfirmDialogOpen()
@@ -81,6 +86,7 @@ export function Models(): ReactElement {
 				onConfirm={onDelete}
 				isOpen={isConfirmDialogOpen}
 				onClose={onCloseDialog}
+				isSubmitting={isSubmitting}
 			>
 				Deseja excluir o modelo {selectedModel?.partNumber}{' '}
 				{selectedModel?.car.name}?

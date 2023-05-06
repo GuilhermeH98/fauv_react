@@ -18,6 +18,7 @@ export function Samples(): ReactElement {
 	const [isUploadDialogOpen, toggleIsUploadDialogOpen] = useToggle()
 	const [isConfirmDialogOpen, toggleIsConfirmDialogOpen] = useToggle()
 	const [selectedSampleId, setSelectedSampleId] = useState<number | null>(null)
+	const [isSubmitting, toggleIsSubmitting] = useToggle()
 
 	const queryClient = useQueryClient()
 
@@ -39,7 +40,11 @@ export function Samples(): ReactElement {
 
 	function onDelete() {
 		if (selectedSampleId) {
+			toggleIsSubmitting()
 			mutate(selectedSampleId, {
+				onSettled() {
+					toggleIsSubmitting()
+				},
 				onSuccess: async () => {
 					await queryClient.invalidateQueries([SAMPLES_URL])
 					toggleIsConfirmDialogOpen()
@@ -65,7 +70,7 @@ export function Samples(): ReactElement {
 				render={data => (
 					<>
 						<div className='mb-4 flex gap-6'>
-							<SampleCards samples={data.slice(0, 5)} />
+							<SampleCards samples={data.slice(0, 5).reverse()} />
 							<Button className='ml-auto' onClick={toggleIsUploadDialogOpen}>
 								<div className='flex'>
 									<RiUploadCloud2Line className='mr-2 text-icon' />
@@ -92,6 +97,7 @@ export function Samples(): ReactElement {
 				onConfirm={onDelete}
 				isOpen={isConfirmDialogOpen}
 				onClose={onCloseDialog}
+				isSubmitting={isSubmitting}
 			>
 				Deseja excluir essa amostra?
 			</ConfirmDialog>

@@ -8,6 +8,7 @@ import type { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import type { IRegisterPayload } from './api'
 import { useRegisterMutation } from './api'
 
@@ -19,9 +20,10 @@ export default function SignUp(): ReactElement {
 	const {
 		register,
 		control,
+		reset,
 		handleSubmit,
-		formState: { errors }
-	} = useForm<IRegisterPayload>()
+		formState: { errors, isValid, isSubmitted }
+	} = useForm<IRegisterPayload>({ mode: 'onBlur' })
 
 	function onSubmit(data: IRegisterPayload): void {
 		if (data.password !== data.passwordConfirmation) {
@@ -30,6 +32,9 @@ export default function SignUp(): ReactElement {
 		}
 
 		mutate(data, {
+			onSettled() {
+				reset(undefined, resetIsSubmittedOptions)
+			},
 			onSuccess() {
 				navigate('/signup/success')
 			},
@@ -100,7 +105,9 @@ export default function SignUp(): ReactElement {
 					{errors.roles.message}
 				</p>
 			)}
-			<SecondaryButton>Solicitar Cadastro</SecondaryButton>
+			<SecondaryButton disabled={!isValid} isSubmitting={isSubmitted}>
+				Solicitar Cadastro
+			</SecondaryButton>
 		</AuthenticationLayout>
 	)
 }

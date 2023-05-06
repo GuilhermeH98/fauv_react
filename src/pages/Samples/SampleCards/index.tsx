@@ -17,7 +17,7 @@ export function SampleCards({
 				<div
 					key={`card-${index}`}
 					className={`h-20 rounded-[0.625rem] bg-bluishgray-fauv ${
-						index > 2 ? 'hidden 2xl:block' : ''
+						index < 3 ? 'hidden 2xl:block' : ''
 					}`}
 				>
 					<div className='mt-2 flex h-6 justify-between align-middle'>

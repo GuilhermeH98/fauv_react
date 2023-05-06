@@ -12,7 +12,11 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { RiArrowGoBackLine, RiUploadCloud2Line } from 'react-icons/ri'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
-import { mapSelectOptions, useToggle } from 'utils/miscellaneous'
+import {
+	mapSelectOptions,
+	resetIsSubmittedOptions,
+	useToggle
+} from 'utils/miscellaneous'
 import type { IFieldValues, IFm, IModel, IModelPreview, IPmp } from '../api'
 import { useModelMutation } from '../api'
 import { CreateEditFm } from './components/CreateEditFm'
@@ -63,7 +67,7 @@ export function CreateEditModel() {
 		reset,
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isValid }
+		formState: { isSubmitted, isValid }
 	} = useForm<IFieldValues>()
 
 	const {
@@ -245,6 +249,9 @@ export function CreateEditModel() {
 			mutate(
 				{ ...payload, car },
 				{
+					onSettled() {
+						reset(undefined, resetIsSubmittedOptions)
+					},
 					onSuccess() {
 						createSnackbar('success', 'Modelo salvo com sucesso!')
 						navigate('/models', { replace: true })
@@ -301,7 +308,8 @@ export function CreateEditModel() {
 									</OutlinedButton>
 									<Button
 										className='ml-4'
-										disabled={!isValid || isSubmitting}
+										disabled={!isValid}
+										isSubmitting={isSubmitted}
 										isSubmit
 									>
 										Salvar

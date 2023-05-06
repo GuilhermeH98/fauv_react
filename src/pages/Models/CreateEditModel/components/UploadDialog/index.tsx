@@ -8,6 +8,7 @@ import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { RiUploadCloud2Line } from 'react-icons/ri'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import type { IUploadDialogProperties, IUploadValues } from './types'
 
 export function UploadDialog({
@@ -18,9 +19,9 @@ export function UploadDialog({
 	const [dmoFile, setDmoFile] = useState<File | null>(null)
 	const [csvFile, setCsvFile] = useState<File | null>(null)
 
-	const { register, handleSubmit, formState } = useForm<IUploadValues>()
+	const { register, handleSubmit, reset, formState } = useForm<IUploadValues>()
 
-	const { isSubmitting } = formState
+	const { isSubmitted } = formState
 
 	const { mutate } = useSendFilesMutation()
 
@@ -59,6 +60,9 @@ export function UploadDialog({
 			mutate(
 				{ dmoFile, csvFile },
 				{
+					onSettled() {
+						reset(undefined, resetIsSubmittedOptions)
+					},
 					onSuccess(response: IModelPreview) {
 						onUploadSuccess(response)
 						onCloseDialog()
@@ -92,7 +96,7 @@ export function UploadDialog({
 					<div className='relative my-auto  mr-auto font-inter text-lg  font-bold '>
 						Upload DMO/CSV
 					</div>
-					<Button disabled={isSubmitting || !dmoFile} isSubmit>
+					<Button disabled={!dmoFile} isSubmitting={isSubmitted} isSubmit>
 						Enviar arquivos
 					</Button>
 				</div>

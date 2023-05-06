@@ -8,6 +8,7 @@ export function ConfirmDialog({
 	children,
 	isOpen,
 	onClose,
+	isSubmitting,
 	widthClass = 'w-[35rem]',
 	heightClass = '',
 	title,
@@ -43,7 +44,9 @@ export function ConfirmDialog({
 						>
 							Não
 						</OutlinedButton>
-						<Button onClick={onConfirm}>Sim</Button>
+						<Button onClick={onConfirm} isSubmitting={isSubmitting}>
+							Sim
+						</Button>
 					</div>
 				</div>
 			</div>

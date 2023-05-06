@@ -5,6 +5,7 @@ import Switch from 'components/Switch'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { getErrorMessage } from 'utils/error'
+import { resetIsSubmittedOptions } from 'utils/miscellaneous'
 import { useCarMutation } from '../api'
 import type { ICreateEditCarProperties, IFieldValues } from './types'
 
@@ -33,16 +34,7 @@ export function CreateEditCar({
 			{ ...payload, unitId: Number(unitId) },
 			{
 				onSettled() {
-					reset(undefined, {
-						keepDefaultValues: true,
-						keepDirty: true,
-						keepErrors: true,
-						keepIsSubmitted: false,
-						keepIsValid: true,
-						keepSubmitCount: false,
-						keepTouched: true,
-						keepValues: true
-					})
+					reset(undefined, resetIsSubmittedOptions)
 				},
 				onSuccess() {
 					onClose()
