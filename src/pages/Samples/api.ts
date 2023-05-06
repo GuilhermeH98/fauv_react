@@ -70,17 +70,15 @@ export function useDeleteSampleMutation() {
 export const useSendFileMutation = () =>
 	useMutation(
 		async (files: IFileUpload) => {
-			const headers: Record<string, string> = {
-				'Content-Type': 'multipart/form-data'
-			}
+			const headers: Record<string, string> = {}
 
 			const formData = new FormData()
+
 			formData.append('dmoFile', new Blob([files.dmoFile]))
 
 			const token = localStorage.getItem('token')
-			if (token) {
-				headers.Authorization = `${token}`
-			}
+			
+			if (token) { headers.Authorization = `${token}` }
 
 			const response = await fetch(
 				`${import.meta.env.VITE_MSW ? '/' : ''}${SAMPLES_URL}`,

@@ -227,20 +227,17 @@ export function useDeleteModelMutation() {
 export const useSendFilesMutation = () =>
 	useMutation(
 		async (files: IFilesUpload) => {
-			const headers: Record<string, string> = {
-				'Content-Type': 'multipart/form-data'
-			}
-
 			const formData = new FormData()
+			
 			formData.append('dmoFile', new Blob([files.dmoFile]))
-			if (files.csvFile) {
-				formData.append('csvFile', new Blob([files.csvFile]))
-			}
+			
+			if (files.csvFile) { formData.append('csvFile', new Blob([files.csvFile])) }
+
+			const headers: Record<string, string> = { }
 
 			const token = localStorage.getItem('token')
-			if (token) {
-				headers.Authorization = `${token}`
-			}
+			
+			if (token) { headers.Authorization = `${token}` }
 
 			const response = await fetch(
 				`${import.meta.env.VITE_MSW ? '/' : ''}${MODEL_PREVIEW_URL}`,
