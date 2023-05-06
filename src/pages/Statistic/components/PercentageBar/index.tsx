@@ -1,3 +1,4 @@
+import { formatNumber, truncate } from 'utils/format'
 import type { IWidthVariants, PercentageCardProperties } from './types'
 
 // Tailwindcss doesnt support dynamic classes, so we need to create this object
@@ -115,9 +116,9 @@ export function PercentageCard({
 	totalAk
 }: PercentageCardProperties) {
 	const [ioWidth, bkWidth, akWidth] = [
-		(io * 100).toString(),
-		(bk * 100).toString(),
-		(ak * 100).toString()
+		(truncate(io) * 100).toString(),
+		(truncate(bk) * 100).toString(),
+		(truncate(ak) * 100).toString()
 	]
 
 	return (
@@ -128,13 +129,25 @@ export function PercentageCard({
 			<hr className='mt-2 mb-2 border-bluishgray-fauv' />
 			<div className='mt-auto flex'>
 				<div
-					className={`h-12 ${widthVariants[ioWidth]} rounded-tl-lg rounded-bl-lg bg-green-fauv`}
+					className={`h-12 ${widthVariants[ioWidth]} ${
+						bkWidth === '0' && akWidth === '0'
+							? 'rounded-lg'
+							: 'rounded-tl-lg rounded-bl-lg'
+					} bg-green-fauv`}
 				/>
 				<div
-					className={`h-12 ${widthVariants[bkWidth]} border-x-2  border-white bg-yellow-fauv`}
+					className={`h-12 ${widthVariants[bkWidth]} ${
+						ioWidth === '0' && akWidth === '0'
+							? 'rounded-lg'
+							: 'rounded-tl-lg rounded-bl-lg'
+					} border-x-2  border-white bg-yellow-fauv`}
 				/>
 				<div
-					className={`h-12  ${widthVariants[akWidth]} rounded-tr-lg rounded-br-lg bg-red-fauv`}
+					className={`h-12  ${widthVariants[akWidth]} ${
+						ioWidth === '0' && bkWidth === '0'
+							? 'rounded-lg'
+							: 'rounded-tl-lg rounded-bl-lg'
+					} rounded-tr-lg rounded-br-lg bg-red-fauv`}
 				/>
 			</div>
 			<div className='my-auto flex justify-between'>
@@ -144,7 +157,7 @@ export function PercentageCard({
 						<span className='text-sm'>Menor ou igual 75% </span>
 					</p>
 					<p className='mx-auto font-lexend font-bold'>
-						{`${totalIo} (${io * 100}%)`}
+						{`${totalIo} (${formatNumber(Math.trunc(io * 10_000) / 100)}%)`}
 					</p>
 				</div>
 				<div className='flex flex-col'>
@@ -153,7 +166,7 @@ export function PercentageCard({
 						<span className='text-sm'>Maior 75 % e menor 100%</span>
 					</p>
 					<p className='mx-auto font-lexend  font-bold'>
-						{`${totalBk} (${bk * 100}%)`}
+						{`${totalBk} (${formatNumber(Math.trunc(bk * 10_000) / 100)}%)`}
 					</p>
 				</div>
 				<div className='flex flex-col'>
@@ -162,7 +175,7 @@ export function PercentageCard({
 						<span className='text-sm'>Maior 100%</span>
 					</p>
 					<p className='mx-auto font-lexend font-bold'>
-						{`${totalAk} (${ak * 100}%)`}
+						{`${totalAk} (${formatNumber(Math.trunc(ak * 10_000) / 100)}%)`}
 					</p>
 				</div>
 			</div>

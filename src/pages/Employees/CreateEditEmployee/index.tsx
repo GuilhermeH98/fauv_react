@@ -60,7 +60,7 @@ export function CreateEditEmployee({
 						selectedEmployee ? 'Detalhes do Funcionário' : 'Novo Funcionário'
 					}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedEmployee && (
 					<div className='flex pt-2 pb-1'>

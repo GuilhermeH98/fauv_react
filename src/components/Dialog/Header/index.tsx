@@ -5,7 +5,8 @@ import type { IDialogHeaderProperties } from './types'
 export function DialogHeader({
 	title,
 	isFormDialog,
-	disabledSubmit
+	disabled,
+	isSubmitting
 }: IDialogHeaderProperties): ReactElement {
 	return (
 		<div className='flex justify-between '>
@@ -13,7 +14,7 @@ export function DialogHeader({
 				{title}
 			</span>
 			{isFormDialog && (
-				<Button isSubmit disabled={disabledSubmit}>
+				<Button isSubmit disabled={disabled} isSubmitting={isSubmitting}>
 					Salvar
 				</Button>
 			)}

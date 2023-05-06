@@ -11,10 +11,6 @@ export function getPmpColumns(
 			header: 'Nome'
 		},
 		{
-			key: 'workingOn',
-			header: 'Nominal'
-		},
-		{
 			key: 'x',
 			header: 'X',
 			valueFormatter: value => value?.toString().replace('.', ',') || ''

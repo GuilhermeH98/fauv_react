@@ -67,7 +67,7 @@ export function CreateEditEquipment({
 						selectedEquipment ? 'Detalhes do Equipamento' : 'Novo Equipamento'
 					}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedEquipment && (
 					<div className='flex pt-2 pb-1'>

@@ -55,7 +55,7 @@ export function CreateEditPmp({
 				<DialogHeader
 					title={selectedPmp ? 'Detalhes do PMP' : 'Novo PMP'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedPmp && (
 					<div className='flex pt-2 pb-1'>

@@ -1,5 +1,6 @@
 export interface IDialogHeaderProperties {
 	title: string
 	isFormDialog?: boolean
-	disabledSubmit?: boolean
+	disabled?: boolean
+	isSubmitting?: boolean
 }

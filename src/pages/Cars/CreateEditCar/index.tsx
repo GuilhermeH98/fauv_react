@@ -20,7 +20,7 @@ export function CreateEditCar({
 		reset,
 		register,
 		handleSubmit,
-		formState: { isSubmitting, isValid }
+		formState: { isValid, isSubmitted }
 	} = useForm<IFieldValues>()
 
 	function onCreateEditCar(values: IFieldValues) {
@@ -32,6 +32,18 @@ export function CreateEditCar({
 		mutate(
 			{ ...payload, unitId: Number(unitId) },
 			{
+				onSettled() {
+					reset(undefined, {
+						keepDefaultValues: true,
+						keepDirty: true,
+						keepErrors: true,
+						keepIsSubmitted: false,
+						keepIsValid: true,
+						keepSubmitCount: false,
+						keepTouched: true,
+						keepValues: true
+					})
+				},
 				onSuccess() {
 					onClose()
 					createSnackbar('success', 'Carro salvo com sucesso!')
@@ -59,7 +71,8 @@ export function CreateEditCar({
 				<DialogHeader
 					title={selectedCar ? 'Detalhes do Carro' : 'Novo Carro'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid}
+					isSubmitting={isSubmitted}
 				/>
 				{selectedCar && (
 					<div className='flex pt-2 pb-1'>

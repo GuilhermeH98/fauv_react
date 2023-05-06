@@ -51,7 +51,7 @@ export function CreateEditCatalog({
 				<DialogHeader
 					title={selectedCatalog ? 'Detalhes do Catálogo' : 'Novo Catálogo'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedCatalog && (
 					<div className='flex pt-2 pb-1'>

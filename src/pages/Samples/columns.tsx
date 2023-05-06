@@ -27,6 +27,10 @@ export function getColumns(
 			}
 		},
 		{
+			key: 'pin',
+			header: 'PIN'
+		},
+		{
 			key: 'model',
 			header: 'PART-NUMBER',
 			render: row => (
@@ -59,10 +63,6 @@ export function getColumns(
 			key: 'uploadDate',
 			header: 'Data',
 			valueGetter: row => formatDateWithHours(row.uploadDate)
-		},
-		{
-			key: 'pin',
-			header: 'PIN'
 		},
 		{
 			key: 'actions',

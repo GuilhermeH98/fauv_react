@@ -70,7 +70,7 @@ export function CreateEditFm({
 				<DialogHeader
 					title={selectedFm ? 'Detalhes da FM' : 'Nova FM'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedFm && (
 					<div className='flex pt-2 pb-1'>

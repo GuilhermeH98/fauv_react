@@ -116,7 +116,7 @@ export function ConfigurationDialog({
 				<DialogHeader
 					title='Configuração de Estatística'
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedConfiguration && (
 					<div className='flex pt-2 pb-1'>

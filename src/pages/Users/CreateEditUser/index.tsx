@@ -67,7 +67,7 @@ export function CreateEditUser({
 				<DialogHeader
 					title={selectedUser ? 'Detalhes do Usuário' : 'Novo Usuário'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedUser && (
 					<div className='flex pt-2 pb-1'>

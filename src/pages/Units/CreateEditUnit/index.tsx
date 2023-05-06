@@ -51,7 +51,7 @@ export function CreateEditUnit({
 				<DialogHeader
 					title={selectedUnit ? 'Detalhes da Planta' : 'Nova Planta'}
 					isFormDialog
-					disabledSubmit={!isValid || isSubmitting}
+					disabled={!isValid || isSubmitting}
 				/>
 				{selectedUnit && (
 					<div className='flex pt-2 pb-1'>
