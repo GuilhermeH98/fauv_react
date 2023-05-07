@@ -15,7 +15,7 @@ export function getStatisticCriteriaLabel(
 			return '15 pontos consecutivos na zona C'
 		}
 		case StatisticCriteria.FOURTEEN_CONSECUTIVE_POINTS_ALTERNATING_UP_AND_DOWN: {
-			return '14 pontos consecutivos alternando para cima e para baixo'
+			return '14 pontos consecutivos alternando \n para cima e para baixo'
 		}
 		case StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_A: {
 			return '8 pontos consecutivos fora da zona A'
@@ -24,10 +24,10 @@ export function getStatisticCriteriaLabel(
 			return '2 de 3 pontos consecutivos na zona A'
 		}
 		case StatisticCriteria.FOUR_OUT_OF_FIVE_CONSECUTIVE_POINTS_OUTSIDE_ZONE_C: {
-			return '4 de 5 pontos consecutivos fora da zona C'
+			return '4 de 5 pontos consecutivos \n fora da zona C'
 		}
 		case StatisticCriteria.NINE_CONSECUTIVE_POINTS_ON_THE_SAME_SIDE_OF_THE_MIDDLE_LINE: {
-			return '9 pontos consecutivos no mesmo lado da linha central'
+			return '9 pontos consecutivos no \n mesmo lado da linha central'
 		}
 		case StatisticCriteria.SIX_CONSECUTIVE_POINTS_ASCENDING: {
 			return '6 pontos ascendentes consecutivos'
@@ -91,4 +91,53 @@ export function removeZeros(numberList: (number | null | undefined)[]) {
 		newNumberList.push(number || smallestValue)
 	}
 	return newNumberList
+}
+
+export function getStatus(criteriaList: StatisticCriteria[]) {
+	let status = ''
+	if (criteriaList.length === 0) {
+		status = 'Dentro dos critérios'
+	} else if (
+		criteriaList.includes(StatisticCriteria.POINT_ABOVE_LCS) ||
+		criteriaList.includes(StatisticCriteria.POINT_BELOW_LCS) ||
+		criteriaList.includes(StatisticCriteria.OUT_OF_TOLERANCE)
+	) {
+		status = 'Ponto fora dos limites \n de controle'
+	} else if (
+		criteriaList.includes(StatisticCriteria.SIX_CONSECUTIVE_POINTS_ASCENDING) ||
+		criteriaList.includes(StatisticCriteria.SIX_CONSECUTIVE_POINTS_DESCENDING)
+	) {
+		status = 'Presença de ciclos ou \n tendências'
+	} else if (
+		criteriaList.includes(
+			StatisticCriteria.FIFTEEN_CONSECUTIVE_POINS_IN_ZONE_C
+		) ||
+		criteriaList.includes(
+			StatisticCriteria.FOURTEEN_CONSECUTIVE_POINTS_ALTERNATING_UP_AND_DOWN
+		)
+	) {
+		status = 'Estratificação ou falta \n de variabilidade'
+	} else if (
+		criteriaList.includes(
+			StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_A
+		) ||
+		criteriaList.includes(
+			StatisticCriteria.TWO_OUT_OF_THREE_CONSECUTIVE_POINTS_IN_ZONE_A
+		) ||
+		criteriaList.includes(
+			StatisticCriteria.FOUR_OUT_OF_FIVE_CONSECUTIVE_POINTS_OUTSIDE_ZONE_C
+		)
+	) {
+		status = 'Sequência de pontos próximos \n dos limites de controle'
+	} else if (
+		criteriaList.includes(
+			StatisticCriteria.NINE_CONSECUTIVE_POINTS_ON_THE_SAME_SIDE_OF_THE_MIDDLE_LINE
+		)
+	) {
+		status = 'Sequência de pontos do \n mesmo lado da linha média'
+	} else {
+		status = 'Fora dos critérios'
+	}
+
+	return status
 }

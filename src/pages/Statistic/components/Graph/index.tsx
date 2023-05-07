@@ -12,6 +12,7 @@ import type { IGraphProperties } from './types'
 import {
 	getCriteriaLabelList,
 	getGraphSmallestValue,
+	getStatus,
 	removeZeros,
 	smallestValue
 } from './utils'
@@ -210,11 +211,9 @@ export function Graph({ data }: IGraphProperties) {
 						(datum as IGraphicDetail).value
 					} \n\u00A0Data: ${
 						(datum as IGraphicDetail).updatedDate
-					} \n\u00A0Status: ${
-						(datum as IGraphicDetail).statisticCriteriaList.length === 0
-							? 'Dentro da tolerância'
-							: 'Fora da tolerância'
-					}${getCriteriaLabelList(
+					} \n\u00A0Status: ${getStatus(
+						(datum as IGraphicDetail).statisticCriteriaList
+					)}${getCriteriaLabelList(
 						(datum as IGraphicDetail).statisticCriteriaList
 					)}`
 				}
