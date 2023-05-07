@@ -5,7 +5,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import { ROLES_OPTIONS } from 'pages/Users/api'
 import type { ReactElement } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
 import { resetIsSubmittedOptions } from 'utils/miscellaneous'
@@ -25,12 +25,9 @@ export default function SignUp(): ReactElement {
 		formState: { errors, isValid, isSubmitted }
 	} = useForm<IRegisterPayload>({ mode: 'onBlur' })
 
-	function onSubmit(data: IRegisterPayload): void {
-		if (data.password !== data.passwordConfirmation) {
-			createSnackbar('error', 'As senhas não coincidem!')
-			return
-		}
+	const passwordValue = useWatch({ control, name: 'password' })
 
+	function onSubmit(data: IRegisterPayload): void {
 		mutate(data, {
 			onSettled() {
 				reset(undefined, resetIsSubmittedOptions)
@@ -84,7 +81,16 @@ export default function SignUp(): ReactElement {
 				placeholder='Repetir senha'
 				required
 				register={register}
+				rules={{
+					validate: (value: string) =>
+						value === passwordValue || 'As senhas não coincidem'
+				}}
 			/>
+			{errors.passwordConfirmation && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					{errors.passwordConfirmation.message}
+				</p>
+			)}
 			<SecondaryMultiselect
 				className=' w-72 '
 				control={control}

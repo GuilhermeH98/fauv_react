@@ -1,5 +1,4 @@
 import type { IGraphicDetail } from 'pages/Statistic/api'
-import { formatDateMonth } from 'utils/format'
 import {
 	VictoryAxis,
 	VictoryChart,
@@ -54,11 +53,6 @@ export function Graph({ data }: IGraphProperties) {
 		mediumLine
 	])
 
-	const detailsList = detailedFmGraphicsList.map(detail => ({
-		...detail,
-		updatedDate: formatDateMonth(detail.updatedDate)
-	}))
-
 	return (
 		<VictoryChart
 			height={240}
@@ -73,7 +67,10 @@ export function Graph({ data }: IGraphProperties) {
 					tickLabels: { fill: '#615E83', fontSize: 12 },
 					axis: { stroke: 'transparent' }
 				}}
-				axisValue={getGraphSmallestValue(detailsList, lowerToleranceValue)}
+				axisValue={getGraphSmallestValue(
+					detailedFmGraphicsList,
+					lowerToleranceValue
+				)}
 			/>
 			{/* Y AXIS - VALUE */}
 			<VictoryAxis
@@ -199,7 +196,7 @@ export function Graph({ data }: IGraphProperties) {
 			{/* GRAPH DATA */}
 			<VictoryLine
 				interpolation='linear'
-				data={detailsList}
+				data={detailedFmGraphicsList}
 				x='pin'
 				y='value'
 				style={{
@@ -207,7 +204,7 @@ export function Graph({ data }: IGraphProperties) {
 				}}
 			/>
 			<VictoryScatter
-				data={detailsList}
+				data={detailedFmGraphicsList}
 				labels={({ datum }) =>
 					`\u00A0Valor do Scan: ${
 						(datum as IGraphicDetail).value
