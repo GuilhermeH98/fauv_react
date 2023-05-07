@@ -48,8 +48,8 @@ export function Models(): ReactElement {
 					toggleIsSubmitting()
 				},
 				onSuccess: async () => {
-					await queryClient.invalidateQueries([MODELS_URL])
 					toggleIsConfirmDialogOpen()
+					await queryClient.invalidateQueries([MODELS_URL])
 					createSnackbar('success', 'Modelo deletado com sucesso!')
 				},
 				onError(error) {

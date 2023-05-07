@@ -46,8 +46,8 @@ export function Samples(): ReactElement {
 					toggleIsSubmitting()
 				},
 				onSuccess: async () => {
-					await queryClient.invalidateQueries([SAMPLES_URL])
 					toggleIsConfirmDialogOpen()
+					await queryClient.invalidateQueries([SAMPLES_URL])
 					createSnackbar('success', 'Amostra deletada com sucesso!')
 				},
 				onError(error) {
