@@ -8,7 +8,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import TableContent from 'components/Table/components/TableContent'
 import { useCarsQuery } from 'pages/Cars/api'
 import { useEffect, useState } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import { RiArrowGoBackLine, RiUploadCloud2Line } from 'react-icons/ri'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
@@ -21,8 +21,6 @@ import type { IFieldValues, IFm, IModel, IModelPreview, IPmp } from '../api'
 import { useModelMutation } from '../api'
 import { CreateEditFm } from './components/CreateEditFm'
 import { CreateEditPmp } from './components/CreateEditPmp'
-import { FmFilter } from './components/FmFilter'
-import { PmpFilter } from './components/PmpFilter'
 import { UploadDialog } from './components/UploadDialog'
 import { getFmColumns } from './fmColumns'
 import { getPmpColumns } from './pmpColumns'
@@ -47,8 +45,6 @@ export function CreateEditModel() {
 	const [isRemoveDialogOpen, toggleIsRemoveDialogOpen] = useToggle()
 	const [isFmDialogOpen, toggleIsFmDialogOpen] = useToggle()
 	const [isUploadDialogOpen, toggleIsUploadDialogOpen] = useToggle()
-	const [filteredPmpList, setFilteredPmpList] = useState<IPmp[]>([])
-	const [filteredFmList, setFilteredFmList] = useState<IFm[]>([])
 	const [pmpList, setPmpList] = useState<IPmp[]>([])
 	const [fmList, setFmList] = useState<IFm[]>([])
 
@@ -70,6 +66,11 @@ export function CreateEditModel() {
 		formState: { isSubmitted, isValid }
 	} = useForm<IFieldValues>()
 
+	const { register: registerFilter, control: controlFilter } = useForm<{
+		pmpFilter: string
+		fmFilter: string
+	}>({ defaultValues: { pmpFilter: '', fmFilter: '' } })
+
 	const {
 		fields: pmpFields,
 		append: appendPmp,
@@ -89,6 +90,19 @@ export function CreateEditModel() {
 		control,
 		name: 'fmList'
 	})
+
+	const [pmpFilterValue, fmFilterValue] = useWatch({
+		control: controlFilter,
+		name: ['pmpFilter', 'fmFilter']
+	})
+
+	const filteredPmpList = pmpList.filter(pmp =>
+		pmp.name.toLowerCase().includes(pmpFilterValue.toLowerCase())
+	)
+
+	const filteredFmList = fmList.filter(fm =>
+		fm.name.toLowerCase().includes(fmFilterValue.toLowerCase())
+	)
 
 	useEffect(() => {
 		setPmpList(getPmpRows(pmpFields))
@@ -296,18 +310,19 @@ export function CreateEditModel() {
 											{state ? 'Editar Modelo' : 'Novo Modelo'}
 										</h2>
 									</div>
-
-									<OutlinedButton
-										className='ml-auto'
-										onClick={toggleIsUploadDialogOpen}
-									>
-										<div className='flex'>
-											<RiUploadCloud2Line className='mr-2 text-icon' />
-											<span>Upload </span>
-										</div>
-									</OutlinedButton>
+									{!state && (
+										<OutlinedButton
+											className='ml-auto'
+											onClick={toggleIsUploadDialogOpen}
+										>
+											<div className='flex'>
+												<RiUploadCloud2Line className='mr-2 text-icon' />
+												<span>Upload </span>
+											</div>
+										</OutlinedButton>
+									)}
 									<Button
-										className='ml-4'
+										className={`${state ? 'ml-auto' : 'ml-4'}`}
 										disabled={!isValid}
 										isSubmitting={isSubmitted}
 										isSubmit
@@ -347,9 +362,14 @@ export function CreateEditModel() {
 									>
 										Adicionar PMP
 									</OutlinedButton>
-									<PmpFilter
-										pmpList={pmpList}
-										setFilteredList={setFilteredPmpList}
+
+									<Input
+										widthClassName='w-52'
+										id='pmpFilter'
+										register={registerFilter}
+										placeholder='Filtar Nome'
+										searchIcon
+										roundedClassName='rounded-lg'
 									/>
 								</div>
 								<TableContent
@@ -368,9 +388,13 @@ export function CreateEditModel() {
 									>
 										Adicionar FM
 									</OutlinedButton>
-									<FmFilter
-										fmList={fmList}
-										setFilteredList={setFilteredFmList}
+									<Input
+										widthClassName='w-52'
+										id='fmFilter'
+										register={registerFilter}
+										placeholder='Filtar Nome'
+										searchIcon
+										roundedClassName='rounded-lg'
 									/>
 								</div>
 								<TableContent

@@ -49,10 +49,10 @@ export function UploadDialog({
 	}
 
 	function onCloseDialog() {
+		onClose()
+
 		setDmoFile(null)
 		setCsvFile(null)
-
-		onClose()
 	}
 
 	function onSubmit() {
@@ -64,8 +64,8 @@ export function UploadDialog({
 						reset(undefined, resetIsSubmittedOptions)
 					},
 					onSuccess(response: IModelPreview) {
-						onUploadSuccess(response)
 						onCloseDialog()
+						onUploadSuccess(response)
 						createSnackbar('success', 'Upload com sucesso!')
 					},
 					onError(error) {
