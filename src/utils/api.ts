@@ -150,6 +150,7 @@ export function makeQuery<
 			async () =>
 				schema.parse(await get(appendURLParameters(url, parameters))) as TData,
 			{
+				refetchOnMount: 'always',
 				enabled,
 				networkMode: 'always'
 			}
