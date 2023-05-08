@@ -5,7 +5,6 @@ import {
 	RiCloseLine,
 	RiDeleteBinLine
 } from 'react-icons/ri'
-import { formatDateWithHours } from 'utils/format'
 import type { ISample } from './api'
 import { Status } from './api'
 
@@ -61,8 +60,7 @@ export function getColumns(
 		},
 		{
 			key: 'uploadDate',
-			header: 'Data',
-			valueGetter: row => formatDateWithHours(row.uploadDate)
+			header: 'Data'
 		},
 		{
 			key: 'actions',

@@ -2,7 +2,6 @@ import Division from 'components/Division'
 import { Query } from 'components/Query'
 import { createSnackbar } from 'components/Snackbar/utils'
 import { useNavigate } from 'react-router-dom'
-import { formatDate } from 'utils/format'
 import type { IStatisticPreview } from './api'
 import { useStatisticPreviewsQuery } from './api'
 
@@ -62,7 +61,7 @@ export function StatisticPreview() {
 											Data da Primeira Amostra
 										</p>
 										<p className='text-lg font-semibold text-blue-fauv'>
-											{formatDate(statisticPreview.initDate)}
+											{statisticPreview.initDate}
 										</p>
 									</div>
 									<div className='my-auto mr-auto text-left  '>
@@ -70,7 +69,7 @@ export function StatisticPreview() {
 											Data da Última Amostra
 										</p>
 										<p className='text-lg font-semibold text-blue-fauv'>
-											{formatDate(statisticPreview.endDate)}
+											{statisticPreview.endDate}
 										</p>
 									</div>
 									<div className='my-auto mr-auto text-left  '>
