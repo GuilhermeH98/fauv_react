@@ -137,7 +137,9 @@ export function PercentageCard({
 				/>
 				<div
 					className={`h-12 ${widthVariants[bkWidth]} ${
-						ioWidth === '0' && akWidth === '0' ? 'rounded-lg' : ''
+						ioWidth === '0' ? 'rounded-l-lg' : ''
+					}  ${
+						akWidth === '0' ? 'rounded-r-lg' : ''
 					} border-x-2  border-white bg-yellow-fauv`}
 				/>
 				<div
@@ -160,7 +162,7 @@ export function PercentageCard({
 				</div>
 				<div className='flex flex-col'>
 					<p className='font-lg text-center font-lexend '>
-						<span className='text-xl   text-yellow-fauv '>BK </span>
+						<span className='text-xl text-yellow-fauv '>BK </span>
 						<span className='text-sm'>Maior 75 % e menor 100%</span>
 					</p>
 					<p className='mx-auto font-lexend  font-bold'>
@@ -169,7 +171,7 @@ export function PercentageCard({
 				</div>
 				<div className='flex flex-col'>
 					<p className='font-lg text-center font-lexend'>
-						<span className='text-xl   text-red-fauv '>AK</span>
+						<span className='text-xl text-red-fauv '>AK</span>
 						<span className='text-sm'>Maior 100%</span>
 					</p>
 					<p className='mx-auto font-lexend font-bold'>
