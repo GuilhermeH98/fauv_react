@@ -69,6 +69,7 @@ export const Statistic = z.object({
 	ppk: z.number(),
 	z1: z.number().nullish(),
 	z2: z.number().nullish(),
+	able: z.boolean(),
 	standardDeviation: z.number(),
 	sigmaLevel: z.number(),
 	average: z.number(),

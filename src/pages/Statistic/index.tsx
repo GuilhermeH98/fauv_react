@@ -179,8 +179,8 @@ export function Statistic() {
 										<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
 											Índices
 										</h3>
-										<span className='ml-auto font-lexend  font-bold text-green-fauv'>
-											Processo Capaz
+									<span className={`ml-auto font-lexend  font-bold ${data.able ? "text-green-fauv": "text-red-fauv"}`}>
+										 {data.able ? "Processo Capaz" : "Processo Incapaz"}
 										</span>
 									</div>
 
