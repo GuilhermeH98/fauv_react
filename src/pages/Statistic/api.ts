@@ -48,7 +48,7 @@ export type IGraphicValues = z.infer<typeof GraphicValues>
 const CepIndividualValuesGraphic = GraphicValues.extend({
 	positiveZoneA: z.number(),
 	positiveZoneB: z.number(),
-	posttiveZoneC: z.number(),
+	positiveZoneC: z.number(),
 	negativeZoneA: z.number(),
 	negativeZoneB: z.number(),
 	negativeZoneC: z.number()
