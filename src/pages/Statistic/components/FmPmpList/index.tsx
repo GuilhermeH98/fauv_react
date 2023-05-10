@@ -59,7 +59,7 @@ export function FmPmpList({
 								isFm && fmName.name === currentName
 									? 'rounded bg-[#91BAD6]'
 									: ''
-							}`}
+							} ${fmName.active ? '' : 'opacity-50'}`}
 							key={`fmNameCard-${index}`}
 						>
 							<div className='my-auto flex flex-col'>
@@ -71,17 +71,20 @@ export function FmPmpList({
 									{getFmLevelLabel(fmName.level)}
 								</span>
 							</div>
-							<RiEye2Line
-								onClick={() => {
-									onCardClick('fm', fmName.name)
-								}}
-								className={`my-auto ml-auto cursor-pointer  ${
-									isFm && fmName.name === currentName
-										? 'text-blue-fauv'
-										: 'text-gray-fauv-3'
-								} `}
-								size={28}
-							/>
+
+							{fmName.active && (
+								<RiEye2Line
+									onClick={() => {
+										onCardClick('fm', fmName.name)
+									}}
+									className={`my-auto ml-auto cursor-pointer  ${
+										isFm && fmName.name === currentName
+											? 'text-blue-fauv'
+											: 'text-gray-fauv-3'
+									} `}
+									size={28}
+								/>
+							)}
 						</div>
 					))}
 				{!isShowingFmList &&

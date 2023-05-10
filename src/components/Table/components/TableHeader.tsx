@@ -7,7 +7,7 @@ function TableHeader<TData, TKey extends keyof TData>({
 	const headers = columns.map((column, index) => (
 		<th
 			key={`headCell-${index}`}
-			className={`h-12   border-b  border-blue-fauv py-3 px-6 text-xs font-semibold ${
+			className={`h-12   whitespace-nowrap border-b  border-blue-fauv py-3 px-6 text-xs font-semibold ${
 				blueHeader && index === 0 ? 'rounded-tl' : ''
 			} ${blueHeader && index === columns.length - 1 ? 'rounded-tr' : ''}`}
 		>
@@ -16,7 +16,11 @@ function TableHeader<TData, TKey extends keyof TData>({
 	))
 
 	return (
-		<thead className={`${blueHeader ? ' bg-blue-fauv text-white' : ''}`}>
+		<thead
+			className={`${
+				blueHeader ? ' bg-blue-fauv text-white' : 'bg-white'
+			} sticky top-0 `}
+		>
 			<tr>{headers}</tr>
 		</thead>
 	)

@@ -13,52 +13,62 @@
 			{
 				"name": "FM1",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": false
 			},
 			{
 				"name": "FM2",
 				"level": "CRITICAL",
-				"axis": "Y"
+				"axis": "Y",
+				"active": true
 			},
 			{
 				"name": "FM3",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM4",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM5",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM6",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM7",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM8",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM9",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM10",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			}
 		],
 		"defaultPmpNames": [
@@ -93,12 +103,14 @@
 			{
 				"name": "FM1",
 				"level": "MEDIUM",
-				"axis": "X"
+				"axis": "X",
+				"active": true
 			},
 			{
 				"name": "FM2",
 				"level": "CRITICAL",
-				"axis": "Y"
+				"axis": "Y",
+				"active": true
 			}
 		],
 		"defaultPmpNames": [

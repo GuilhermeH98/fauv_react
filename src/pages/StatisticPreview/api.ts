@@ -6,7 +6,7 @@ export const STATISTIC_PREVIEW_URL = `${
 	import.meta.env.VITE_ANALYZER_URL ?? ''
 }statistic/${import.meta.env.VITE_UNIT_ID ?? '1'}`
 
-const DefaultFm = Fm.pick({ name: true, level: true, axis: true })
+const DefaultFm = Fm.pick({ name: true, level: true, axis: true, active: true })
 export type IDefaultFm = z.infer<typeof DefaultFm>
 
 const DefaultPmp = Pmp.pick({ name: true })

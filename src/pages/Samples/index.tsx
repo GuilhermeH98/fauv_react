@@ -7,6 +7,7 @@ import Table from 'components/Table'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
 import { RiUploadCloud2Line } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
 import { useToggle } from 'utils/miscellaneous'
 import { SampleCards } from './SampleCards'
@@ -21,6 +22,8 @@ export function Samples(): ReactElement {
 	const [isSubmitting, toggleIsSubmitting] = useToggle()
 
 	const queryClient = useQueryClient()
+
+	const navigate = useNavigate()
 
 	async function onUploadSuccess() {
 		await queryClient.invalidateQueries([SAMPLES_URL])
@@ -83,6 +86,7 @@ export function Samples(): ReactElement {
 							title='Amostras'
 							data={data}
 							columns={getColumns(onRowClick)}
+							onRowClick={row => navigate(`/samples/overview/${row.id}`)}
 						/>
 					</>
 				)}

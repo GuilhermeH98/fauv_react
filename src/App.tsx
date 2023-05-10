@@ -7,6 +7,7 @@ import { Employees } from 'pages/Employees'
 import { Equipments } from 'pages/Equipments'
 import { Models } from 'pages/Models'
 import { CreateEditModel } from 'pages/Models/CreateEditModel'
+import { SampleOverview } from 'pages/SampleOverview'
 import { Samples } from 'pages/Samples'
 import SignIn from 'pages/SignIn'
 import SignUp from 'pages/SignUp'
@@ -71,6 +72,14 @@ export default function App(): ReactElement {
 										element={
 											<AuthWrapper authenticated restricted>
 												<CreateEditModel />
+											</AuthWrapper>
+										}
+									/>
+									<Route
+										path='/samples/overview/:sampleId'
+										element={
+											<AuthWrapper authenticated restricted>
+												<SampleOverview />
 											</AuthWrapper>
 										}
 									/>
