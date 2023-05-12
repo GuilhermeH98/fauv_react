@@ -12,6 +12,7 @@ import { getErrorMessage } from 'utils/error'
 import { useToggle } from 'utils/miscellaneous'
 import { SampleCards } from './SampleCards'
 import { UploadDialog } from './UploadDialog'
+import type { ISample } from './api'
 import { SAMPLES_URL, useDeleteSampleMutation, useSamplesQuery } from './api'
 import { getColumns } from './columns'
 
@@ -66,6 +67,10 @@ export function Samples(): ReactElement {
 		}
 	}
 
+	function navigateToOverview(row: ISample) {
+		navigate(`/samples/overview/${row.id}`)
+	}
+
 	return (
 		<>
 			<Query
@@ -85,8 +90,7 @@ export function Samples(): ReactElement {
 						<Table
 							title='Amostras'
 							data={data}
-							columns={getColumns(onRowClick)}
-							onRowClick={row => navigate(`/samples/overview/${row.id}`)}
+							columns={getColumns(onRowClick, navigateToOverview)}
 						/>
 					</>
 				)}

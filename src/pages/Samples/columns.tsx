@@ -3,13 +3,15 @@ import {
 	RiAlertLine,
 	RiCheckLine,
 	RiCloseLine,
-	RiDeleteBinLine
+	RiDeleteBinLine,
+	RiSearchLine
 } from 'react-icons/ri'
 import type { ISample } from './api'
 import { Status } from './api'
 
 export function getColumns(
-	onRowClick: (id: number) => void
+	onRowClick: (id: number) => void,
+	navigateToOverview: (row: ISample) => void
 ): IColumnDefinitionType<ISample, keyof ISample>[] {
 	return [
 		{
@@ -66,10 +68,19 @@ export function getColumns(
 			key: 'actions',
 			header: '',
 			render: row => (
-				<RiDeleteBinLine
-					className='cursor-pointer text-icon text-gray-fauv-2'
-					onClick={() => onRowClick(row.id)}
-				/>
+				<div className='flex'>
+					<RiSearchLine
+						className='mr-8 cursor-pointer text-icon text-gray-fauv-2'
+						onClick={() => navigateToOverview(row)}
+					/>
+					<RiDeleteBinLine
+						className='cursor-pointer text-icon text-gray-fauv-2'
+						onClick={event => {
+							onRowClick(row.id)
+							event.stopPropagation()
+						}}
+					/>
+				</div>
 			)
 		}
 	]
