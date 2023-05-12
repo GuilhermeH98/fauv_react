@@ -1,11 +1,11 @@
 import { CatalogType, Level, PointAxis } from 'pages/Models/api'
-import { SAMPLES_URL, Status } from 'pages/Samples/api'
+import { Status } from 'pages/Samples/api'
 import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
 export const SAMPLE_OVERVIEW_URL = `${
 	import.meta.env.VITE_ANALYZER_URL ?? ''
-}${SAMPLES_URL}/overview`
+}sample/overview`
 
 enum ToleranceTypeStatus {
 	AK = 'AK',
