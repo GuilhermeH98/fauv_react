@@ -17,7 +17,7 @@ export default function Input<TFieldValues extends FieldValues>({
 	disabled = false
 }: IInputProperties<TFieldValues>): ReactElement {
 	return (
-		<div className={`grid ${widthClassName} relative h-10 gap-4`}>
+		<div className={`grid ${widthClassName} relative gap-4`}>
 			{label && (
 				<label
 					className='font-inter text-base font-semibold leading-[160%]  text-black-fauv-3'
