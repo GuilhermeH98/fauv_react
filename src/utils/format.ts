@@ -32,3 +32,7 @@ export function truncate(number: number) {
 export function formatNumber(number: number): string {
 	return number.toString().replace('.', ',')
 }
+
+export function formatPercentage(number: number): string {
+	return `${(number * 100).toString().replace('.', '')}%`
+}

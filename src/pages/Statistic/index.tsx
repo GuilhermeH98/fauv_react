@@ -15,7 +15,7 @@ import {
 	RiCarLine
 } from 'react-icons/ri'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { formatNumber } from 'utils/format'
+import { formatNumber, formatPercentage } from 'utils/format'
 import { useToggle } from 'utils/miscellaneous'
 import { GraphicType, useStatisticQuery } from './api'
 import { FmPmpList } from './components/FmPmpList'
@@ -179,8 +179,12 @@ export function Statistic() {
 										<h3 className=' font-lexend text-xl font-bold text-blue-fauv'>
 											Índices
 										</h3>
-									<span className={`ml-auto font-lexend  font-bold ${data.able ? "text-green-fauv": "text-red-fauv"}`}>
-										 {data.able ? "Processo Capaz" : "Processo Incapaz"}
+										<span
+											className={`ml-auto font-lexend  font-bold ${
+												data.able ? 'text-green-fauv' : 'text-red-fauv'
+											}`}
+										>
+											{data.able ? 'Processo Capaz' : 'Processo Incapaz'}
 										</span>
 									</div>
 
@@ -222,16 +226,16 @@ export function Statistic() {
 											</p>
 											<p className='mt-3 font-lexend text-sm  font-semibold'>
 												Distribuição normal (Z):
-												{formatNumber(data.nominalDistribution)}%
+												{formatPercentage(data.nominalDistribution)}
 											</p>
 										</div>
 										<hr className='my-auto h-18 border border-bluishgray-fauv' />
 										<div className='mr-auto'>
 											<p className='my-3 font-lexend text-sm  font-semibold'>
-												Z1: {data.z1 || ''}
+												Z1: {data.z1 ? formatPercentage(data.z1) : ''}
 											</p>
 											<p className='mt-3 font-lexend text-sm  font-semibold'>
-												Z2: {data.z2 || ''}
+												Z2: {data.z2 ? formatPercentage(data.z2) : ''}
 											</p>
 										</div>
 									</div>
