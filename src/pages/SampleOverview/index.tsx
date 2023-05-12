@@ -141,7 +141,7 @@ text-black-fauv'
 												<RiAlertLine size={22} className='mr-2' /> ALERTAS
 											</p>
 
-											<ul className='flex list-inside list-disc flex-wrap gap-4'>
+											<ul className='flex list-inside list-disc flex-wrap gap-x-4 gap-y-2'>
 												{data.fmListAk.map((fm, index) => (
 													<li
 														className='text-lexend list-item text-black-fauv'
@@ -159,11 +159,18 @@ text-black-fauv'
 												FM Overview
 											</p>
 											<p className='lexend mt-2  text-black-fauv'>
-												<span className='font-semibold'>AK:</span>&nbsp;
+												<span className='font-semibold text-red-fauv'>AK:</span>
+												&nbsp;
 												{data.totalFmAk}&nbsp;&nbsp;
-												<span className='font-semibold'>BK:</span>&nbsp;
+												<span className='font-semibold text-yellow-fauv'>
+													BK:
+												</span>
+												&nbsp;
 												{data.totalFmBk}&nbsp;&nbsp;
-												<span className='font-semibold'>IO:</span>&nbsp;
+												<span className='font-semibold text-green-fauv'>
+													IO:
+												</span>
+												&nbsp;
 												{data.totalFmIo}
 											</p>
 										</div>
@@ -192,11 +199,18 @@ text-black-fauv'
 												PMP Overview
 											</p>
 											<p className='lexend mt-2  text-black-fauv'>
-												<span className='font-semibold'>AK:</span>&nbsp;
+												<span className='font-semibold text-red-fauv'>AK:</span>
+												&nbsp;
 												{data.totalPmpAk}&nbsp;&nbsp;
-												<span className='font-semibold'>BK:</span>&nbsp;
+												<span className='font-semibold text-yellow-fauv'>
+													BK:
+												</span>
+												&nbsp;
 												{data.totalPmpBk}&nbsp;&nbsp;
-												<span className='font-semibold'>IO:</span>&nbsp;
+												<span className='font-semibold text-green-fauv'>
+													IO:
+												</span>
+												&nbsp;
 												{data.totalPmpIo}
 											</p>
 										</div>

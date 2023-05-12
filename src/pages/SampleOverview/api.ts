@@ -7,7 +7,7 @@ export const SAMPLE_OVERVIEW_URL = `${
 	import.meta.env.VITE_ANALYZER_URL ?? ''
 }sample/overview`
 
-enum ToleranceTypeStatus {
+export enum ToleranceTypeStatus {
 	AK = 'AK',
 	BK = 'BK',
 	IO = 'IO'

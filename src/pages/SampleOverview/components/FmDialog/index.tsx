@@ -9,7 +9,6 @@ export function FmDialog({ selectedFm }: IFmDialogProperties) {
 		<div className='flex flex-col justify-between gap-4'>
 			<div className='flex '>
 				<p className='lexend my-auto  font-bold text-black-fauv'>
-					{' '}
 					{selectedFm.name}
 				</p>
 
@@ -26,7 +25,7 @@ export function FmDialog({ selectedFm }: IFmDialogProperties) {
 			</div>
 
 			<Division />
-			<div className='grid grid-cols-4 gap-y-8'>
+			<div className='grid grid-cols-4 gap-y-8 gap-x-4'>
 				<div className='col-span-2'>
 					<p className='lexend  font-bold  text-black-fauv'>Lista PMP</p>
 					<p className='lexend mt-2   text-black-fauv'>
@@ -38,9 +37,12 @@ export function FmDialog({ selectedFm }: IFmDialogProperties) {
 					<p className='lexend mt-2   text-black-fauv'>{selectedFm.axis}</p>
 				</div>
 				<div>
-					<p className='lexend  font-bold  text-black-fauv'>Valor</p>
-					<p className='lexend mt-2   text-black-fauv'>{selectedFm.value}</p>
+					<p className='lexend  font-bold  text-black-fauv'>Level</p>
+					<p className='lexend mt-2   text-black-fauv'>
+						{getFmLevelLabel(selectedFm.fmLevel)}
+					</p>
 				</div>
+
 				<div className='col-span-2'>
 					<p className='lexend  font-bold  text-black-fauv'>Impactos</p>
 					<p className='lexend mt-2   text-black-fauv'>
@@ -49,10 +51,8 @@ export function FmDialog({ selectedFm }: IFmDialogProperties) {
 				</div>
 
 				<div>
-					<p className='lexend  font-bold  text-black-fauv'>Level</p>
-					<p className='lexend mt-2   text-black-fauv'>
-						{getFmLevelLabel(selectedFm.fmLevel)}
-					</p>
+					<p className='lexend  font-bold  text-black-fauv'>Valor</p>
+					<p className='lexend mt-2   text-black-fauv'>{selectedFm.value}</p>
 				</div>
 			</div>
 		</div>

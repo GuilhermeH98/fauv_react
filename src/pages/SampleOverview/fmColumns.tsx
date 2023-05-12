@@ -1,6 +1,7 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
 import type { IFmOverview } from './api'
 import { ToleranceType } from './api'
+import { getToleranceStatusColor } from './utils'
 
 export const fmColumns: IColumnDefinitionType<
 	IFmOverview,
@@ -37,7 +38,12 @@ export const fmColumns: IColumnDefinitionType<
 	},
 	{
 		key: 'toleranceStatus',
-		header: 'AK | BK | IO'
+		header: 'AK | BK | IO',
+		render: row => (
+			<span className={`${getToleranceStatusColor(row.toleranceStatus)}`}>
+				{row.toleranceStatus}
+			</span>
+		)
 	},
 	{
 		key: 'wasFound',
