@@ -3,6 +3,7 @@ import SecondaryInput from 'components/Inputs/SecondaryInput'
 import { createSnackbar } from 'components/Snackbar/utils'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import type { ReactElement } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
@@ -18,8 +19,8 @@ export default function SignIn(): ReactElement {
 		register,
 		handleSubmit,
 		reset,
-		formState: { isSubmitted }
-	} = useForm<ISignInPayload>()
+		formState: { isValid, isSubmitted, errors }
+	} = useForm<ISignInPayload>({ mode: 'onTouched' })
 	const { mutate } = useSignInMutation()
 
 	function onSubmit(data: ISignInPayload): void {
@@ -41,6 +42,12 @@ export default function SignIn(): ReactElement {
 		})
 	}
 
+	useEffect(() => {
+		if (isSubmitted && !isValid) {
+			reset(undefined, resetIsSubmittedOptions)
+		}
+	}, [isSubmitted, isValid, reset])
+
 	return (
 		<AuthenticationLayout
 			subtitle='Entre para gerenciar a qualidade da produção'
@@ -53,6 +60,11 @@ export default function SignIn(): ReactElement {
 				required
 				register={register}
 			/>
+			{errors.vwId && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					Este campo é obrigatório.
+				</p>
+			)}
 			<SecondaryInput
 				type='password'
 				id='password'
@@ -60,6 +72,11 @@ export default function SignIn(): ReactElement {
 				required
 				register={register}
 			/>
+			{errors.password && (
+				<p className='font-lexend text-base font-medium leading-5 text-red-fauv'>
+					Este campo é obrigatório.
+				</p>
+			)}
 			<div className='flex w-72 justify-between'>
 				<Link
 					to='/signup'

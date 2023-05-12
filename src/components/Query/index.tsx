@@ -7,6 +7,7 @@ export function Query<TData>({
 	query: useQuery,
 	parameters,
 	mutationUpdates,
+	returnOnError = false,
 	render
 }: IQueryProperties<TData>) {
 	const query =
@@ -20,7 +21,7 @@ export function Query<TData>({
 	if (query.isSuccess) {
 		return render(query.data)
 	}
-	return <QueryError onRetry={query.refetch} />
+	return <QueryError onRetry={query.refetch} returnOnError={returnOnError} />
 }
 
 export * from './Error'

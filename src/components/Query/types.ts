@@ -6,9 +6,11 @@ export interface IQueryProperties<TData> {
 		| ((parameter?: Record<string, string>) => UseQueryResult<TData>)
 	parameters?: Record<string, string> | undefined
 	mutationUpdates?: boolean
+	returnOnError?: boolean
 	render: (data: TData) => React.ReactElement
 }
 
 export interface IQueryErrorProperties {
 	onRetry?: () => void
+	returnOnError?: boolean
 }

@@ -28,6 +28,7 @@ const axisCoordinateOverview = z.object({
 	lowerTolerance: z.number(),
 	wasFound: z.boolean()
 })
+export type IAxisCoordinateOverview = z.infer<typeof axisCoordinateOverview>
 
 const PmpOverview = z.object({
 	name: z.string(),
@@ -48,6 +49,7 @@ const FmOverview = z.object({
 	tolerance: z.nativeEnum(ToleranceType),
 	catalog: z.nativeEnum(CatalogType),
 	pmpList: z.array(z.string()),
+	impactList: z.array(z.string()),
 	toleranceStatus: z.nativeEnum(ToleranceTypeStatus),
 	higherTolerance: z.number(),
 	lowerTolerance: z.number(),

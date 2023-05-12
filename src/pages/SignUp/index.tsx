@@ -5,6 +5,7 @@ import { createSnackbar } from 'components/Snackbar/utils'
 import { AuthenticationLayout } from 'layouts/Authentication'
 import { ROLES_OPTIONS } from 'pages/Users/api'
 import type { ReactElement } from 'react'
+import { useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { getErrorMessage } from 'utils/error'
@@ -44,6 +45,12 @@ export default function SignUp(): ReactElement {
 			}
 		})
 	}
+
+	useEffect(() => {
+		if (isSubmitted && !isValid) {
+			reset(undefined, resetIsSubmittedOptions)
+		}
+	}, [isSubmitted, isValid, reset])
 
 	return (
 		<AuthenticationLayout

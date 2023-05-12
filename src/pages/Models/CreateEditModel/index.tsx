@@ -375,7 +375,7 @@ export function CreateEditModel() {
 								<TableContent
 									columns={getPmpColumns(onRemoveRow)}
 									data={filteredPmpList}
-									className='max-h-96 border-2'
+									className='h-96 border-2'
 									onRowClick={onPmpClick}
 								/>
 								<div className='w- flex h-9 items-center justify-center rounded-md bg-blue-fauv text-lg font-semibold leading-6 text-gray-fauv'>
@@ -400,7 +400,7 @@ export function CreateEditModel() {
 								<TableContent
 									columns={getFmColumns(onRemoveRow)}
 									data={filteredFmList}
-									className='max-h-96 border-2'
+									className='h-96 border-2'
 									onRowClick={onFmClick}
 								/>
 							</div>

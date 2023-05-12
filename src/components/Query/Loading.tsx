@@ -1,6 +1,6 @@
 export function QueryLoading() {
 	return (
-		<div className=' flex h-full w-full flex-col '>
+		<div className=' m-auto flex h-full w-full flex-col '>
 			<div className='m-auto flex flex-col '>
 				<svg
 					aria-hidden='true'
