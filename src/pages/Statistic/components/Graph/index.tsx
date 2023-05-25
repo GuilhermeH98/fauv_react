@@ -21,7 +21,7 @@ export function Graph({ data }: IGraphProperties) {
 	const {
 		positiveZoneA,
 		positiveZoneB,
-		posttiveZoneC,
+		positiveZoneC,
 		negativeZoneA,
 		negativeZoneB,
 		negativeZoneC,
@@ -35,7 +35,7 @@ export function Graph({ data }: IGraphProperties) {
 	const [
 		positiveZoneAValue,
 		positiveZoneBValue,
-		posttiveZoneCValue,
+		positiveZoneCValue,
 		negativeZoneAValue,
 		negativeZoneBValue,
 		negativeZoneCValue,
@@ -45,7 +45,7 @@ export function Graph({ data }: IGraphProperties) {
 	] = removeZeros([
 		positiveZoneA,
 		positiveZoneB,
-		posttiveZoneC,
+		positiveZoneC,
 		negativeZoneA,
 		negativeZoneB,
 		negativeZoneC,
@@ -126,7 +126,7 @@ export function Graph({ data }: IGraphProperties) {
 				/>
 			)}
 
-			{posttiveZoneCValue && posttiveZoneCValue !== smallestValue && (
+			{positiveZoneCValue && positiveZoneCValue !== smallestValue && (
 				<VictoryLine
 					style={{
 						data: {
@@ -134,7 +134,7 @@ export function Graph({ data }: IGraphProperties) {
 							strokeWidth: 1.2
 						}
 					}}
-					y={() => posttiveZoneCValue}
+					y={() => positiveZoneCValue}
 				/>
 			)}
 

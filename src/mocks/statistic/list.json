@@ -1,76 +1,77 @@
 {
-	"name": "DRB033___XB231",
+	"name": "DLB066___ZB228",
 	"catalogType": "DICHTIGKEIT",
-	"totalIo": 10,
-	"totalBk": 4,
+	"totalIo": 13,
+	"totalBk": 1,
 	"totalAk": 1,
-	"percentageAk": 0.2,
-	"percentageBk": 0.2,
-	"percentageIo": 0.6,
-	"cp": 2.39992,
-	"cpk": 0.18105,
-	"pp": 0.48538,
-	"ppk": 0.44141,
-	"standardDeviation": 1.03012,
-	"sigmaLevel": 0.54316,
-	"average": -0.13587,
-	"nominalDistribution": 0.0,
-	"mappedPmpList": ["NRSLA0021_H_LD", "NRSLA0024_H_AA"],
+	"percentageAk": 0.06666666666666667,
+	"percentageBk": 0.06666666666666667,
+	"percentageIo": 0.8666666666666667,
+	"cp": 2.92943,
+	"cpk": 0.15532,
+	"pp": 0.74907,
+	"ppk": 0.47876,
+	"standardDeviation": 0.44499,
+	"sigmaLevel": 0.46595,
+	"average": -0.36087,
+	"nominalDistribution": 0.923424321544054,
+	"z1": -1.43627,
+	"z2": 3.05817,
+	"mappedPmpList": ["NLSXT0103_O_BA", "NLDAA0009_O_AA"],
 	"impactList": [],
-	"able": true,
 	"cepIndividualValuesGraphic": {
 		"graphicType": "CEP_INDIVIDUAL_VALUES",
-		"higherTolerance": 0.48915,
-		"lowerTolerance": -0.76089,
-		"midline": -0.13587,
+		"higherTolerance": -0.0195,
+		"lowerTolerance": -0.70223,
+		"midline": -0.36087,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 85,
 				"pin": "74031078",
 				"updatedDate": "07/10/2022 18:10:28",
-				"value": 2.097,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.257,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 92,
 				"pin": "74228119",
 				"updatedDate": "27/10/2022 09:25:53",
-				"value": 0.804,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.566,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 91,
 				"pin": "74444434",
 				"updatedDate": "09/11/2022 07:53:47",
-				"value": 0.026,
-				"statisticCriteriaList": []
+				"value": -0.847,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 90,
 				"pin": "74515813",
 				"updatedDate": "10/11/2022 12:43:49",
-				"value": 0.303,
+				"value": -0.697,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 89,
 				"pin": "74529810",
 				"updatedDate": "14/11/2022 18:37:41",
-				"value": 0.143,
+				"value": -0.65,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 88,
 				"pin": "74631414",
 				"updatedDate": "21/11/2022 08:41:44",
-				"value": 0.111,
+				"value": -0.585,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 87,
 				"pin": "74667019",
 				"updatedDate": "24/11/2022 20:16:21",
-				"value": 0.223,
+				"value": -0.484,
 				"statisticCriteriaList": [
 					"FOUR_OUT_OF_FIVE_CONSECUTIVE_POINTS_OUTSIDE_ZONE_C"
 				]
@@ -79,71 +80,71 @@
 				"sampleId": 84,
 				"pin": "74844111",
 				"updatedDate": "06/12/2022 08:27:36",
-				"value": -0.745,
-				"statisticCriteriaList": []
+				"value": 0.047,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 83,
 				"pin": "70347074",
 				"updatedDate": "24/01/2023 22:28:14",
-				"value": -0.425,
-				"statisticCriteriaList": []
+				"value": -1.248,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 82,
 				"pin": "70403299",
 				"updatedDate": "26/01/2023 11:53:20",
-				"value": -0.775,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.506,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 81,
 				"pin": "70428407",
 				"updatedDate": "27/01/2023 06:43:24",
-				"value": 1.338,
+				"value": 0.224,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 80,
 				"pin": "70517323",
 				"updatedDate": "02/02/2023 20:19:32",
-				"value": -1.443,
+				"value": 0.021,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 79,
 				"pin": "70545562",
 				"updatedDate": "07/02/2023 18:02:43",
-				"value": -1.469,
+				"value": 0.465,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 78,
 				"pin": "70616385",
 				"updatedDate": "09/02/2023 06:33:01",
-				"value": -0.926,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.166,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 77,
 				"pin": "70631326",
 				"updatedDate": "13/02/2023 19:57:59",
-				"value": -1.3,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.164,
+				"statisticCriteriaList": []
 			}
 		],
-		"positiveZoneA": 0.48915,
-		"positiveZoneB": 0.28081,
-		"positiveZoneC": 0.07247,
-		"negativeZoneA": -0.76089,
-		"negativeZoneB": -0.55255,
-		"negativeZoneC": -0.34421
+		"positiveZoneA": -0.0195,
+		"positiveZoneB": -0.13329,
+		"positiveZoneC": -0.24708,
+		"negativeZoneA": -0.70223,
+		"negativeZoneB": -0.58844,
+		"negativeZoneC": -0.47465
 	},
 	"cepMovelAmplitudeGraphic": {
 		"graphicType": "CEP_MOVEL_AMPLITUDE",
-		"higherTolerance": 1.19571,
-		"lowerTolerance": 0.251,
-		"midline": 0.72336,
+		"higherTolerance": 0.65305,
+		"lowerTolerance": 0.13709,
+		"midline": 0.39507,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 85,
@@ -156,211 +157,211 @@
 				"sampleId": 92,
 				"pin": "74228119",
 				"updatedDate": "27/10/2022 09:25:53",
-				"value": 1.293,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.309,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 91,
 				"pin": "74444434",
 				"updatedDate": "09/11/2022 07:53:47",
-				"value": 0.778,
+				"value": 0.281,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 90,
 				"pin": "74515813",
 				"updatedDate": "10/11/2022 12:43:49",
-				"value": 0.277,
+				"value": 0.15,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 89,
 				"pin": "74529810",
 				"updatedDate": "14/11/2022 18:37:41",
-				"value": 0.16,
+				"value": 0.047,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 88,
 				"pin": "74631414",
 				"updatedDate": "21/11/2022 08:41:44",
-				"value": 0.032,
+				"value": 0.065,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 87,
 				"pin": "74667019",
 				"updatedDate": "24/11/2022 20:16:21",
-				"value": 0.112,
+				"value": 0.101,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 84,
 				"pin": "74844111",
 				"updatedDate": "06/12/2022 08:27:36",
-				"value": 0.968,
+				"value": 0.531,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 83,
 				"pin": "70347074",
 				"updatedDate": "24/01/2023 22:28:14",
-				"value": 0.32,
-				"statisticCriteriaList": []
+				"value": 1.295,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 82,
 				"pin": "70403299",
 				"updatedDate": "26/01/2023 11:53:20",
-				"value": 0.35,
-				"statisticCriteriaList": []
+				"value": 0.742,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 81,
 				"pin": "70428407",
 				"updatedDate": "27/01/2023 06:43:24",
-				"value": 2.113,
+				"value": 0.73,
 				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 80,
 				"pin": "70517323",
 				"updatedDate": "02/02/2023 20:19:32",
-				"value": 2.781,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.203,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 79,
 				"pin": "70545562",
 				"updatedDate": "07/02/2023 18:02:43",
-				"value": 0.026,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.444,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 78,
 				"pin": "70616385",
 				"updatedDate": "09/02/2023 06:33:01",
-				"value": 0.543,
+				"value": 0.631,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 77,
 				"pin": "70631326",
 				"updatedDate": "13/02/2023 19:57:59",
-				"value": 0.374,
-				"statisticCriteriaList": []
+				"value": 0.002,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			}
 		]
 	},
 	"individualValuesGraphic": {
 		"graphicType": "INDIVIDUAL_VALUES",
-		"higherTolerance": 1.5,
-		"lowerTolerance": -1.5,
-		"midline": -0.13587,
+		"higherTolerance": 1.0,
+		"lowerTolerance": -1.0,
+		"midline": -0.36087,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 85,
 				"pin": "74031078",
 				"updatedDate": "07/10/2022 18:10:28",
-				"value": 2.097,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": -0.257,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 92,
 				"pin": "74228119",
 				"updatedDate": "27/10/2022 09:25:53",
-				"value": 0.804,
+				"value": -0.566,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 91,
 				"pin": "74444434",
 				"updatedDate": "09/11/2022 07:53:47",
-				"value": 0.026,
+				"value": -0.847,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 90,
 				"pin": "74515813",
 				"updatedDate": "10/11/2022 12:43:49",
-				"value": 0.303,
+				"value": -0.697,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 89,
 				"pin": "74529810",
 				"updatedDate": "14/11/2022 18:37:41",
-				"value": 0.143,
+				"value": -0.65,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 88,
 				"pin": "74631414",
 				"updatedDate": "21/11/2022 08:41:44",
-				"value": 0.111,
+				"value": -0.585,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 87,
 				"pin": "74667019",
 				"updatedDate": "24/11/2022 20:16:21",
-				"value": 0.223,
+				"value": -0.484,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 84,
 				"pin": "74844111",
 				"updatedDate": "06/12/2022 08:27:36",
-				"value": -0.745,
+				"value": 0.047,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 83,
 				"pin": "70347074",
 				"updatedDate": "24/01/2023 22:28:14",
-				"value": -0.425,
-				"statisticCriteriaList": []
+				"value": -1.248,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 82,
 				"pin": "70403299",
 				"updatedDate": "26/01/2023 11:53:20",
-				"value": -0.775,
+				"value": -0.506,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 81,
 				"pin": "70428407",
 				"updatedDate": "27/01/2023 06:43:24",
-				"value": 1.338,
+				"value": 0.224,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 80,
 				"pin": "70517323",
 				"updatedDate": "02/02/2023 20:19:32",
-				"value": -1.443,
+				"value": 0.021,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 79,
 				"pin": "70545562",
 				"updatedDate": "07/02/2023 18:02:43",
-				"value": -1.469,
+				"value": 0.465,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 78,
 				"pin": "70616385",
 				"updatedDate": "09/02/2023 06:33:01",
-				"value": -0.926,
+				"value": -0.166,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 77,
 				"pin": "70631326",
 				"updatedDate": "13/02/2023 19:57:59",
-				"value": -1.3,
+				"value": -0.164,
 				"statisticCriteriaList": []
 			}
 		]
@@ -369,7 +370,7 @@
 		"graphicType": "MOVEL_AMPLITUDE",
 		"higherTolerance": 1.0,
 		"lowerTolerance": 0.0,
-		"midline": 0.72336,
+		"midline": 0.39507,
 		"detailedFmGraphicsList": [
 			{
 				"sampleId": 85,
@@ -382,100 +383,101 @@
 				"sampleId": 92,
 				"pin": "74228119",
 				"updatedDate": "27/10/2022 09:25:53",
-				"value": 1.293,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.309,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 91,
 				"pin": "74444434",
 				"updatedDate": "09/11/2022 07:53:47",
-				"value": 0.778,
+				"value": 0.281,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 90,
 				"pin": "74515813",
 				"updatedDate": "10/11/2022 12:43:49",
-				"value": 0.277,
+				"value": 0.15,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 89,
 				"pin": "74529810",
 				"updatedDate": "14/11/2022 18:37:41",
-				"value": 0.16,
+				"value": 0.047,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 88,
 				"pin": "74631414",
 				"updatedDate": "21/11/2022 08:41:44",
-				"value": 0.032,
+				"value": 0.065,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 87,
 				"pin": "74667019",
 				"updatedDate": "24/11/2022 20:16:21",
-				"value": 0.112,
+				"value": 0.101,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 84,
 				"pin": "74844111",
 				"updatedDate": "06/12/2022 08:27:36",
-				"value": 0.968,
+				"value": 0.531,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 83,
 				"pin": "70347074",
 				"updatedDate": "24/01/2023 22:28:14",
-				"value": 0.32,
-				"statisticCriteriaList": []
+				"value": 1.295,
+				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
 			},
 			{
 				"sampleId": 82,
 				"pin": "70403299",
 				"updatedDate": "26/01/2023 11:53:20",
-				"value": 0.35,
+				"value": 0.742,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 81,
 				"pin": "70428407",
 				"updatedDate": "27/01/2023 06:43:24",
-				"value": 2.113,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.73,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 80,
 				"pin": "70517323",
 				"updatedDate": "02/02/2023 20:19:32",
-				"value": 2.781,
-				"statisticCriteriaList": ["OUT_OF_TOLERANCE"]
+				"value": 0.203,
+				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 79,
 				"pin": "70545562",
 				"updatedDate": "07/02/2023 18:02:43",
-				"value": 0.026,
+				"value": 0.444,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 78,
 				"pin": "70616385",
 				"updatedDate": "09/02/2023 06:33:01",
-				"value": 0.543,
+				"value": 0.631,
 				"statisticCriteriaList": []
 			},
 			{
 				"sampleId": 77,
 				"pin": "70631326",
 				"updatedDate": "13/02/2023 19:57:59",
-				"value": 0.374,
+				"value": 0.002,
 				"statisticCriteriaList": []
 			}
 		]
-	}
+	},
+	"able": false
 }

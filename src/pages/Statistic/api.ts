@@ -74,6 +74,7 @@ export const Statistic = z.object({
 	sigmaLevel: z.number(),
 	average: z.number(),
 	nominalDistribution: z.number(),
+	restOfNormalDistribution: z.number().nullish(),
 	mappedPmpList: z.array(z.string()).nullish(),
 	mappedFmList: z
 		.array(Fm.pick({ name: true, axis: true, catalogType: true }))

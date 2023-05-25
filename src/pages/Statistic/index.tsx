@@ -192,20 +192,19 @@ export function Statistic() {
 									<div className='flex  gap-2'>
 										<div className='mr-auto'>
 											<p className='my-3 font-lexend text-sm  font-semibold'>
-												CP: {formatNumber(data.cp)}
-											</p>
-											<p className='my-3 font-lexend text-sm font-semibold'>
-												CPK: {formatNumber(data.cpk)}
-											</p>
-										</div>
-										<hr className='my-auto h-18 border border-bluishgray-fauv' />
-
-										<div className='mr-auto'>
-											<p className='my-3 font-lexend text-sm  font-semibold'>
 												PP: {formatNumber(data.pp)}
 											</p>
 											<p className='my-3 font-lexend text-sm  font-semibold'>
 												PPK: {formatNumber(data.ppk)}
+											</p>
+										</div>
+										<hr className='my-auto h-18 border border-bluishgray-fauv' />
+										<div className='mr-auto'>
+											<p className='my-3 font-lexend text-sm  font-semibold'>
+												CP: {formatNumber(data.cp)}
+											</p>
+											<p className='my-3 font-lexend text-sm font-semibold'>
+												CPK: {formatNumber(data.cpk)}
 											</p>
 										</div>
 										<hr className='my-auto h-18 border border-bluishgray-fauv' />
@@ -232,10 +231,10 @@ export function Statistic() {
 										<hr className='my-auto h-18 border border-bluishgray-fauv' />
 										<div className='mr-auto'>
 											<p className='my-3 font-lexend text-sm  font-semibold'>
-												Z1: {data.z1 ? formatPercentage(data.z1) : ''}
-											</p>
-											<p className='mt-3 font-lexend text-sm  font-semibold'>
-												Z2: {data.z2 ? formatPercentage(data.z2) : ''}
+												Resto da distribuição normal:
+												{data.restOfNormalDistribution
+													? formatPercentage(data.restOfNormalDistribution)
+													: ''}
 											</p>
 										</div>
 									</div>

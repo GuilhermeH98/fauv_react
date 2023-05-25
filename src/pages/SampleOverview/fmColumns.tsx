@@ -17,7 +17,8 @@ export const fmColumns: IColumnDefinitionType<
 	},
 	{
 		key: 'value',
-		header: 'Valor'
+		header: 'Valor',
+		valueFormatter: value => value.toString().replace('.', ',')
 	},
 	{
 		key: 'catalog',
