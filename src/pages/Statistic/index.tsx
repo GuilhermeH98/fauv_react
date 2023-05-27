@@ -253,7 +253,7 @@ export function Statistic() {
 													Média: {formatNumber(data.average)}
 												</p>
 												<p className='mt-3 font-lexend text-sm  font-semibold'>
-													Distribuição normal (Z):
+													Distribuição normal (Z):&nbsp;
 													{data.nominalDistribution
 														.toString()
 														.replace('.', ',')}
@@ -263,7 +263,7 @@ export function Statistic() {
 											<hr className='my-auto h-18 border border-bluishgray-fauv' />
 											<div className='mr-auto'>
 												<p className='my-3 font-lexend text-sm  font-semibold'>
-													Resto da distribuição normal:
+													Fora da tolerância (100% - Z):&nbsp;
 													{data.restOfNormalDistribution
 														? `${data.restOfNormalDistribution
 																.toString()
@@ -550,7 +550,7 @@ export function Statistic() {
 													Média: {formatNumber(pmpAxisData.average)}
 												</p>
 												<p className='mt-3 font-lexend text-sm  font-semibold'>
-													Distribuição normal (Z):
+													Distribuição normal (Z):&nbsp;
 													{pmpAxisData.nominalDistribution
 														.toString()
 														.replace('.', ',')}
@@ -560,7 +560,7 @@ export function Statistic() {
 											<hr className='my-auto h-18 border border-bluishgray-fauv' />
 											<div className='mr-auto'>
 												<p className='my-3 font-lexend text-sm  font-semibold'>
-													Resto da distribuição normal:
+													Fora da tolerância (100% - Z):&nbsp;
 													{pmpAxisData.restOfNormalDistribution
 														? `${pmpAxisData.restOfNormalDistribution
 																.toString()
