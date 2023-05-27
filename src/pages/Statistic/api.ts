@@ -1,4 +1,4 @@
-import { CatalogType, Fm } from 'pages/Models/api'
+import { CatalogType, Fm, PointAxis } from 'pages/Models/api'
 import { makeQuery } from 'utils/api'
 import { z } from 'zod'
 
@@ -87,14 +87,49 @@ export const Statistic = z.object({
 })
 export type IStatistic = z.infer<typeof Statistic>
 
-export function useStatisticQuery(
-	isFm: boolean,
-	modelId: string,
-	name: string
-) {
-	const queryWithParameters = `${STATISTIC_URL}/${
-		isFm ? 'fm' : 'pmp'
-	}/${modelId}/${name}`
+const PmpAxisStatistic = z.object({
+	axis: z.nativeEnum(PointAxis),
+	percentageIo: z.number(),
+	percentageBk: z.number(),
+	percentageAk: z.number(),
+	totalIo: z.number(),
+	totalBk: z.number(),
+	totalAk: z.number(),
+	cp: z.number(),
+	cpk: z.number(),
+	pp: z.number(),
+	ppk: z.number(),
+	standardDeviation: z.number(),
+	sigmaLevel: z.number(),
+	average: z.number(),
+	nominalDistribution: z.number(),
+	restOfNormalDistribution: z.number().nullish(),
+	cepIndividualValuesGraphic: CepIndividualValuesGraphic,
+	cepMovelAmplitudeGraphic: GraphicValues,
+	individualValuesGraphic: GraphicValues,
+	movelAmplitudeGraphic: GraphicValues,
+	able: z.boolean()
+})
+export type IPmpAxisStatistic = z.infer<typeof PmpAxisStatistic>
+
+export const PmpStatistic = z.object({
+	name: z.string(),
+	mappedFmList: z
+		.array(Fm.pick({ name: true, axis: true, catalogType: true }))
+		.nullish(),
+	axisList: z.array(z.nativeEnum(PointAxis)),
+	pmpStatisticsList: z.array(PmpAxisStatistic)
+})
+export type IPmpStatistic = z.infer<typeof PmpStatistic>
+
+export function useStatisticQuery(modelId: string, name: string) {
+	const queryWithParameters = `${STATISTIC_URL}/fm/${modelId}/${name}`
 
 	return makeQuery(queryWithParameters, Statistic)
+}
+
+export function usePmpStatisticQuery(modelId: string, name: string) {
+	const queryWithParameters = `${STATISTIC_URL}/pmp/${modelId}/${name}`
+
+	return makeQuery(queryWithParameters, PmpStatistic)
 }

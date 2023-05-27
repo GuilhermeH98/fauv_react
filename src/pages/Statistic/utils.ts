@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas'
 import { jsPDF as JSPDF } from 'jspdf'
 import type { IStatisticPreview } from 'pages/StatisticPreview/api'
-import type { IStatistic } from './api'
+import type { IPmpAxisStatistic, IStatistic } from './api'
 import { GraphicType } from './api'
 
 export function getGraphicTypeLabel(graphicType: GraphicType) {
@@ -44,9 +44,33 @@ export function getGraphicDataByType(
 	}
 }
 
+export function getPmpGraphicDataByType(
+	statistic: IPmpAxisStatistic,
+	currentGraphicType: GraphicType
+) {
+	switch (currentGraphicType) {
+		case GraphicType.CEP_INDIVIDUAL_VALUES: {
+			return statistic.cepIndividualValuesGraphic
+		}
+		case GraphicType.CEP_MOVEL_AMPLITUDE: {
+			return statistic.cepMovelAmplitudeGraphic
+		}
+		case GraphicType.INDIVIDUAL_VALUES: {
+			return statistic.individualValuesGraphic
+		}
+		default: {
+			return statistic.movelAmplitudeGraphic
+		}
+	}
+}
+
 export function assertLocationState(
 	state: unknown
 ): state is IStatisticPreview {
+	return !!state
+}
+
+export function assertPmpStatistic(state: unknown): state is IPmpAxisStatistic {
 	return !!state
 }
 
