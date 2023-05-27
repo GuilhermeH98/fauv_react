@@ -12,7 +12,7 @@ import { CatalogType, Level, PointAxis } from 'pages/Models/api'
 import { getFmLevelLabel } from 'pages/Statistic/components/FmPmpList/utils'
 import { useEffect } from 'react'
 import { useFieldArray, useForm } from 'react-hook-form'
-import { mapEnumOptions } from 'utils/miscellaneous'
+import { getCatalogLabel, mapEnumOptions } from 'utils/miscellaneous'
 import { getColumns } from './impatctColumns'
 import type { ICreateEditFmProperties, IImpactRow } from './types'
 
@@ -114,7 +114,7 @@ export function CreateEditFm({
 					<Select
 						label='Catálogo'
 						name='catalogType'
-						options={mapEnumOptions(CatalogType)}
+						options={mapEnumOptions(CatalogType, getCatalogLabel)}
 						control={control}
 						required
 					/>

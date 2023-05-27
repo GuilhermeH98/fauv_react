@@ -1,5 +1,6 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
 import { RiDeleteBinLine } from 'react-icons/ri'
+import { getCatalogLabel } from 'utils/miscellaneous'
 import type { IFm, IPmp } from '../api'
 
 export function getFmColumns(
@@ -32,7 +33,8 @@ export function getFmColumns(
 
 		{
 			key: 'catalogType',
-			header: 'Catálogo'
+			header: 'Catálogo',
+			valueGetter: row => getCatalogLabel(row.catalogType)
 		},
 		{
 			key: 'level',

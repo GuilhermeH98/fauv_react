@@ -1,3 +1,4 @@
+import type { CatalogType } from 'pages/Models/api'
 import { useLayoutEffect, useReducer, useState } from 'react'
 import type { KeepStateOptions } from 'react-hook-form'
 
@@ -74,4 +75,10 @@ export const resetIsSubmittedOptions: KeepStateOptions = {
 	keepSubmitCount: false,
 	keepTouched: true,
 	keepValues: true
+}
+
+// for show only
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function getCatalogLabel(catalog: CatalogType | number | string) {
+	return 'Geometria'
 }

@@ -27,7 +27,7 @@ export enum CatalogType {
 	GRUNDGEOMETRIE = 'GRUNDGEOMETRIE',
 	DICHTIGKEIT = 'DICHTIGKEIT',
 	SYMMETRIEVERLAUF = 'SYMMETRIEVERLAUF',
-	UMRISS_UND_BUNDIGKEIT = 'UMRISS_UND_BÜNDIGKEIT',
+	UMRISS_UND_BUNDIGKEIT = 'UMRISS_UND_BUNDIGKEIT',
 	FMK_PLUS = 'FMK_PLUS'
 }
 
@@ -228,16 +228,20 @@ export const useSendFilesMutation = () =>
 	useMutation(
 		async (files: IFilesUpload) => {
 			const formData = new FormData()
-			
-			formData.append('dmoFile', new Blob([files.dmoFile]))
-			
-			if (files.csvFile) { formData.append('csvFile', new Blob([files.csvFile])) }
 
-			const headers: Record<string, string> = { }
+			formData.append('dmoFile', new Blob([files.dmoFile]))
+
+			if (files.csvFile) {
+				formData.append('csvFile', new Blob([files.csvFile]))
+			}
+
+			const headers: Record<string, string> = {}
 
 			const token = localStorage.getItem('token')
-			
-			if (token) { headers.Authorization = `${token}` }
+
+			if (token) {
+				headers.Authorization = `${token}`
+			}
 
 			const response = await fetch(
 				`${import.meta.env.VITE_MSW ? '/' : ''}${MODEL_PREVIEW_URL}`,

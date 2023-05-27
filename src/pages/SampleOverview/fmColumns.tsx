@@ -1,4 +1,5 @@
 import type { IColumnDefinitionType } from 'components/Table/types'
+import { getCatalogLabel } from 'utils/miscellaneous'
 import type { IFmOverview } from './api'
 import { ToleranceType } from './api'
 import { getToleranceStatusColor } from './utils'
@@ -22,7 +23,8 @@ export const fmColumns: IColumnDefinitionType<
 	},
 	{
 		key: 'catalog',
-		header: 'Catálogo'
+		header: 'Catálogo',
+		valueGetter: row => getCatalogLabel(row.catalog)
 	},
 	{
 		key: 'tolerance',

@@ -17,6 +17,7 @@ import {
 } from 'react-icons/ri'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { formatNumber } from 'utils/format'
+import { getCatalogLabel } from 'utils/miscellaneous'
 import { GraphicType, usePmpStatisticQuery, useStatisticQuery } from './api'
 import { FmPmpList } from './components/FmPmpList'
 import { Graph } from './components/Graph'
@@ -126,7 +127,7 @@ export function Statistic() {
 											</div>
 
 											<span className='mt-1 font-lexend text-sm font-semibold text-blue-fauv '>
-												Catálogo: {data.catalogType}
+												Catálogo: {getCatalogLabel(data.catalogType)}
 											</span>
 										</div>
 										<div className='relative my-auto ml-auto'>
@@ -595,7 +596,11 @@ export function Statistic() {
 											columns={[
 												{ key: 'name', header: 'Nome' },
 												{ key: 'axis', header: 'Eixo' },
-												{ key: 'catalogType', header: 'Catálogo' }
+												{
+													key: 'catalogType',
+													header: 'Catálogo',
+													valueGetter: row => getCatalogLabel(row.catalogType)
+												}
 											]}
 										/>
 									</div>
