@@ -102,6 +102,7 @@ export function UploadDialog({
 							id='dmoFile'
 							type='file'
 							accept='.dmo,.txt,.csv'
+							size={1_048_576}
 							{...register('dmoFile')}
 							ref={inputDmoReference}
 							onChange={handleDmoChange}

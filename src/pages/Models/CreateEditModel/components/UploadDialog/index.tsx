@@ -114,6 +114,7 @@ export function UploadDialog({
 						<input
 							id='dmoFile'
 							type='file'
+							size={1_048_576}
 							accept='.dmo,.txt'
 							{...register('dmoFile')}
 							ref={inputDmoReference}
@@ -151,6 +152,7 @@ export function UploadDialog({
 						<input
 							id='csvFile'
 							type='file'
+							size={1_048_576}
 							accept='.csv'
 							{...register('csvFile')}
 							ref={inputCsvReference}

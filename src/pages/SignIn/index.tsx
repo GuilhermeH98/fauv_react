@@ -30,7 +30,7 @@ export default function SignIn(): ReactElement {
 			},
 			onSuccess(response: ICredentials) {
 				setCredentialsLocalStorage(response)
-				navigate('/home')
+				navigate('/cars')
 			},
 			onError(error) {
 				createSnackbar(

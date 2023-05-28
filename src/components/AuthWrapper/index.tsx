@@ -30,7 +30,7 @@ export function AuthWrapper({
 
 	if (isSignedIn) {
 		if (!authenticated || (!isAdmin && restricted)) {
-			return <Navigate to='/home' replace />
+			return <Navigate to='/cars' replace />
 		}
 		return children
 	}
