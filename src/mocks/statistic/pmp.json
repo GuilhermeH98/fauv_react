@@ -496,7 +496,7 @@
 			"sigmaLevel": 0.485,
 			"average": 0.4282,
 			"nominalDistribution": 0.9733464629311035,
-			"restOfNormalDistribution": 0.026653537068896505,
+			"restOfNormalDistribution": 0,
 			"cepIndividualValuesGraphic": {
 				"graphicType": "CEP_INDIVIDUAL_VALUES",
 				"higherTolerance": 0.52559,

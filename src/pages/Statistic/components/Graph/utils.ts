@@ -17,8 +17,8 @@ export function getStatisticCriteriaLabel(
 		case StatisticCriteria.FOURTEEN_CONSECUTIVE_POINTS_ALTERNATING_UP_AND_DOWN: {
 			return '14 pontos consecutivos alternando \n para cima e para baixo'
 		}
-		case StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_A: {
-			return '8 pontos consecutivos fora da zona A'
+		case StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_C: {
+			return '8 pontos consecutivos fora da zona C'
 		}
 		case StatisticCriteria.TWO_OUT_OF_THREE_CONSECUTIVE_POINTS_IN_ZONE_A: {
 			return '2 de 3 pontos consecutivos na zona A'
@@ -119,7 +119,7 @@ export function getStatus(criteriaList: StatisticCriteria[]) {
 		status = 'Estratificação ou falta \n de variabilidade'
 	} else if (
 		criteriaList.includes(
-			StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_A
+			StatisticCriteria.EIGHT_CONSECURTIVE_POINTS_OUT_OF_ZONE_C
 		) ||
 		criteriaList.includes(
 			StatisticCriteria.TWO_OUT_OF_THREE_CONSECUTIVE_POINTS_IN_ZONE_A

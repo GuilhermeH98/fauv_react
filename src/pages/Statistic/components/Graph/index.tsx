@@ -72,6 +72,7 @@ export function Graph({ data }: IGraphProperties) {
 					detailedFmGraphicsList,
 					lowerToleranceValue
 				)}
+				orientation='bottom'
 			/>
 			{/* Y AXIS - VALUE */}
 			<VictoryAxis

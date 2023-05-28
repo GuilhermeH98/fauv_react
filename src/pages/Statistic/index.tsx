@@ -276,7 +276,7 @@ export function Statistic() {
 														? `${data.restOfNormalDistribution
 																.toString()
 																.replace('.', ',')} %`
-														: ''}
+														: '0 %'}
 												</p>
 											</div>
 										</div>
@@ -383,8 +383,6 @@ export function Statistic() {
 												</h2>
 											</div>
 
-											{/* START HERE */}
-
 											<div className='relative my-auto'>
 												<div>
 													<div
@@ -425,10 +423,7 @@ export function Statistic() {
 													</div>
 												)}
 											</div>
-
-											{/* END HERE */}
 										</div>
-
 										<div className='relative my-auto ml-auto'>
 											<div className='flex gap-4'>
 												<OutlinedButton onClick={exportPdf}>
@@ -573,7 +568,7 @@ export function Statistic() {
 														? `${pmpAxisData.restOfNormalDistribution
 																.toString()
 																.replace('.', ',')} %`
-														: ''}
+														: '0 %'}
 												</p>
 											</div>
 										</div>

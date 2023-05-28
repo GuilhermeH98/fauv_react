@@ -180,7 +180,7 @@ export default function App(): ReactElement {
 														path='/*'
 														element={
 															<AuthWrapper authenticated>
-																<div />
+																<Cars />
 															</AuthWrapper>
 														}
 													/>
