@@ -89,10 +89,18 @@ export function Statistic() {
 	}
 
 	useEffect(() => {
-		if (!selectedPmpAxis && !isFm) {
+		const invalidAxis =
+			!selectedPmpAxis || !pmpQuery.data?.axisList.includes(selectedPmpAxis)
+
+		if (invalidAxis && !isFm) {
 			setSelectedPmpAxis(pmpQuery.data?.pmpStatisticsList[0].axis)
 		}
-	}, [selectedPmpAxis, isFm, pmpQuery.data?.pmpStatisticsList])
+	}, [
+		selectedPmpAxis,
+		isFm,
+		pmpQuery.data?.pmpStatisticsList,
+		pmpQuery.data?.axisList
+	])
 
 	useEffect(() => {
 		if (isFm) {
