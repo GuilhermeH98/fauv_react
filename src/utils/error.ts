@@ -93,7 +93,14 @@ enum ErrorMessage {
 	VW_ID_FORM_SIZE = 'VW_ID_MUST_HAVE_A_MINIMUM_OF_7_AND_MAXIMUM_OF_10_CHARACTERS',
 	ERROR_DUPLICATE = 'DUPLICATE_USER',
 	ERROR_PASSWORD_CONFIRMATION = 'WRONG_PASSWORD_CONFIRMATION',
-	ERROR_INVALID_GROUPED_ROLES = 'CONSULTANT_CANNOT_BE_ADMIN_IN_THE_SAME_TIME'
+	ERROR_INVALID_GROUPED_ROLES = 'CONSULTANT_CANNOT_BE_ADMIN_IN_THE_SAME_TIME',
+	FILE_HAS_NO_DATA = 'FILE_HAS_NO_DATA',
+	FILE_IS_NOT_A_DMO = 'FILE_IS_NOT_A_DMO',
+	EQUIPMENT_INACTIVE = 'EQUIPMENT_INACTIVE',
+	CAR_INACTIVE = 'CAR_INACTIVE',
+	NOMINAL_PMP_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_PMP_ASSOCIATION = 'NOMINAL_PMP_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_PMP_ASSOCIATION',
+	NOMINAL_FM_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_FM_ASSOCIATION = 'NOMINAL_FM_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_FM_ASSOCIATION',
+	NOMINAL_AXIS_COORDINATE_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_AXIS_COORDINATE_ASSOCIATION = 'NOMINAL_AXIS_COORDINATE_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_AXIS_COORDINATE_ASSOCIATION'
 }
 
 export function getErrorMessage(error: ErrorMessage | string) {
@@ -382,6 +389,27 @@ export function getErrorMessage(error: ErrorMessage | string) {
 		}
 		case ErrorMessage.ERROR_INVALID_GROUPED_ROLES: {
 			return 'Um consultor não pode ser administrador ao mesmo tempo'
+		}
+		case ErrorMessage.FILE_HAS_NO_DATA: {
+			return 'O arquivo não possui dados'
+		}
+		case ErrorMessage.FILE_IS_NOT_A_DMO: {
+			return 'O arquivo não é um DMO'
+		}
+		case ErrorMessage.EQUIPMENT_INACTIVE: {
+			return 'O equipamento está inativo'
+		}
+		case ErrorMessage.CAR_INACTIVE: {
+			return 'O carro está inativo'
+		}
+		case ErrorMessage.NOMINAL_PMP_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_PMP_ASSOCIATION: {
+			return 'O PMP nominal não pode ser excluído porque possui associação com medição PMP'
+		}
+		case ErrorMessage.NOMINAL_FM_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_FM_ASSOCIATION: {
+			return 'O FM nominal não pode ser excluído porque possui associação com medição FM'
+		}
+		case ErrorMessage.NOMINAL_AXIS_COORDINATE_CANNOT_BE_DELETED_BECAUSE_HAS_MESUAREMENT_AXIS_COORDINATE_ASSOCIATION: {
+			return 'A coordenada do eixo nominal não pode ser excluída porque possui associação com medição da coordenada do eixo'
 		}
 		default: {
 			return null
